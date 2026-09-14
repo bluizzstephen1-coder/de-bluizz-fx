@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De.Bluizz FX | Forex Academy</title>
+<meta name="description" content="De.Bluizz FX Forex Academy — structured lessons from beginner foundations to Breakout + Retest execution.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0} :root{--gold:#d7ad45;--gold2:#f4d27a;--bg:#070707;--panel:#111;--line:#282828;--text:#f5f5f5;--muted:#aaa}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{text-decoration:none;color:inherit} nav{position:sticky;top:0;z-index:20;background:rgba(7,7,7,.97);border-bottom:1px solid #222;padding:14px 6%;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:900;letter-spacing:1px}.logo span{color:var(--gold)} nav ul{display:flex;gap:22px;list-style:none;font-size:14px}nav li:hover{color:var(--gold)}
+.hero{padding:65px 7%;background:radial-gradient(circle at 80% 25%,#39290b,#0b0b0b 45%,#070707 75%);border-bottom:1px solid #222}
+.kicker{color:var(--gold);font-size:12px;font-weight:bold;letter-spacing:2px;text-transform:uppercase}
+h1{font-size:clamp(40px,7vw,70px);line-height:1.05;margin:10px 0 18px}h1 span,h2 span{color:var(--gold)}
+.hero p{max-width:720px;color:#c5c5c5;font-size:17px}.wrap{padding:55px 7%}.head{max-width:760px;margin-bottom:30px}.head h2{font-size:34px;margin:7px 0}.head p{color:var(--muted)}
+.progressbox{background:#101010;border:1px solid var(--line);padding:20px;border-radius:14px;margin-bottom:28px}.bar{height:9px;background:#222;border-radius:10px;overflow:hidden;margin-top:10px}.fill{height:100%;width:0;background:var(--gold);transition:.3s}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.card{background:linear-gradient(145deg,#151515,#0d0d0d);border:1px solid var(--line);border-radius:14px;padding:22px}.card:hover{border-color:#5d4b20}
+.level{font-size:11px;color:var(--gold2);letter-spacing:1px}.card h3{margin:8px 0}.card p{color:#aaa;font-size:14px;margin-bottom:16px}.lesson{border-top:1px solid #242424;padding-top:12px;margin-top:12px;font-size:13px}
+.btn{display:inline-block;border:1px solid var(--gold);padding:9px 14px;border-radius:7px;font-weight:bold;font-size:13px}.primary{background:var(--gold);color:#090909}.outline{color:var(--gold2)}
+.course{background:#0c0c0c;border-top:1px solid #222;border-bottom:1px solid #222}.coursebox{display:grid;grid-template-columns:1fr 1fr;gap:20px}.steps{display:grid;gap:10px}.step{padding:15px;border:1px solid var(--line);border-radius:10px;background:#111}.step b{color:var(--gold);margin-right:8px}
+#lessonPanel{display:none;margin-top:25px;background:#111;border:1px solid #3a301b;border-radius:14px;padding:25px}.lessonText{color:#ccc;max-width:850px}.lessonText h3{color:var(--gold2);margin:15px 0 6px}.lessonText ul{padding-left:20px}
+.cta{text-align:center;padding:60px 7%;background:linear-gradient(100deg,#18130a,#080808)}.cta p{max-width:650px;margin:10px auto 22px;color:#bbb}
+footer{padding:25px 7%;border-top:1px solid #222;color:#777;font-size:12px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+@media(max-width:800px){nav ul{display:none}.grid,.coursebox{grid-template-columns:1fr}.hero{padding:50px 6%}.wrap{padding:45px 6%}}
+
+<style>
+.toolgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.tool label{display:block;color:#bbb;font-size:13px;margin:12px 0}.tool input{display:block;width:100%;margin-top:5px;background:#090909;border:1px solid #333;color:#fff;padding:11px;border-radius:7px}.result{margin-top:18px;padding:15px;border-radius:9px;background:#0a0a0a;border:1px solid #332a17;color:var(--gold2);min-height:52px}.toolnote{margin-top:18px;padding:15px;border-left:3px solid var(--gold);background:#111;color:#999;font-size:12px}.news{border-top:1px solid #222}
+@media(max-width:800px){.toolgrid{grid-template-columns:1fr}}
+</style>
+</style>
+</head>
+<body>
+<nav><a class="logo" href="index.html"><span>DE.</span>BLUIZZ FX</a>
+<ul><li><a href="#academy">Academy</a></li><li><a href="#course">Strategy</a></li><li><a href="#lessonPanel">Lessons</a></li><li><a href="#tools">Tools</a></li><li><a href="#news">News</a></li></ul></nav>
+
+<header class="hero">
+<div class="kicker">DE.Bluizz Forex Academy</div>
+<h1>Learn the market.<br><span>Build your edge.</span></h1>
+<p>A structured learning path designed to take a new trader from forex fundamentals to disciplined Breakout + Retest execution.</p>
+</header>
+
+<main>
+<section class="wrap" id="academy">
+<div class="head"><div class="kicker">Learning path</div><h2>Start where you are.</h2><p>Complete lessons in order, practice on demo, and focus on risk management before risking real money.</p></div>
+<div class="progressbox"><b>Your Academy Progress: <span id="pct">0%</span></b><div class="bar"><div class="fill" id="fill"></div></div></div>
+
+<div class="grid">
+<article class="card"><div class="level">LEVEL 01 • BEGINNER</div><h3>Forex Foundations</h3><p>Understand the language of forex before reading charts.</p>
+<div class="lesson">01 — What is Forex?</div><div class="lesson">02 — Currency Pairs</div><div class="lesson">03 — Pips, Lots & Spreads</div><div class="lesson">04 — Leverage & Margin</div>
+<br><button class="btn primary" onclick="openLesson('foundations')">Open lessons</button></article>
+
+<article class="card"><div class="level">LEVEL 02 • PRICE ACTION</div><h3>Reading the Chart</h3><p>Learn how price moves and how traders identify important areas.</p>
+<div class="lesson">05 — Candlesticks</div><div class="lesson">06 — Support & Resistance</div><div class="lesson">07 — Market Structure</div><div class="lesson">08 — Swing Highs & Lows</div>
+<br><button class="btn primary" onclick="openLesson('price')">Open lessons</button></article>
+
+<article class="card"><div class="level">LEVEL 03 • DISCIPLINE</div><h3>Risk & Psychology</h3><p>Protect your account and develop repeatable trading behaviour.</p>
+<div class="lesson">09 — Risk Per Trade</div><div class="lesson">10 — Stop Loss & Targets</div><div class="lesson">11 — Risk/Reward</div><div class="lesson">12 — Trading Psychology</div>
+<br><button class="btn primary" onclick="openLesson('risk')">Open lessons</button></article>
+</div>
+</section>
+
+<section class="wrap course" id="course">
+<div class="head"><div class="kicker">Core De.Bluizz Strategy</div><h2>Breakout + <span>Retest</span></h2><p>This is the strategy course area. The website is prepared to expand into a complete lesson with chart examples, rules, entry models and practice exercises.</p></div>
+<div class="coursebox">
+<div class="card"><h3>Strategy workflow</h3><div class="steps">
+<div class="step"><b>1</b>Identify a meaningful level.</div><div class="step"><b>2</b>Wait for a decisive breakout.</div><div class="step"><b>3</b>Do not chase the first move.</div><div class="step"><b>4</b>Wait for the retest.</div><div class="step"><b>5</b>Look for confirmation.</div><div class="step"><b>6</b>Define SL, target and risk before entry.</div>
+</div></div>
+<div class="card"><h3>Practice rule</h3><p>Use a demo account while learning. Record every setup in a journal: level, breakout, retest, confirmation, entry, stop loss, target and result.</p><button class="btn outline" onclick="openLesson('breakout')">Read strategy lesson</button></div>
+</div>
+</section>
+
+<section class="wrap">
+<div id="lessonPanel"><h2 id="lessonTitle">Lesson</h2><div class="lessonText" id="lessonBody"></div><br><button class="btn primary" onclick="completeLesson()">Mark lesson complete</button> <button class="btn outline" onclick="closeLesson()">Close</button></div>
+</section>
+
+
+<section class="wrap" id="tools">
+<div class="head"><div class="kicker">Trading Tools</div><h2>Plan the trade before you place it.</h2><p>These calculators are educational planning tools. Always verify broker contract specifications and your account currency.</p></div>
+
+<div class="toolgrid">
+<div class="tool card">
+<h3>Position Size Calculator</h3>
+<label>Account balance<input id="balance" type="number" value="1000" min="0"></label>
+<label>Risk %<input id="riskPct" type="number" value="1" min="0" step="0.1"></label>
+<label>Stop loss (pips)<input id="slPips" type="number" value="20" min="0.1" step="0.1"></label>
+<label>Value per pip per 1.00 lot ($)<input id="pipLot" type="number" value="10" min="0.01" step="0.01"></label>
+<button class="btn primary" onclick="calcPosition()">Calculate</button>
+<div class="result" id="positionResult">Enter your values and calculate.</div>
+</div>
+
+<div class="tool card">
+<h3>Pip Value Calculator</h3>
+<label>Lots<input id="lots" type="number" value="0.10" min="0.01" step="0.01"></label>
+<label>Pip value per 1.00 lot ($)<input id="pipValue" type="number" value="10" min="0.01" step="0.01"></label>
+<label>Pips moved<input id="pipsMoved" type="number" value="30" min="0" step="0.1"></label>
+<button class="btn primary" onclick="calcPips()">Calculate</button>
+<div class="result" id="pipResult">Enter your values and calculate.</div>
+</div>
+
+<div class="tool card">
+<h3>Risk / Reward Calculator</h3>
+<label>Entry price<input id="entry" type="number" value="1.1000" step="0.00001"></label>
+<label>Stop-loss price<input id="stop" type="number" value="1.0980" step="0.00001"></label>
+<label>Take-profit price<input id="target" type="number" value="1.1060" step="0.00001"></label>
+<button class="btn primary" onclick="calcRR()">Calculate</button>
+<div class="result" id="rrResult">Enter your prices and calculate.</div>
+</div>
+</div>
+<div class="toolnote"><b>Important:</b> Pip value varies by pair, quote currency, lot size, and exchange rate. The position-size calculator above uses the pip-value assumption you enter; it does not connect to a broker.</div>
+</section>
+
+<section class="wrap news" id="news">
+<div class="head"><div class="kicker">Market Intelligence</div><h2>News & Economic Calendar</h2><p>The next version can connect this area to a live data provider. For now, use trusted economic calendars and verify releases before trading.</p></div>
+<div class="grid">
+<div class="card"><h3>Economic Calendar</h3><p>Track CPI, employment reports, central-bank decisions, GDP and other high-impact releases.</p><button class="btn outline" onclick="alert('Live calendar integration will be connected in the next build.')">Open Calendar</button></div>
+<div class="card"><h3>Market News</h3><p>Follow major macroeconomic developments and understand why markets may react.</p><button class="btn outline" onclick="alert('Live news integration will be connected in the next build.')">View News</button></div>
+<div class="card"><h3>Expert Insights</h3><p>Use analyst commentary as context—not as a substitute for your own trading plan.</p><button class="btn outline" onclick="alert('Expert insight feeds will be connected in the next build.')">Explore Insights</button></div>
+</div>
+</section>
+
+<section class="wrap" id="community">
+<div class="head"><div class="kicker">Community</div><h2>DE.Bluizz Community</h2><p>Education, accountability and responsible trading. No guaranteed-profit promises.</p></div>
+<div class="card"><h3>POVERTY IS THE ENEMY HERE</h3><p>Join the future De.Bluizz FX community area for discussions, educational resources, trade reviews and strategy practice.</p><br>
+<a class="btn primary" href="https://wa.me/" target="_blank">WhatsApp Community</a></div>
+</section>
+
+<section class="cta"><div class="kicker">DE.Bluizz Community</div><h2>POVERTY IS THE ENEMY HERE</h2><p>Education first. Discipline always. No strategy can guarantee profits, and every leveraged trade carries risk.</p><a class="btn primary" href="index.html">Back to De.Bluizz FX</a></section>
+</main>
+
+<footer><div>© 2026 De.Bluizz FX</div><div>Trade with discipline • Manage risk • Keep learning</div></footer>
+
+<script>
+let currentLesson='';
+const lessons={
+foundations:{title:'Forex Foundations',body:`<h3>What is Forex?</h3><p>Forex is the global market where currencies are exchanged. A currency pair shows the relative value of one currency against another.</p><h3>Currency pairs</h3><p>In EUR/USD, EUR is the base currency and USD is the quote currency. If EUR/USD rises, the euro is gaining value relative to the dollar.</p><h3>Pips, lots and spreads</h3><p>A pip is a standard unit used to describe many forex price movements. A lot describes trade size, while the spread is the difference between bid and ask prices.</p><h3>Leverage and margin</h3><p>Leverage allows a trader to control a larger position with less capital, but it also magnifies losses. Learn the risk before using it.</p>`},
+price:{title:'Reading the Chart',body:`<h3>Candlesticks</h3><p>A candle shows open, high, low and close for a selected timeframe. Study the body and wicks rather than treating one candle as a guaranteed signal.</p><h3>Support and resistance</h3><p>These are areas where price has previously reacted. Treat them as zones rather than perfectly precise lines.</p><h3>Market structure</h3><p>Observe sequences of highs and lows to understand whether price is making higher highs, higher lows, lower highs or lower lows.</p><h3>Swing points</h3><p>Mark meaningful swing highs and lows and watch how price behaves when it returns to those areas.</p>`},
+risk:{title:'Risk & Psychology',body:`<h3>Risk per trade</h3><p>Choose a small, predefined percentage of account equity to risk on a trade. The exact percentage should fit your plan and tolerance.</p><h3>Stop loss</h3><p>A stop loss defines where the trade idea is invalidated. Set it before entering and avoid moving it simply to prevent a loss.</p><h3>Risk/reward</h3><p>Compare the amount you could lose with the amount you aim to gain. A good ratio does not make a poor setup good.</p><h3>Psychology</h3><p>Follow your rules after wins and losses. Avoid revenge trading, overtrading and entering because of fear of missing out.</p>`},
+breakout:{title:'Breakout + Retest',body:`<h3>1. Find the level</h3><p>Identify a clear support or resistance area that matters to the current market structure.</p><h3>2. Wait for the breakout</h3><p>Let price break the level. Avoid assuming every wick through a level is a valid breakout.</p><h3>3. Wait for the retest</h3><p>Instead of chasing the breakout candle, wait to see whether price returns toward the broken area.</p><h3>4. Confirmation</h3><p>Use your defined confirmation rules before entering. Confirmation should be objective enough to repeat consistently.</p><h3>5. Risk plan</h3><p>Define entry, invalidation/stop loss, target and position size before clicking buy or sell. Practice on demo while learning.</p>`}
+};
+function openLesson(key){currentLesson=key;document.getElementById('lessonTitle').textContent=lessons[key].title;document.getElementById('lessonBody').innerHTML=lessons[key].body;document.getElementById('lessonPanel').style.display='block';document.getElementById('lessonPanel').scrollIntoView({behavior:'smooth'})}
+function closeLesson(){document.getElementById('lessonPanel').style.display='none'}
+function completeLesson(){let done=Number(localStorage.getItem('dbDone')||0)+1;done=Math.min(done,12);localStorage.setItem('dbDone',done);updateProgress();alert('Lesson marked complete. Keep practicing on demo.')}
+function updateProgress(){let done=Number(localStorage.getItem('dbDone')||0);let pct=Math.round(done/12*100);document.getElementById('pct').textContent=pct+'%';document.getElementById('fill').style.width=pct+'%'}
+updateProgress();
+</script>
+
+<script>
+function n(id){return Number(document.getElementById(id).value)}
+function money(x){return '$'+x.toFixed(2)}
+function calcPosition(){
+ const balance=n('balance'), risk=n('riskPct'), sl=n('slPips'), pip=n('pipLot');
+ if(balance<=0||risk<=0||sl<=0||pip<=0){positionResult.textContent='Please enter positive values.';return}
+ const riskMoney=balance*risk/100, lots=riskMoney/(sl*pip);
+ positionResult.innerHTML=`Risk amount: <b>${money(riskMoney)}</b><br>Suggested position size: <b>${lots.toFixed(2)} lots</b>`;
+}
+function calcPips(){
+ const lots=n('lots'), pip=n('pipValue'), moved=n('pipsMoved');
+ if(lots<=0||pip<=0||moved<0){pipResult.textContent='Please enter valid values.';return}
+ pipResult.innerHTML=`Value per pip: <b>${money(lots*pip)}</b><br>Value of ${moved} pips: <b>${money(lots*pip*moved)}</b>`;
+}
+function calcRR(){
+ const e=n('entry'), s=n('stop'), t=n('target');
+ const risk=Math.abs(e-s), reward=Math.abs(t-e);
+ if(risk<=0||reward<=0){rrResult.textContent='Stop and target must create a valid risk/reward calculation.';return}
+ rrResult.innerHTML=`Risk distance: <b>${risk.toFixed(5)}</b><br>Reward distance: <b>${reward.toFixed(5)}</b><br>Risk/Reward: <b>1:${(reward/risk).toFixed(2)}</b>`;
+}
+</script>
+
+</body>
+</html>

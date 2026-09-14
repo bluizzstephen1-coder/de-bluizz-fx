@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>De.Bluizz FX — Trader Dashboard</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#070707;color:#eee}a{text-decoration:none;color:inherit}
+:root{--g:#d7ad45;--g2:#f4d27a;--p:#111;--l:#292929;--m:#aaa}
+nav{position:sticky;top:0;z-index:5;background:#090909;border-bottom:1px solid #222;padding:14px 6%;display:flex;justify-content:space-between;align-items:center}.logo{font-weight:900}.logo span{color:var(--g)}nav a:hover{color:var(--g)}
+nav ul{display:flex;gap:18px;list-style:none;font-size:13px}.menu{display:none}
+.hero{padding:55px 6%;background:radial-gradient(circle at 80% 20%,#3b2c0d,#090909 48%);border-bottom:1px solid #222}.k{font-size:11px;color:var(--g);letter-spacing:2px;font-weight:bold}.hero h1{font-size:clamp(38px,6vw,64px);line-height:1.05;margin:10px 0}.hero h1 span{color:var(--g)}.hero p{color:#bbb;max-width:700px}
+.wrap{padding:45px 6%}.head{margin-bottom:25px}.head h2{font-size:31px;margin:7px 0}.head p{color:var(--m)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{background:linear-gradient(145deg,#151515,#0d0d0d);border:1px solid var(--l);border-radius:13px;padding:20px}.card h3{margin:5px 0 10px}.card p{font-size:13px;color:#aaa}
+.market{border-top:1px solid #222;border-bottom:1px solid #222;background:#0c0c0c}.ticker{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.quote{padding:16px;border:1px solid #292929;border-radius:10px;background:#101010}.quote b{display:block;font-size:20px;margin:4px 0}.up{color:#74d39a}.down{color:#ef7777}.small{font-size:11px;color:#777}
+.chartbox{height:290px;border:1px solid #292929;border-radius:12px;background:repeating-linear-gradient(0deg,#0d0d0d 0,#0d0d0d 48px,#171717 49px),repeating-linear-gradient(90deg,transparent 0,transparent 58px,#171717 59px);position:relative;overflow:hidden}.line{position:absolute;height:2px;background:var(--g);left:7%;right:7%;top:46%}.price{position:absolute;right:8%;top:43%;color:var(--g2);font-weight:bold}.wave{position:absolute;left:5%;right:5%;top:25%;height:150px;border-bottom:2px solid #777;transform:skewY(-12deg);opacity:.8}
+.btn{display:inline-block;padding:10px 14px;border:1px solid var(--g);border-radius:7px;font-weight:bold;font-size:12px}.primary{background:var(--g);color:#080808}.outline{color:var(--g2)}
+.login{max-width:520px}.login input{width:100%;display:block;margin:9px 0;padding:12px;background:#080808;border:1px solid #333;border-radius:7px;color:#fff}.member{display:none}
+footer{border-top:1px solid #222;padding:25px 6%;color:#777;font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap}
+@media(max-width:800px){nav ul{display:none}.menu{display:block}.grid,.ticker{grid-template-columns:1fr 1fr}.wrap{padding:40px 5%}}@media(max-width:520px){.grid,.ticker{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><a class="logo" href="#"><span>DE.</span>BLUIZZ FX</a><ul><li><a href="#dashboard">Dashboard</a></li><li><a href="#markets">Markets</a></li><li><a href="#academy">Academy</a></li><li><a href="#community">Community</a></li><li><a href="#member">Members</a></li></ul><div class="menu">☰</div></nav>
+
+<header class="hero">
+<div class="k">DE.Bluizz FX • TRADER HUB</div>
+<h1>Your market.<br><span>Your plan. Your edge.</span></h1>
+<p>A central dashboard for forex education, strategy practice, market monitoring and disciplined trading.</p>
+</header>
+
+<section class="wrap" id="dashboard">
+<div class="head"><div class="k">Trader Dashboard</div><h2>Market at a glance</h2><p>The prices shown here are demo display data. They are not live quotes and must not be used for trading decisions.</p></div>
+<div class="ticker">
+<div class="quote">EUR/USD<b id="eur">1.0842</b><span class="up">▲ +0.18%</span></div>
+<div class="quote">GBP/USD<b id="gbp">1.2765</b><span class="down">▼ -0.11%</span></div>
+<div class="quote">USD/JPY<b id="jpy">157.42</b><span class="up">▲ +0.22%</span></div>
+<div class="quote">XAU/USD<b id="gold">2,653.10</b><span class="up">▲ +0.35%</span></div>
+</div>
+<br>
+<div class="card"><h3>EUR/USD Demo Chart</h3><div class="chartbox"><div class="wave"></div><div class="line"></div><div class="price" id="chartPrice">1.0842</div></div><p class="small">Demo visualization only. Live chart integration is the next backend/data step.</p></div>
+</section>
+
+<section class="wrap market" id="markets">
+<div class="head"><div class="k">Market Intelligence</div><h2>News & Economic Calendar</h2><p>Use an economic calendar to identify potentially high-impact events before trading.</p></div>
+<div class="grid">
+<div class="card"><h3>Economic Calendar</h3><p>CPI, employment, GDP, interest-rate decisions and other scheduled releases.</p><a class="btn outline" href="https://www.investing.com/economic-calendar/" target="_blank">Open Calendar</a></div>
+<div class="card"><h3>Forex News</h3><p>Review macroeconomic developments and verify important headlines from reliable sources.</p><a class="btn outline" href="https://www.reuters.com/markets/currencies/" target="_blank">Market News</a></div>
+<div class="card"><h3>Charts & Analysis</h3><p>Use professional charts to study levels, structure and your Breakout + Retest setup.</p><a class="btn outline" href="https://www.tradingview.com/" target="_blank">Open Charts</a></div>
+</div>
+</section>
+
+<section class="wrap" id="academy">
+<div class="head"><div class="k">Academy</div><h2>Learn before you risk.</h2></div>
+<div class="grid">
+<div class="card"><h3>Forex Foundations</h3><p>Pairs, pips, lots, spreads, leverage and margin.</p><a class="btn primary" href="academy.html">Open Academy</a></div>
+<div class="card"><h3>Breakout + Retest</h3><p>Your core strategy: level → breakout → retest → confirmation → risk plan.</p><a class="btn primary" href="academy.html#course">Study Strategy</a></div>
+<div class="card"><h3>Risk & Psychology</h3><p>Position sizing, stop losses, risk/reward and emotional discipline.</p><a class="btn primary" href="academy.html#lessonPanel">Learn Risk</a></div>
+</div>
+</section>
+
+<section class="wrap" id="community">
+<div class="head"><div class="k">Community</div><h2>DE.Bluizz Community</h2><p>Education, accountability and responsible trading — without guaranteed-profit promises.</p></div>
+<div class="card"><h3>POVERTY IS THE ENEMY HERE</h3><p>The member community can later include private discussions, trade reviews, lessons and announcements.</p><a class="btn primary" href="https://wa.me/" target="_blank">Join WhatsApp</a></div>
+</section>
+
+<section class="wrap" id="member">
+<div class="head"><div class="k">Members Area</div><h2>Private trader dashboard</h2><p>This V5 includes the interface for a future secure account system. It is not a real authentication system yet.</p></div>
+<div class="card login">
+<input id="name" placeholder="Your name">
+<input id="email" type="email" placeholder="Email address">
+<button class="btn primary" onclick="demoLogin()">Enter Demo Dashboard</button>
+</div>
+<div class="card member" id="memberPanel"><h3>Welcome, <span id="memberName"></span> 👋</h3><p>Your future members area can contain your saved journal, courses, watchlist, private resources and community content.</p><button class="btn outline" onclick="logout()">Log out</button></div>
+</section>
+
+<footer><div>© 2026 De.Bluizz FX</div><div>Educational content only • Trading involves risk</div></footer>
+<script>
+function demoLogin(){let n=document.getElementById('name').value.trim()||'Trader';document.getElementById('memberName').textContent=n;document.querySelector('.login').style.display='none';document.getElementById('memberPanel').style.display='block'}
+function logout(){document.querySelector('.login').style.display='block';document.getElementById('memberPanel').style.display='none'}
+function fluctuate(id,base){let x=base+(Math.random()-.5)*base*.0008;document.getElementById(id).textContent=x.toFixed(id==='jpy'?2:4);if(id==='gold')document.getElementById(id).textContent=x.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});document.getElementById('chartPrice').textContent=document.getElementById('eur').textContent}
+setInterval(()=>{fluctuate('eur',1.0842);fluctuate('gbp',1.2765);fluctuate('jpy',157.42);fluctuate('gold',2653.10)},2500)
+</script>
+</body>
+</html>

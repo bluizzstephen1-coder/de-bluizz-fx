@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DE.Bluizz FX — V7 Trader Hub</title>
+<style>
+:root{--bg:#070707;--card:#111;--line:#302714;--gold:#d7ad45;--soft:#f4d27a;--muted:#999}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#eee;font-family:Arial,sans-serif}.wrap{max-width:1150px;margin:auto;padding:18px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.brand{font-size:25px;font-weight:800;color:var(--gold)}
+button,.btn{border:1px solid #5a451c;background:#151515;color:#eee;border-radius:9px;padding:10px 13px}.primary{background:var(--gold);color:#070707;border:0;font-weight:800}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px;margin-top:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:17px}.stat{font-size:28px;font-weight:800;margin-top:7px}.gold{color:var(--gold)}.muted{color:var(--muted)}h2{margin-top:0;font-size:19px}
+input,select,textarea{width:100%;margin:5px 0;padding:11px;background:#080808;border:1px solid #444;color:#fff;border-radius:8px}textarea{min-height:70px}.row{border-top:1px solid #292929;padding:10px 0}.pill{display:inline-block;padding:4px 8px;border:1px solid #4b3a19;border-radius:20px;color:var(--soft);font-size:12px}
+.watch{display:grid;grid-template-columns:1fr auto;gap:8px;padding:10px 0;border-top:1px solid #292929}.price{font-size:20px;font-weight:800}.up{color:#8ee08e}.down{color:#ff8d8d}
+.news{padding:10px 0;border-top:1px solid #292929}.news a{color:var(--soft);text-decoration:none}.bar{height:8px;background:#252525;border-radius:8px;overflow:hidden}.bar i{display:block;height:100%;background:var(--gold);width:0}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}.tabs button.active{background:var(--gold);color:#080808}canvas{width:100%;height:230px;background:#090909;border-radius:10px}
+</style></head><body><div class="wrap">
+<div class="top"><div class="brand">DE.Bluizz FX <span class="muted">V7 Trader Hub</span></div><div><span id="email" class="muted"></span> <button id="logout">Log out</button></div></div>
+<div class="grid">
+<div class="card"><div class="muted">Journal trades</div><div class="stat" id="count">0</div></div>
+<div class="card"><div class="muted">Academy progress</div><div class="stat" id="progress">0%</div><div class="bar"><i id="progressBar"></i></div></div>
+<div class="card"><div class="muted">Core strategy</div><div class="stat gold" style="font-size:22px">Breakout + Retest</div></div>
+<div class="card"><div class="muted">Market status</div><div class="stat" id="status">Loading…</div></div></div>
+
+<div class="grid"><div class="card"><h2>Live Watchlist</h2><div id="watch"><span class="muted">Loading market data…</span></div></div>
+<div class="card"><h2>Chart</h2><select id="symbol"><option>EUR/USD</option><option>GBP/USD</option><option>USD/JPY</option><option>XAU/USD</option></select><canvas id="chart"></canvas><div id="chartMsg" class="muted"></div></div></div>
+
+<div class="grid"><div class="card"><h2>Economic Calendar</h2><div class="tabs"><button class="active" data-impact="all">All</button><button data-impact="high">High</button><button data-impact="medium">Medium</button></div><div id="calendar"><span class="muted">Loading calendar…</span></div></div>
+<div class="card"><h2>Market News</h2><div id="news"><span class="muted">Loading news…</span></div></div></div>
+
+<div class="grid"><div class="card"><h2>Add journal trade</h2><form id="tradeForm">
+<input id="pair" placeholder="Pair e.g. EUR/USD" required><select id="direction"><option>BUY</option><option>SELL</option></select>
+<input id="setup" placeholder="Setup / reason"><input id="risk" type="number" step="0.01" placeholder="Risk %"><input id="result" placeholder="Result e.g. +2R / -1R"><textarea id="notes" placeholder="Notes"></textarea>
+<button class="primary">Save trade</button></form></div><div class="card"><h2>Recent trades</h2><div id="rows"><span class="muted">Loading…</span></div></div></div>
+
+<div class="card" style="margin-top:14px"><h2>Risk reminder</h2><p class="muted">Live data can be delayed or unavailable. Forex and leveraged products involve substantial risk. DE.Bluizz FX does not guarantee profits and educational content is not personalized financial advice.</p><a class="pill" href="academy.html">Open Academy</a></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase.js"></script>
+<script>
+let user,prices=[],calendarData=[];const $=id=>document.getElementById(id);
+async function fn(name,body={}){const {data,error}=await supabaseClient.functions.invoke(name,{body});if(error)throw error;return data}
+async function start(){if(!window.supabaseClient){$("status").textContent="Configure Supabase";return}const {data:{session}}=await supabaseClient.auth.getSession();if(!session){location.href="auth.html";return}user=session.user;$("email").textContent=user.email;await Promise.all([loadTrades(),loadProgress(),loadMarkets(),loadCalendar(),loadNews()])}
+async function loadMarkets(){try{const d=await fn("market-data",{symbols:["EUR/USD","GBP/USD","USD/JPY","XAU/USD"]});prices=d.prices||[];$("status").textContent=d.source||"Live feed";renderWatch();drawChart()}catch(e){$("status").textContent="Feed unavailable";$("watch").innerHTML="<span class='muted'>Market provider not configured.</span>";$("chartMsg").textContent="Configure the Edge Function secret."}}
+function renderWatch(){$("watch").innerHTML=prices.map(p=>`<div class="watch"><div><b>${p.symbol}</b><br><span class="muted">${p.time||""}</span></div><div class="price">${p.price??"—"}</div></div>`).join("")}
+function drawChart(){const c=$("chart"),ctx=c.getContext("2d"),dpr=devicePixelRatio||1,w=c.clientWidth,h=230;c.width=w*dpr;c.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);const p=prices.find(x=>x.symbol===$("symbol").value);if(!p)return;let seed=Number(p.price)||1,pts=[];for(let i=0;i<70;i++){seed*=1+(Math.sin(i*1.7+seed)*.00035);pts.push(seed)}const mn=Math.min(...pts),mx=Math.max(...pts);ctx.beginPath();pts.forEach((v,i)=>{let x=i*w/(pts.length-1),y=20+(mx-v)/(mx-mn||1)*(h-40);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.strokeStyle="#d7ad45";ctx.lineWidth=2;ctx.stroke()}
+$("symbol").onchange=drawChart;
+async function loadCalendar(){try{const d=await fn("calendar",{});calendarData=d.events||[];renderCalendar("all")}catch(e){$("calendar").innerHTML="<span class='muted'>Calendar provider not configured.</span>"}}
+function renderCalendar(i){const a=i==="all"?calendarData:calendarData.filter(x=>(x.impact||"").toLowerCase()===i);$("calendar").innerHTML=a.slice(0,12).map(x=>`<div class="news"><b>${x.time||""} ${x.currency||""}</b> <span class="pill">${x.impact||""}</span><br>${x.title||"Event"}${x.forecast?" · Forecast: "+x.forecast:""}</div>`).join("")||"<span class='muted'>No events.</span>"}
+document.querySelectorAll("[data-impact]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-impact]").forEach(x=>x.classList.remove("active"));b.classList.add("active");renderCalendar(b.dataset.impact)});
+async function loadNews(){try{const d=await fn("market-news",{});$("news").innerHTML=(d.articles||[]).slice(0,8).map(x=>`<div class="news"><a href="${x.url||'#'}" target="_blank" rel="noopener">${x.title||"Market update"}</a><br><span class="muted">${x.source||""} ${x.published_at||""}</span></div>`).join("")||"<span class='muted'>No news.</span>"}catch(e){$("news").innerHTML="<span class='muted'>News provider not configured.</span>"}}
+async function loadTrades(){const {data,error}=await supabaseClient.from("journal_entries").select("*").order("created_at",{ascending:false}).limit(20);if(error){$("rows").textContent=error.message;return}$("count").textContent=data.length;$("rows").innerHTML=data.length?data.map(t=>`<div class="row"><b>${t.pair}</b> <span class="pill">${t.direction}</span> — ${t.result||"No result"}<br><span class="muted">${t.trade_date} · ${t.setup||""} · Risk ${t.risk_percent??"-"}%</span><br>${t.notes||""}</div>`).join(""):"<span class='muted'>No trades yet.</span>"}
+async function loadProgress(){try{const {data}=await supabaseClient.from("course_progress").select("completed");const pct=data&&data.length?Math.round(data.filter(x=>x.completed).length/data.length*100):0;$("progress").textContent=pct+"%";$("progressBar").style.width=pct+"%"}catch(e){}}
+$("tradeForm").onsubmit=async e=>{e.preventDefault();const {error}=await supabaseClient.from("journal_entries").insert({user_id:user.id,pair:$("pair").value.trim(),direction:$("direction").value,setup:$("setup").value.trim(),risk_percent:$("risk").value||null,result:$("result").value.trim(),notes:$("notes").value.trim()});if(error){alert(error.message);return}e.target.reset();loadTrades()};
+$("logout").onclick=async()=>{await supabaseClient.auth.signOut();location.href="auth.html"};start();
+</script></body></html>
