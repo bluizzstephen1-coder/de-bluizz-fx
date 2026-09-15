@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>De.Bluizz FX — Trader Dashboard</title>
+<title>De.Bluizz FX — Trade Smart. Build Your Edge.</title>
 <style>
 *{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#070707;color:#eee}a{text-decoration:none;color:inherit}
 :root{--g:#d7ad45;--g2:#f4d27a;--p:#111;--l:#292929;--m:#aaa}
@@ -17,11 +17,11 @@ nav ul{display:flex;gap:18px;list-style:none;font-size:13px}.menu{display:none}
 .btn{display:inline-block;padding:10px 14px;border:1px solid var(--g);border-radius:7px;font-weight:bold;font-size:12px}.primary{background:var(--g);color:#080808}.outline{color:var(--g2)}
 .login{max-width:520px}.login input{width:100%;display:block;margin:9px 0;padding:12px;background:#080808;border:1px solid #333;border-radius:7px;color:#fff}.member{display:none}
 footer{border-top:1px solid #222;padding:25px 6%;color:#777;font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap}
-@media(max-width:800px){nav ul{display:none}.menu{display:block}.grid,.ticker{grid-template-columns:1fr 1fr}.wrap{padding:40px 5%}}@media(max-width:520px){.grid,.ticker{grid-template-columns:1fr}}
+@media(max-width:800px){nav ul{display:none;position:absolute;left:0;right:0;top:62px;background:#070707;border-bottom:1px solid #222;padding:14px 7%;flex-direction:column;gap:12px}.menu{display:block;background:transparent;color:var(--gold);border:0;padding:0;font-size:24px}.grid,.ticker{grid-template-columns:1fr 1fr}.wrap{padding:40px 5%}}@media(max-width:520px){.grid,.ticker{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<nav><a class="logo" href="#"><span>DE.</span>BLUIZZ FX</a><ul><li><a href="#dashboard">Dashboard</a></li><li><a href="#markets">Markets</a></li><li><a href="#academy">Academy</a></li><li><a href="#community">Community</a></li><li><a href="#member">Members</a></li></ul><div class="menu">☰</div></nav>
+<nav><a class="logo" href="#"><span>DE.</span>BLUIZZ FX</a><ul><li><a href="#dashboard">Dashboard</a></li><li><a href="#markets">Markets</a></li><li><a href="#academy">Academy</a></li><li><a href="#community">Community</a></li><li><a href="#member">Members</a></li></ul><button class="menu" id="menuBtn" aria-label="Open menu">☰</button></nav>
 
 <header class="hero">
 <div class="k">DE.Bluizz FX • TRADER HUB</div>
@@ -65,21 +65,25 @@ footer{border-top:1px solid #222;padding:25px 6%;color:#777;font-size:12px;displ
 </section>
 
 <section class="wrap" id="member">
-<div class="head"><div class="k">Members Area</div><h2>Private trader dashboard</h2><p>This V5 includes the interface for a future secure account system. It is not a real authentication system yet.</p></div>
-<div class="card login">
-<input id="name" placeholder="Your name">
-<input id="email" type="email" placeholder="Email address">
-<button class="btn primary" onclick="demoLogin()">Enter Demo Dashboard</button>
+<div class="head"><div class="k">Members Area</div><h2>Your private trader hub.</h2><p>Create a secure account or sign in to access your personal De.Bluizz FX dashboard, trading journal and Academy progress.</p></div>
+<div class="card">
+<h3>DE.Bluizz FX Member Access</h3>
+<p>Your account is protected by Supabase authentication. Your journal data is stored privately under your account.</p>
+<br>
+<a class="btn primary" href="auth.html">Create Account / Login</a>
+<a class="btn outline" href="dashboard.html">Open Dashboard</a>
 </div>
-<div class="card member" id="memberPanel"><h3>Welcome, <span id="memberName"></span> 👋</h3><p>Your future members area can contain your saved journal, courses, watchlist, private resources and community content.</p><button class="btn outline" onclick="logout()">Log out</button></div>
 </section>
 
 <footer><div>© 2026 De.Bluizz FX</div><div>Educational content only • Trading involves risk</div></footer>
 <script>
-function demoLogin(){let n=document.getElementById('name').value.trim()||'Trader';document.getElementById('memberName').textContent=n;document.querySelector('.login').style.display='none';document.getElementById('memberPanel').style.display='block'}
-function logout(){document.querySelector('.login').style.display='block';document.getElementById('memberPanel').style.display='none'}
 function fluctuate(id,base){let x=base+(Math.random()-.5)*base*.0008;document.getElementById(id).textContent=x.toFixed(id==='jpy'?2:4);if(id==='gold')document.getElementById(id).textContent=x.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});document.getElementById('chartPrice').textContent=document.getElementById('eur').textContent}
 setInterval(()=>{fluctuate('eur',1.0842);fluctuate('gbp',1.2765);fluctuate('jpy',157.42);fluctuate('gold',2653.10)},2500)
+</script>
+<script>
+const menuBtn=document.getElementById('menuBtn');
+const navList=document.querySelector('nav ul');
+if(menuBtn){menuBtn.onclick=()=>{navList.style.display=navList.style.display==='flex'?'none':'flex'};}
 </script>
 </body>
 </html>
