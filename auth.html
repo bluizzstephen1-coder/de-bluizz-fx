@@ -9,7 +9,7 @@ body{margin:0;background:#070707;color:#eee;font-family:Arial,sans-serif;display
 h1{color:#d7ad45}.tabs{display:flex;gap:8px;margin:20px 0}.tabs button{flex:1;padding:12px;border:1px solid #4a3a1b;background:#171717;color:#ddd;border-radius:10px}.tabs .on{background:#d7ad45;color:#080808}
 input{width:100%;box-sizing:border-box;margin:8px 0;padding:13px;border-radius:9px;border:1px solid #444;background:#080808;color:#fff}
 .action{width:100%;padding:13px;margin-top:10px;border:0;border-radius:10px;background:#d7ad45;font-weight:700}
-.msg{margin-top:15px;color:#f4d27a;line-height:1.5}
+.password-wrap{position:relative}.password-wrap input{padding-right:72px}.toggle-pass{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:#d7ad45;font-weight:700;cursor:pointer;padding:8px}.msg{margin-top:15px;color:#f4d27a;line-height:1.5}
 small{color:#999}.back{color:#d7ad45;text-decoration:none}
 </style>
 </head>
@@ -22,7 +22,7 @@ small{color:#999}.back{color:#d7ad45;text-decoration:none}
 <form id="form">
 <input id="name" placeholder="Full name" style="display:none">
 <input id="email" type="email" placeholder="Email address" required>
-<input id="password" type="password" placeholder="Password (minimum 6 characters)" required>
+<div class="password-wrap"><input id="password" type="password" placeholder="Password (minimum 6 characters)" required><button type="button" class="toggle-pass" id="togglePassword" aria-label="Show password">Show</button></div>
 <button class="action" id="submit">Login</button>
 </form>
 <div class="msg" id="msg"></div>
@@ -34,6 +34,7 @@ let mode="login";
 const $=id=>document.getElementById(id);
 function setMode(m){mode=m;$("loginTab").classList.toggle("on",m==="login");$("signupTab").classList.toggle("on",m==="signup");$("name").style.display=m==="signup"?"block":"none";$("submit").textContent=m==="signup"?"Create account":"Login";$("msg").textContent=""}
 $("loginTab").onclick=()=>setMode("login");$("signupTab").onclick=()=>setMode("signup");
+$("togglePassword").onclick=()=>{const p=$("password"),t=$("togglePassword");const show=p.type==="password";p.type=show?"text":"password";t.textContent=show?"Hide":"Show";t.setAttribute("aria-label",show?"Hide password":"Show password")};
 $("form").onsubmit=async e=>{
  e.preventDefault();
  if(!window.supabaseClient){$("msg").textContent="Connect your Supabase project first by editing supabase.js.";return}
