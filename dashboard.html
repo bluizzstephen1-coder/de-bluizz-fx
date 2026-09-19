@@ -37,7 +37,46 @@ input,select,textarea{width:100%;margin:5px 0;padding:11px;background:#080808;bo
 let user,prices=[],calendarData=[];const $=id=>document.getElementById(id);
 async function fn(name,body={}){const {data,error}=await supabaseClient.functions.invoke(name,{body});if(error)throw error;return data}
 async function start(){if(!window.supabaseClient){$("status").textContent="Configure Supabase";return}const {data:{session}}=await supabaseClient.auth.getSession();if(!session){location.href="auth.html";return}user=session.user;$("email").textContent=user.email;await Promise.all([loadTrades(),loadProgress(),loadMarkets(),loadCalendar(),loadNews()])}
-async function loadMarkets(){try{const d=await fn("market-data",{symbols:["EUR/USD","GBP/USD","USD/JPY","XAU/USD"]});prices=d.prices||[];$("status").textContent=d.source||"Live feed";renderWatch();drawChart()}catch(e){$("status").textContent="Feed unavailable";$("watch").innerHTML="<span class='muted'>Market provider not configured.</span>";$("chartMsg").textContent="Configure the Edge Function secret."}}
+async function loadMarkets(){
+  try{
+    const {data:{session}}=await supabaseClient.auth.getSession();
+    const symbols=["EUR/USD","GBP/USD","USD/JPY","XAU/USD"];
+
+    const results=await Promise.all(symbols.map(async symbol=>{
+      const url=`https://jpzlepcevvbyburitjyp.supabase.co/functions/v1/market-data?action=quote&symbol=${encodeURIComponent(symbol)}`;
+
+      const response=await fetch(url,{
+        headers:{
+          Authorization:`Bearer ${session.access_token}`
+        }
+      });
+
+      const data=await response.json();
+
+      if(!response.ok||data.error){
+        throw new Error(data.error||"Market request failed");
+      }
+
+      return {
+        symbol:data.symbol,
+        price:Number(data.close),
+        time:data.last_quote_at
+          ? new Date(data.last_quote_at*1000).toLocaleTimeString()
+          : data.datetime
+      };
+    }));
+
+    prices=results;
+    $("status").textContent=results.length?"Live feed":"Feed unavailable";
+    renderWatch();
+    drawChart();
+  }catch(e){
+    console.error(e);
+    $("status").textContent="Feed unavailable";
+    $("watch").innerHTML="<span class='muted'>Market provider unavailable.</span>";
+    $("chartMsg").textContent="Unable to load live market data.";
+  }
+  }
 function renderWatch(){$("watch").innerHTML=prices.map(p=>`<div class="watch"><div><b>${p.symbol}</b><br><span class="muted">${p.time||""}</span></div><div class="price">${p.price??"—"}</div></div>`).join("")}
 function drawChart(){const c=$("chart"),ctx=c.getContext("2d"),dpr=devicePixelRatio||1,w=c.clientWidth,h=230;c.width=w*dpr;c.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);const p=prices.find(x=>x.symbol===$("symbol").value);if(!p)return;let seed=Number(p.price)||1,pts=[];for(let i=0;i<70;i++){seed*=1+(Math.sin(i*1.7+seed)*.00035);pts.push(seed)}const mn=Math.min(...pts),mx=Math.max(...pts);ctx.beginPath();pts.forEach((v,i)=>{let x=i*w/(pts.length-1),y=20+(mx-v)/(mx-mn||1)*(h-40);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.strokeStyle="#d7ad45";ctx.lineWidth=2;ctx.stroke()}
 $("symbol").onchange=drawChart;
