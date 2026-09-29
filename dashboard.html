@@ -1,2352 +1,2645 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>DE.Bluizz FX V7 Trader Hub</title>
+  <meta charset="utf-8">
 
-<style>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
 
-*{
-  box-sizing:border-box;
-}
+  <title>DE.Bluizz FX V7 Trader Hub</title>
 
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#07110d;
-  color:#f4f7f5;
-}
+  <style>
 
-header{
-  background:#0b1712;
-  border-bottom:1px solid #20382b;
-  padding:18px;
-  position:sticky;
-  top:0;
-  z-index:20;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.brand{
-  font-size:22px;
-  font-weight:800;
-  color:#d7b45a;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0f14;
+      color: #f4f6f8;
+    }
 
-.subtitle{
-  font-size:12px;
-  color:#9baaa1;
-  margin-top:4px;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.container{
-  width:min(1200px,94%);
-  margin:20px auto;
-}
+    .header {
+      background: #111821;
+      border-bottom: 1px solid #26313d;
+      padding: 18px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-}
+    .header-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
 
-.card{
-  background:#0d1b15;
-  border:1px solid #20382b;
-  border-radius:14px;
-  padding:16px;
-  box-shadow:0 8px 25px rgba(0,0,0,.2);
-}
+    .brand {
+      font-size: 20px;
+      font-weight: 700;
+    }
 
-.card h3{
-  margin:0 0 12px;
-  font-size:15px;
-}
+    .brand span {
+      color: #d4af37;
+    }
 
-.stat-title{
-  color:#91a097;
-  font-size:12px;
-}
+    .nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
 
-.stat-value{
-  font-size:22px;
-  font-weight:800;
-  margin-top:7px;
-}
+    .nav a,
+    .nav button {
+      background: #18212b;
+      border: 1px solid #303d4b;
+      color: #fff;
+      padding: 9px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+    }
 
-.green{
-  color:#35d07f;
-}
+    .container {
+      width: min(1200px, 94%);
+      margin: 25px auto;
+    }
 
-.red{
-  color:#ff5f6d;
-}
+    .hero {
+      background: linear-gradient(
+        135deg,
+        #131c26,
+        #0f151d
+      );
 
-.gold{
-  color:#d7b45a;
-}
+      border: 1px solid #26313d;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
 
-.muted{
-  color:#91a097;
-}
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
 
-.status{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  font-size:13px;
-}
+    .hero p {
+      margin: 0;
+      color: #aeb8c2;
+      line-height: 1.6;
+    }
 
-.dot{
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:#777;
-}
+    .stats {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(210px, 1fr));
 
-.dot.live{
-  background:#35d07f;
-  box-shadow:0 0 10px #35d07f;
-}
+      gap: 14px;
+      margin-bottom: 20px;
+    }
 
-.dot.error{
-  background:#ff5f6d;
-}
+    .card {
+      background: #111821;
+      border: 1px solid #26313d;
+      border-radius: 12px;
+      padding: 18px;
+    }
 
-.section{
-  margin-top:18px;
-}
+    .stat-label {
+      color: #8e9aa6;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
 
-.section-title{
-  font-size:18px;
-  font-weight:800;
-  margin-bottom:10px;
-}
+    .stat-value {
+      font-size: 22px;
+      font-weight: 700;
+    }
 
-.watch-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-}
+    .section {
+      margin-bottom: 22px;
+    }
 
-.pair{
-  background:#09140f;
-  border:1px solid #20382b;
-  border-radius:12px;
-  padding:13px;
-}
+    .section-title {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
 
-.pair-name{
-  font-weight:800;
-  color:#d7b45a;
-  margin-bottom:9px;
-}
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
 
-.row{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  margin:5px 0;
-  font-size:12px;
-}
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #777;
+      display: inline-block;
+    }
 
-.row span:first-child{
-  color:#899990;
-}
+    .dot.live {
+      background: #28c76f;
+    }
 
-.chart-controls{
-  display:flex;
-  gap:10px;
-  align-items:center;
-  flex-wrap:wrap;
-  margin-bottom:10px;
-}
+    .dot.error {
+      background: #ff4d4d;
+    }
 
-select,
-input,
-textarea,
-button{
-  font-family:inherit;
-}
+    .watch-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(230px, 1fr));
 
-select,
-input,
-textarea{
-  width:100%;
-  background:#08120d;
-  color:#fff;
-  border:1px solid #294335;
-  border-radius:9px;
-  padding:11px;
-  outline:none;
-}
+      gap: 12px;
+    }
 
-.chart-select{
-  width:auto;
-  min-width:150px;
-}
+    .watch-card {
+      background: #111821;
+      border: 1px solid #26313d;
+      border-radius: 12px;
+      padding: 16px;
+    }
 
-button{
-  border:0;
-  border-radius:9px;
-  padding:11px 15px;
-  background:#d7b45a;
-  color:#10150f;
-  font-weight:800;
-  cursor:pointer;
-}
+    .watch-symbol {
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
 
-button:hover{
-  opacity:.9;
-}
+    .watch-price {
+      font-size: 21px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
 
-.chart-box{
-  position:relative;
-  width:100%;
-  height:420px;
-  background:#07100c;
-  border:1px solid #20382b;
-  border-radius:12px;
-  overflow:hidden;
-}
+    .watch-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: #9eabb7;
+      font-size: 13px;
+      margin-top: 5px;
+    }
 
-#chart{
-  width:100%;
-  height:100%;
-  display:block;
-}
+    .positive {
+      color: #28c76f;
+    }
 
-.chart-message{
-  margin-top:8px;
-  font-size:12px;
-  color:#91a097;
-}
+    .negative {
+      color: #ff5c5c;
+    }
 
-.two-col{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-}
+    .chart-box {
+      background: #111821;
+      border: 1px solid #26313d;
+      border-radius: 12px;
+      padding: 14px;
+    }
 
-.news-item,
-.calendar-item{
-  padding:11px 0;
-  border-bottom:1px solid #20382b;
-}
+    .chart-controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
 
-.news-item:last-child,
-.calendar-item:last-child{
-  border-bottom:0;
-}
+    select,
+    input,
+    textarea,
+    button {
+      font-family: inherit;
+    }
 
-.news-title{
-  font-weight:700;
-  font-size:14px;
-}
+    select,
+    input,
+    textarea {
+      width: 100%;
+      background: #0c1218;
+      color: #fff;
+      border: 1px solid #303d4b;
+      border-radius: 8px;
+      padding: 11px;
+    }
 
-.news-meta,
-.calendar-meta{
-  color:#899990;
-  font-size:11px;
-  margin-top:5px;
-}
+    .chart-controls select {
+      width: auto;
+      min-width: 150px;
+    }
 
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
+    .btn {
+      background: #d4af37;
+      color: #111;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
 
-.full{
-  grid-column:1/-1;
-}
+    .chart-wrap {
+      width: 100%;
+      height: 420px;
+      position: relative;
+    }
 
-textarea{
-  min-height:100px;
-  resize:vertical;
-}
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: #0b1016;
+      border-radius: 8px;
+    }
 
-.trades{
-  margin-top:15px;
-}
+    .chart-message {
+      color: #8f9ba7;
+      font-size: 13px;
+      margin-top: 8px;
+    }
 
-.trade{
-  border:1px solid #20382b;
-  border-radius:10px;
-  padding:12px;
-  margin-bottom:8px;
-  background:#09140f;
-}
+    .grid-two {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(300px, 1fr));
 
-.nav{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:15px;
-}
+      gap: 18px;
+    }
 
-.nav a{
-  text-decoration:none;
-  color:#d7b45a;
-  border:1px solid #3a493e;
-  padding:9px 12px;
-  border-radius:8px;
-  font-size:12px;
-}
+    .form-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
 
-.footer{
-  text-align:center;
-  padding:30px 10px;
-  color:#718077;
-  font-size:11px;
-}
+      gap: 12px;
+    }
 
-.loading{
-  color:#91a097;
-}
+    .form-group {
+      margin-bottom: 12px;
+    }
 
-@media(max-width:900px){
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      color: #aeb8c2;
+      margin-bottom: 6px;
+    }
 
-  .grid{
-    grid-template-columns:repeat(2,1fr);
-  }
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
 
-  .watch-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
+    .journal-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
 
-}
+    .journal-item {
+      background: #0c1218;
+      border: 1px solid #26313d;
+      border-radius: 8px;
+      padding: 12px;
+    }
 
-@media(max-width:600px){
+    .loading {
+      color: #8e9aa6;
+      padding: 15px 0;
+    }
 
-  .grid,
-  .watch-grid,
-  .two-col,
-  .form-grid{
-    grid-template-columns:1fr;
-  }
+    .notice {
+      background: #171f28;
+      border: 1px solid #303d4b;
+      border-radius: 10px;
+      padding: 14px;
+      color: #aeb8c2;
+      line-height: 1.5;
+    }
 
-  .chart-box{
-    height:330px;
-  }
+    .footer {
+      text-align: center;
+      color: #697580;
+      font-size: 12px;
+      padding: 30px 15px;
+    }
 
-  .full{
-    grid-column:auto;
-  }
+    @media (max-width: 700px) {
 
-}
+      .header-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
 
-</style>
+      .hero h1 {
+        font-size: 23px;
+      }
+
+      .chart-wrap {
+        height: 330px;
+      }
+
+    }
+
+  </style>
+
 </head>
-
 
 <body>
 
-<header>
-
-  <div class="brand">
-    DE.Bluizz FX V7 Trader Hub
-  </div>
-
-  <div class="subtitle">
-    Forex education • Trading tools • Market insights • Breakout + Retest
-  </div>
-
-</header>
-
-
-<main class="container">
-
-
   <!-- =========================
-       STATISTICS
+       HEADER
   ========================== -->
 
-  <div class="grid">
+  <header class="header">
 
-    <div class="card">
-      <div class="stat-title">Journal Trades</div>
-      <div id="tradeCount" class="stat-value">—</div>
-    </div>
+    <div class="header-inner">
 
-    <div class="card">
-      <div class="stat-title">Academy Progress</div>
-      <div id="academyProgress" class="stat-value">0%</div>
-    </div>
-
-    <div class="card">
-      <div class="stat-title">Core Strategy</div>
-      <div class="stat-value gold">Breakout + Retest</div>
-    </div>
-
-    <div class="card">
-
-      <div class="stat-title">Market Status</div>
-
-      <div class="stat-value">
-
-        <span class="status">
-
-          <span id="statusDot" class="dot"></span>
-
-          <span id="marketStatus">
-            TEST VERSION
-          </span>
-
-        </span>
-
+      <div class="brand">
+        DE.Bluizz <span>FX V7 Trader Hub</span>
       </div>
 
-    </div>
-
-  </div>
-
-
-  <!-- =========================
-       LIVE WATCHLIST
-  ========================== -->
-
-  <section class="section">
-
-    <div class="section-title">
-      Live Watchlist
-    </div>
-
-    <div id="watchlist" class="watch-grid">
-
-      <div class="card">
-        <div class="loading">
-          Loading market data...
-        </div>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       CHART
-  ========================== -->
-
-  <section class="section">
-
-    <div class="card">
-
-      <div class="section-title">
-        Live 15-Minute Candlestick Chart
-      </div>
-
-      <div class="chart-controls">
-
-        <select
-          id="symbol"
-          class="chart-select"
-        >
-
-          <option value="EUR/USD">
-            EUR/USD
-          </option>
-
-          <option value="GBP/USD">
-            GBP/USD
-          </option>
-
-          <option value="USD/JPY">
-            USD/JPY
-          </option>
-
-          <option value="XAU/USD">
-            XAU/USD
-          </option>
-
-        </select>
-
-        <button
-          id="refreshChart"
-          type="button"
-        >
-          Refresh Chart
-        </button>
-
-      </div>
-
-
-      <div class="chart-box">
-
-        <canvas id="chart"></canvas>
-
-      </div>
-
-
-      <div
-        id="chartMsg"
-        class="chart-message"
-      >
-        Loading real 15-minute candles...
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       CALENDAR + NEWS
-  ========================== -->
-
-  <section class="section">
-
-    <div class="two-col">
-
-
-      <div class="card">
-
-        <div class="section-title">
-          Economic Calendar
-        </div>
-
-        <div id="calendar">
-
-          <div class="loading">
-            Loading economic calendar...
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="section-title">
-          Market News
-        </div>
-
-        <div id="news">
-
-          <div class="loading">
-            Loading market news...
-          </div>
-
-        </div>
-
-      </div>
-
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       TRADING JOURNAL
-  ========================== -->
-
-  <section class="section">
-
-    <div class="card">
-
-      <div class="section-title">
-        Trading Journal
-      </div>
-
-
-      <form id="journalForm">
-
-        <div class="form-grid">
-
-
-          <div>
-
-            <label class="muted">
-              Pair
-            </label>
-
-            <select id="journalSymbol">
-
-              <option>
-                EUR/USD
-              </option>
-
-              <option>
-                GBP/USD
-              </option>
-
-              <option>
-                USD/JPY
-              </option>
-
-              <option>
-                XAU/USD
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div>
-
-            <label class="muted">
-              Direction
-            </label>
-
-            <select id="direction">
-
-              <option value="BUY">
-                BUY
-              </option>
-
-              <option value="SELL">
-                SELL
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div>
-
-            <label class="muted">
-              Result
-            </label>
-
-            <input
-              id="result"
-              type="text"
-              placeholder="+2R"
-              required
-            >
-
-          </div>
-
-
-          <div>
-
-            <label class="muted">
-              Risk %
-            </label>
-
-            <input
-              id="risk"
-              type="number"
-              step="0.1"
-              placeholder="1"
-            >
-
-          </div>
-
-
-          <div>
-
-            <label class="muted">
-              Date
-            </label>
-
-            <input
-              id="tradeDate"
-              type="date"
-            >
-
-          </div>
-
-
-          <div>
-
-            <label class="muted">
-              Strategy
-            </label>
-
-            <input
-              id="strategy"
-              type="text"
-              value="Breakout + Retest"
-            >
-
-          </div>
-
-
-          <div class="full">
-
-            <label class="muted">
-              Notes
-            </label>
-
-            <textarea
-              id="notes"
-              placeholder="Describe your setup, entry, confirmation and result..."
-            ></textarea>
-
-          </div>
-
-
-          <div class="full">
-
-            <button type="submit">
-              Save Journal Entry
-            </button>
-
-          </div>
-
-
-        </div>
-
-      </form>
-
-
-      <div
-        id="journalMessage"
-        class="chart-message"
-      ></div>
-
-
-      <div class="trades">
-
-        <h3>
-          Recent Trades
-        </h3>
-
-        <div id="recentTrades">
-
-          <div class="loading">
-            Loading trades...
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       REMINDER
-  ========================== -->
-
-  <section class="section">
-
-    <div class="card">
-
-      <h3>
-        Risk Reminder
-      </h3>
-
-      <div class="muted">
-
-        Protect your capital. Wait for your setup.
-        Do not enter simply because price is moving.
-        Follow your Breakout + Retest rules and manage risk consistently.
-
-      </div>
-
-
-      <div class="nav">
-
-        <a href="academy.html">
-          Open Academy
-        </a>
+      <nav class="nav">
 
         <a href="index.html">
           Home
         </a>
 
-        <a href="#" id="logoutBtn">
-          Logout
+        <a href="academy.html">
+          Academy
         </a>
 
-      </div>
+        <button id="logoutBtn">
+          Logout
+        </button>
+
+      </nav>
 
     </div>
 
-  </section>
+  </header>
 
 
-</main>
+  <!-- =========================
+       MAIN
+  ========================== -->
+
+  <main class="container">
 
 
-<div class="footer">
+    <!-- =========================
+         HERO
+    ========================== -->
 
-  DE.Bluizz FX V7 Trader Hub
+    <section class="hero">
 
-</div>
+      <h1>
+        Trader Dashboard
+      </h1>
 
+      <p>
+        Master disciplined trading through
+        the Breakout + Retest strategy,
+        market analysis and proper risk management.
+      </p>
 
-<!-- =========================
-     SUPABASE
-========================== -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="./supabase.js"></script>
-
-
-<script>
-  document.body.setAttribute("data-js-test", "WORKING");
-
-/* =========================================
-   BASIC HELPERS
-========================================= */
-
-const $ = id => document.getElementById(id);
+    </section>
 
 
-/* =========================================
-   SUPABASE FUNCTION URL
-========================================= */
+    <!-- =========================
+         STATS
+    ========================== -->
 
-const SUPABASE_URL =
-  "https://jpzlepcevvbyburitjyp.supabase.co";
+    <section class="stats">
 
-const MARKET_FUNCTION =
-  `${SUPABASE_URL}/functions/v1/market-data`;
+      <div class="card">
 
+        <div class="stat-label">
+          Journal Trades
+        </div>
 
-function marketUrl(action, symbol) {
+        <div
+          id="tradeCount"
+          class="stat-value"
+        >
+          Loading...
+        </div>
 
-  return (
-    MARKET_FUNCTION +
-    "?action=" +
-    encodeURIComponent(action) +
-    "&symbol=" +
-    encodeURIComponent(symbol)
-  );
-
-}
+      </div>
 
 
-/* =========================================
-   GLOBAL DATA
-========================================= */
+      <div class="card">
 
-const symbols = [
-  "EUR/USD",
-  "GBP/USD",
-  "USD/JPY",
-  "XAU/USD"
-];
+        <div class="stat-label">
+          Academy Progress
+        </div>
 
-const marketData = {};
-const previousPrices = {};
-const chartHistory = {};
+        <div
+          id="academyProgress"
+          class="stat-value"
+        >
+          Loading...
+        </div>
 
-let lastMarketUpdate = 0;
+      </div>
 
 
-/* =========================================
-   PIP SIZE
-========================================= */
+      <div class="card">
 
-function getPipSize(symbol) {
+        <div class="stat-label">
+          Core Strategy
+        </div>
 
-  if (symbol === "USD/JPY") {
-    return 0.01;
-  }
+        <div class="stat-value">
+          Breakout + Retest
+        </div>
 
-  if (symbol === "XAU/USD") {
-    return 0.1;
-  }
-
-  return 0.0001;
-}
+      </div>
 
 
-/* =========================================
-   PRICE DECIMALS
-========================================= */
+      <div class="card">
 
-function priceDecimals(symbol) {
+        <div class="stat-label">
+          Market Status
+        </div>
 
-  if (symbol === "USD/JPY") {
-    return 3;
-  }
+        <div class="status">
 
-  if (symbol === "XAU/USD") {
-    return 2;
-  }
+          <span
+            id="statusDot"
+            class="dot"
+          ></span>
 
-  return 5;
-}
+          <span id="marketStatus">
+            Loading...
+          </span>
 
+        </div>
 
-/* =========================================
-   FORMAT PRICE
-========================================= */
+      </div>
 
-function formatPrice(symbol, value) {
-
-  if (value === null || value === undefined) {
-    return "—";
-  }
-
-  return Number(value).toFixed(
-    priceDecimals(symbol)
-  );
-}
+    </section>
 
 
-/* =========================================
-   GET SESSION
-========================================= */
+    <!-- =========================
+         LIVE WATCHLIST
+    ========================== -->
 
-async function getSession() {
+    <section class="section">
 
-  if (
-    !window.supabaseClient ||
-    !supabaseClient.auth
-  ) {
+      <div class="section-title">
+        Live Watchlist
+      </div>
 
-    throw new Error(
-      "Supabase client is not available."
+      <div
+        id="watchlist"
+        class="watch-grid"
+      >
+
+        <div class="card">
+
+          <div class="loading">
+            Loading market data...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CHART
+    ========================== -->
+
+    <section class="section">
+
+      <div class="section-title">
+        Live 15-Minute Chart
+      </div>
+
+      <div class="chart-box">
+
+        <div class="chart-controls">
+
+          <select id="symbol">
+
+            <option value="EUR/USD">
+              EUR/USD
+            </option>
+
+            <option value="GBP/USD">
+              GBP/USD
+            </option>
+
+            <option value="USD/JPY">
+              USD/JPY
+            </option>
+
+            <option value="XAU/USD">
+              XAU/USD
+            </option>
+
+          </select>
+
+
+          <button
+            id="refreshChart"
+            class="btn"
+            type="button"
+          >
+            Refresh Chart
+          </button>
+
+        </div>
+
+
+        <div class="chart-wrap">
+
+          <canvas id="chart"></canvas>
+
+        </div>
+
+
+        <div
+          id="chartMessage"
+          class="chart-message"
+        >
+          Loading 15-minute candle data...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CALENDAR + NEWS
+    ========================== -->
+
+    <section class="section">
+
+      <div class="grid-two">
+
+
+        <div class="card">
+
+          <div class="section-title">
+            Economic Calendar
+          </div>
+
+          <div id="calendar">
+
+            <div class="loading">
+              Economic Calendar provider not configured yet.
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="section-title">
+            Market News
+          </div>
+
+          <div id="news">
+
+            <div class="loading">
+              Market News provider not configured yet.
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         TRADING JOURNAL
+    ========================== -->
+
+    <section class="section">
+
+      <div class="grid-two">
+
+
+        <div class="card">
+
+          <div class="section-title">
+            Add Trading Journal Entry
+          </div>
+
+
+          <form id="journalForm">
+
+
+            <div class="form-grid">
+
+
+              <div class="form-group">
+
+                <label for="journalSymbol">
+                  Symbol
+                </label>
+
+                <input
+                  id="journalSymbol"
+                  type="text"
+                  placeholder="EUR/USD"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="journalSide">
+                  Direction
+                </label>
+
+                <select
+                  id="journalSide"
+                  required
+                >
+
+                  <option value="BUY">
+                    BUY
+                  </option>
+
+                  <option value="SELL">
+                    SELL
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="journalResult">
+                  Result / R
+                </label>
+
+                <input
+                  id="journalResult"
+                  type="number"
+                  step="0.01"
+                  placeholder="2"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="journalRisk">
+                  Risk %
+                </label>
+
+                <input
+                  id="journalRisk"
+                  type="number"
+                  step="0.01"
+                  placeholder="1"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="journalDate">
+                  Trade Date
+                </label>
+
+                <input
+                  id="journalDate"
+                  type="date"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="journalStrategy">
+                  Strategy
+                </label>
+
+                <input
+                  id="journalStrategy"
+                  type="text"
+                  value="Breakout + Retest"
+                  required
+                >
+
+              </div>
+
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="journalNote">
+                Notes
+              </label>
+
+              <textarea
+                id="journalNote"
+                placeholder="Describe the setup, entry, management and lesson..."
+              ></textarea>
+
+            </div>
+
+
+            <button
+              type="submit"
+              class="btn"
+            >
+              Save Journal Entry
+            </button>
+
+
+          </form>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="section-title">
+            Recent Trades
+          </div>
+
+          <div
+            id="journalList"
+            class="journal-list"
+          >
+
+            <div class="loading">
+              Loading journal...
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         RISK REMINDER
+    ========================== -->
+
+    <section class="section">
+
+      <div class="notice">
+
+        <strong>
+          Risk Reminder:
+        </strong>
+
+        Protect your capital.
+        Follow your trading plan.
+        Avoid revenge trading.
+        Do not risk money you cannot afford to lose.
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer class="footer">
+
+    DE.Bluizz FX V7 Trader Hub
+
+  </footer>
+
+
+  <!-- =========================
+       SUPABASE
+  ========================== -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="./supabase.js"></script>
+
+
+  <!-- =========================
+       DASHBOARD JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    console.log(
+      "DE.Bluizz dashboard script started"
     );
 
-  }
 
-  const result =
-    await supabaseClient.auth.getSession();
+    /* =========================================
+       BASIC HELPERS
+    ========================================= */
 
-  return result?.data?.session || null;
+    const $ = id =>
+      document.getElementById(id);
 
-}
+
+    /* =========================================
+       SUPABASE FUNCTION URL
+    ========================================= */
+
+    const SUPABASE_URL =
+      "https://jpzlepcevvbyburitjyp.supabase.co";
 
 
-/* =========================================
-   LOAD LIVE MARKET QUOTES
-========================================= */
+    const MARKET_FUNCTION =
+      `${SUPABASE_URL}/functions/v1/market-data`;
 
-async function loadMarkets() {
 
-  try {
+    function marketUrl(
+      action,
+      symbol
+    ) {
 
-    const session =
-      await getSession();
-
-    if (!session) {
-
-      $("marketStatus").textContent =
-        "Not signed in";
-
-      $("statusDot").className =
-        "dot error";
-
-      return;
+      return (
+        MARKET_FUNCTION +
+        "?action=" +
+        encodeURIComponent(action) +
+        "&symbol=" +
+        encodeURIComponent(symbol)
+      );
 
     }
 
 
-    const results =
-      await Promise.allSettled(
+    /* =========================================
+       SESSION
+    ========================================= */
 
-        symbols.map(async symbol => {
+    async function getSession() {
 
-          const response =
-            await fetch(
-              marketUrl(
-                "quote",
-                symbol
-              ),
+      if (!window.supabaseClient) {
+
+        return null;
+
+      }
+
+
+      const {
+        data,
+        error
+      } =
+        await window.supabaseClient
+          .auth
+          .getSession();
+
+
+      if (error) {
+
+        console.error(
+          "Session error:",
+          error
+        );
+
+        return null;
+
+      }
+
+
+      return data.session;
+
+    }
+
+
+    /* =========================================
+       GLOBAL DATA
+    ========================================= */
+
+    const symbols = [
+
+      "EUR/USD",
+
+      "GBP/USD",
+
+      "USD/JPY",
+
+      "XAU/USD"
+
+    ];
+
+
+    const marketData = {};
+
+
+    let chartHistory = [];
+
+
+    let chartSymbol =
+      "EUR/USD";
+
+
+    /* =========================================
+       PIP SIZE
+    ========================================= */
+
+    function getPipSize(symbol) {
+
+      if (
+        symbol === "USD/JPY"
+      ) {
+
+        return 0.01;
+
+      }
+
+
+      if (
+        symbol === "XAU/USD"
+      ) {
+
+        return 0.1;
+
+      }
+
+
+      return 0.0001;
+
+    }
+
+
+    /* =========================================
+       PRICE DECIMALS
+    ========================================= */
+
+    function priceDecimals(symbol) {
+
+      if (
+        symbol === "USD/JPY"
+      ) {
+
+        return 3;
+
+      }
+
+
+      if (
+        symbol === "XAU/USD"
+      ) {
+
+        return 2;
+
+      }
+
+
+      return 5;
+
+    }
+
+
+    /* =========================================
+       LOAD TRADING JOURNAL
+    ========================================= */
+
+    async function loadTrades() {
+
+      const countEl =
+        $("tradeCount");
+
+
+      const listEl =
+        $("journalList");
+
+
+      if (!window.supabaseClient) {
+
+        countEl.textContent = "0";
+
+        listEl.innerHTML =
+          `<div class="loading">
+            Supabase unavailable.
+          </div>`;
+
+        return;
+
+      }
+
+
+      try {
+
+        const {
+          data,
+          error
+        } =
+          await window.supabaseClient
+            .from("trading_journal")
+            .select("*")
+            .order(
+              "trade_date",
               {
-                headers: {
-                  Authorization:
-                    `Bearer ${session.access_token}`
-                }
+                ascending: false
               }
             );
 
 
-          if (!response.ok) {
+        if (error) {
 
-            throw new Error(
-              `HTTP ${response.status}`
-            );
+          throw error;
 
-          }
-
-
-          const data =
-            await response.json();
-
-
-          if (!data || data.error) {
-
-            throw new Error(
-              data?.error ||
-              "Invalid market response"
-            );
-
-          }
-
-
-          const price =
-            Number(data.close);
-
-
-          if (!Number.isFinite(price)) {
-
-            throw new Error(
-              "Invalid close price"
-            );
-
-          }
-
-
-          let pipMove = 0;
-
-
-          if (
-            previousPrices[symbol] !== undefined
-          ) {
-
-            pipMove =
-              (
-                price -
-                previousPrices[symbol]
-              ) /
-              getPipSize(symbol);
-
-          }
-
-
-          previousPrices[symbol] =
-            price;
-
-
-          marketData[symbol] = {
-
-            symbol,
-
-            open:
-              Number(data.open),
-
-            high:
-              Number(data.high),
-
-            low:
-              Number(data.low),
-
-            close:
-              price,
-
-            price,
-
-            bid:
-              null,
-
-            ask:
-              null,
-
-            pipMove,
-
-            datetime:
-              data.datetime,
-
-            last_quote_at:
-              data.last_quote_at
-
-          };
-
-        })
-
-      );
-
-
-    const successful =
-      results.filter(
-        result =>
-          result.status === "fulfilled"
-      ).length;
-
-
-    if (successful > 0) {
-
-      $("marketStatus").textContent =
-        "Live feed";
-
-      $("statusDot").className =
-        "dot live";
-
-      lastMarketUpdate =
-        Date.now();
-
-    }
-    else {
-
-      $("marketStatus").textContent =
-        "Feed unavailable";
-
-      $("statusDot").className =
-        "dot error";
-
-    }
-
-
-    renderWatch();
-
-  }
-  catch (error) {
-
-    console.error(
-      "loadMarkets error:",
-      error
-    );
-
-
-    $("marketStatus").textContent =
-      "Feed unavailable";
-
-    $("statusDot").className =
-      "dot error";
-
-  }
-
-}
-
-
-/* =========================================
-   WATCHLIST
-========================================= */
-
-function renderWatch() {
-
-  const container =
-    $("watchlist");
-
-
-  if (!container) {
-    return;
-  }
-
-
-  container.innerHTML = "";
-
-
-  symbols.forEach(symbol => {
-
-    const data =
-      marketData[symbol];
-
-
-    const card =
-      document.createElement("div");
-
-    card.className =
-      "pair";
-
-
-    if (!data) {
-
-      card.innerHTML = `
-
-        <div class="pair-name">
-          ${symbol}
-        </div>
-
-        <div class="row">
-          <span>Bid</span>
-          <strong>—</strong>
-        </div>
-
-        <div class="row">
-          <span>Ask</span>
-          <strong>—</strong>
-        </div>
-
-        <div class="row">
-          <span>Price</span>
-          <strong>Loading...</strong>
-        </div>
-
-        <div class="row">
-          <span>Movement</span>
-          <strong>—</strong>
-        </div>
-
-      `;
-
-      container.appendChild(card);
-
-      return;
-
-    }
-
-
-    const movement =
-      Number(data.pipMove || 0);
-
-
-    const movementClass =
-      movement > 0
-        ? "green"
-        : movement < 0
-          ? "red"
-          : "muted";
-
-
-    const movementText =
-      movement > 0
-        ? `+${movement.toFixed(1)} pips`
-        : `${movement.toFixed(1)} pips`;
-
-
-    card.innerHTML = `
-
-      <div class="pair-name">
-        ${symbol}
-      </div>
-
-      <div class="row">
-        <span>Bid</span>
-        <strong>—</strong>
-      </div>
-
-      <div class="row">
-        <span>Ask</span>
-        <strong>—</strong>
-      </div>
-
-      <div class="row">
-        <span>Price</span>
-        <strong>
-          ${formatPrice(
-            symbol,
-            data.price
-          )}
-        </strong>
-      </div>
-
-      <div class="row">
-        <span>Movement</span>
-        <strong class="${movementClass}">
-          ${movementText}
-        </strong>
-      </div>
-
-    `;
-
-
-    container.appendChild(card);
-
-  });
-
-}
-
-
-/* =========================================
-   LOAD REAL 15-MINUTE CANDLES
-========================================= */
-
-async function loadChartCandles() {
-
-  try {
-
-    const session =
-      await getSession();
-
-
-    if (!session) {
-
-      $("chartMsg").textContent =
-        "Please sign in to load chart data.";
-
-      return;
-
-    }
-
-
-    const symbol =
-      $("symbol").value;
-
-
-    $("chartMsg").textContent =
-      "Loading real 15-minute candles...";
-
-
-    const response =
-      await fetch(
-
-        marketUrl(
-          "time_series",
-          symbol
-        ) +
-        "&interval=15min",
-
-        {
-          headers: {
-            Authorization:
-              `Bearer ${session.access_token}`
-          }
         }
 
-      );
+
+        const trades =
+          data || [];
 
 
-    if (!response.ok) {
-
-      throw new Error(
-        `Chart HTTP ${response.status}`
-      );
-
-    }
+        countEl.textContent =
+          trades.length;
 
 
-    const data =
-      await response.json();
+        if (!trades.length) {
+
+          listEl.innerHTML =
+            `<div class="loading">
+              No journal trades yet.
+            </div>`;
+
+          return;
+
+        }
 
 
-    if (data.error) {
+        listEl.innerHTML =
+          trades
+            .slice(0, 10)
+            .map(
+              trade => {
 
-      throw new Error(
-        data.error
-      );
-
-    }
-
-
-    if (!Array.isArray(data.candles)) {
-
-      throw new Error(
-        "No candle data returned."
-      );
-
-    }
+                const symbol =
+                  trade.symbol ||
+                  "Unknown";
 
 
-    const candles =
-      data.candles
+                const side =
+                  trade.side ||
+                  "-";
 
-        .map(candle => ({
 
-          time:
-            Number(candle.time),
+                const result =
+                  trade.result_r ??
+                  trade.r_multiple ??
+                  "-";
 
-          open:
-            Number(candle.open),
 
-          high:
-            Number(candle.high),
+                const date =
+                  trade.trade_date ||
+                  "-";
 
-          low:
-            Number(candle.low),
 
-          close:
-            Number(candle.close)
+                const strategy =
+                  trade.strategy ||
+                  "Breakout + Retest";
 
-        }))
 
-        .filter(candle =>
+                return `
 
-          Number.isFinite(candle.time) &&
-          Number.isFinite(candle.open) &&
-          Number.isFinite(candle.high) &&
-          Number.isFinite(candle.low) &&
-          Number.isFinite(candle.close)
+                  <div class="journal-item">
 
-        )
+                    <strong>
+                      ${symbol}
+                    </strong>
 
-        .sort(
-          (a, b) =>
-            a.time - b.time
+                    — ${side}
+
+                    <br>
+
+                    Result:
+                    ${result}R
+
+                    <br>
+
+                    Strategy:
+                    ${strategy}
+
+                    <br>
+
+                    Date:
+                    ${date}
+
+                  </div>
+
+                `;
+
+              }
+            )
+            .join("");
+
+
+      }
+      catch (error) {
+
+        console.error(
+          "Journal error:",
+          error
         );
 
 
-    chartHistory[symbol] =
-      candles.slice(-40);
+        countEl.textContent =
+          "0";
 
 
-    $("chartMsg").textContent =
-      `${chartHistory[symbol].length} real 15-minute candles • Live data`;
+        listEl.innerHTML =
+          `<div class="loading">
+            Unable to load journal.
+          </div>`;
 
+      }
 
-    drawChart();
+    }
 
-  }
-  catch (error) {
 
-    console.error(
-      "loadChartCandles error:",
-      error
-    );
+    /* =========================================
+       LOAD ACADEMY PROGRESS
+    ========================================= */
 
+    async function loadProgress() {
 
-    $("chartMsg").textContent =
-      "Unable to load 15-minute candle data.";
+      const el =
+        $("academyProgress");
 
-  }
 
-}
+      if (!window.supabaseClient) {
 
+        el.textContent =
+          "0%";
 
-/* =========================================
-   DRAW CANDLESTICK CHART
-========================================= */
+        return;
 
-function drawChart() {
+      }
 
-  const canvas =
-    $("chart");
 
+      try {
 
-  if (!canvas) {
-    return;
-  }
+        const {
+          data,
+          error
+        } =
+          await window.supabaseClient
+            .from("academy_progress")
+            .select("*")
+            .limit(1)
+            .maybeSingle();
 
 
-  const box =
-    canvas.parentElement;
+        if (error) {
 
+          console.error(
+            "Academy progress error:",
+            error
+          );
 
-  const width =
-    box.clientWidth;
 
+          el.textContent =
+            "0%";
 
-  const height =
-    box.clientHeight;
+          return;
 
+        }
 
-  if (width <= 0 || height <= 0) {
-    return;
-  }
 
+        if (!data) {
 
-  const dpr =
-    window.devicePixelRatio || 1;
+          el.textContent =
+            "0%";
 
+          return;
 
-  canvas.width =
-    width * dpr;
+        }
 
 
-  canvas.height =
-    height * dpr;
+        let progress =
+          data.progress ??
+          data.progress_percent ??
+          data.percentage ??
+          0;
 
 
-  canvas.style.width =
-    width + "px";
+        if (
+          typeof progress === "string"
+        ) {
 
+          progress =
+            parseFloat(progress);
 
-  canvas.style.height =
-    height + "px";
+        }
 
 
-  const ctx =
-    canvas.getContext("2d");
+        if (
+          Number.isNaN(progress)
+        ) {
 
+          progress = 0;
 
-  ctx.setTransform(
-    dpr,
-    0,
-    0,
-    dpr,
-    0,
-    0
-  );
+        }
 
 
-  ctx.clearRect(
-    0,
-    0,
-    width,
-    height
-  );
+        el.textContent =
+          `${Math.max(
+            0,
+            Math.min(
+              100,
+              progress
+            )
+          )}%`;
 
+      }
+      catch (error) {
 
-  const symbol =
-    $("symbol").value;
+        console.error(
+          "Progress error:",
+          error
+        );
 
 
-  const candles =
-    chartHistory[symbol] || [];
+        el.textContent =
+          "0%";
 
+      }
 
-  if (!candles.length) {
+    }
 
-    ctx.fillStyle =
-      "#91a097";
 
-    ctx.font =
-      "14px Arial";
+    /* =========================================
+       LOAD LIVE MARKETS
+    ========================================= */
 
-    ctx.fillText(
-      "Waiting for candle data...",
-      20,
-      30
-    );
+    async function loadMarkets() {
 
-    return;
+      if (!window.supabaseClient) {
 
-  }
+        $("marketStatus").textContent =
+          "Supabase unavailable";
 
+        $("statusDot").className =
+          "dot error";
 
-  let min =
-    Math.min(
-      ...candles.map(
-        c => c.low
-      )
-    );
+        return;
 
+      }
 
-  let max =
-    Math.max(
-      ...candles.map(
-        c => c.high
-      )
-    );
 
+      const session =
+        await getSession();
 
-  if (min === max) {
 
-    min -=
-      getPipSize(symbol) * 10;
+      if (!session) {
 
-    max +=
-      getPipSize(symbol) * 10;
+        $("marketStatus").textContent =
+          "Not signed in";
 
-  }
+        $("statusDot").className =
+          "dot error";
 
+        return;
 
-  const paddingTop =
-    20;
+      }
 
-  const paddingBottom =
-    35;
 
-  const paddingLeft =
-    12;
+      const results =
+        await Promise.allSettled(
 
-  const paddingRight =
-    58;
+          symbols.map(
+            async symbol => {
 
+              const response =
+                await fetch(
+                  marketUrl(
+                    "quote",
+                    symbol
+                  ),
+                  {
 
-  const chartWidth =
-    width -
-    paddingLeft -
-    paddingRight;
+                    headers: {
 
+                      Authorization:
+                        `Bearer ${session.access_token}`
 
-  const chartHeight =
-    height -
-    paddingTop -
-    paddingBottom;
+                    }
 
+                  }
+                );
 
-  const range =
-    max - min;
 
+              if (!response.ok) {
 
-  function y(price) {
+                throw new Error(
+                  `Quote request failed: ${response.status}`
+                );
 
-    return (
-      paddingTop +
-      (
-        (max - price) /
-        range
-      ) *
-      chartHeight
-    );
+              }
 
-  }
 
+              const data =
+                await response.json();
 
-  /* GRID */
 
-  ctx.strokeStyle =
-    "#183025";
+              if (
+                !data ||
+                typeof data.close !==
+                "number"
+              ) {
 
-  ctx.lineWidth =
-    1;
+                throw new Error(
+                  "Invalid quote response"
+                );
 
+              }
 
-  const gridLines =
-    5;
 
+              const previous =
+                marketData[symbol];
 
-  for (
-    let i = 0;
-    i <= gridLines;
-    i++
-  ) {
 
-    const gy =
-      paddingTop +
-      (
-        chartHeight /
-        gridLines
-      ) * i;
+              const pipSize =
+                getPipSize(symbol);
 
 
-    ctx.beginPath();
+              const movement =
+                previous
+                  ? (
+                      data.close -
+                      previous.price
+                    ) /
+                    pipSize
+                  : 0;
 
-    ctx.moveTo(
-      paddingLeft,
-      gy
-    );
 
-    ctx.lineTo(
-      width - paddingRight,
-      gy
-    );
+              marketData[symbol] = {
 
-    ctx.stroke();
+                symbol,
 
+                open:
+                  data.open,
 
-    const price =
-      max -
-      (
-        range /
-        gridLines
-      ) * i;
+                high:
+                  data.high,
 
+                low:
+                  data.low,
 
-    ctx.fillStyle =
-      "#91a097";
+                close:
+                  data.close,
 
-    ctx.font =
-      "10px Arial";
+                price:
+                  data.close,
 
-    ctx.fillText(
-      price.toFixed(
-        priceDecimals(symbol)
-      ),
-      width - 52,
-      gy - 3
-    );
+                bid:
+                  null,
 
-  }
+                ask:
+                  null,
 
+                pipMove:
+                  movement,
 
-  /* CANDLE SETTINGS */
+                updatedAt:
+                  Date.now()
 
-  const visible =
-    candles.slice(-35);
+              };
 
+            }
+          )
 
-  const slotWidth =
-    chartWidth /
-    visible.length;
+        );
 
 
-  const candleWidth =
-    Math.max(
-      3,
-      slotWidth * 0.55
-    );
+      const success =
+        results.some(
+          result =>
+            result.status ===
+            "fulfilled"
+        );
 
 
-  visible.forEach(
-    (candle, index) => {
+      if (success) {
 
-      const centerX =
-        paddingLeft +
-        (
-          index + 0.5
-        ) *
-        slotWidth;
+        $("marketStatus").textContent =
+          "Live feed";
 
+        $("statusDot").className =
+          "dot live";
 
-      const openY =
-        y(candle.open);
+      }
+      else {
 
+        $("marketStatus").textContent =
+          "Feed unavailable";
 
-      const closeY =
-        y(candle.close);
+        $("statusDot").className =
+          "dot error";
 
+      }
 
-      const highY =
-        y(candle.high);
 
+      renderWatchlist();
 
-      const lowY =
-        y(candle.low);
+    }
 
 
-      const bullish =
-        candle.close >= candle.open;
+    /* =========================================
+       RENDER WATCHLIST
+    ========================================= */
 
+    function renderWatchlist() {
 
-      /* WICK */
+      const container =
+        $("watchlist");
+
+
+      const available =
+        symbols.filter(
+          symbol =>
+            marketData[symbol]
+        );
+
+
+      if (!available.length) {
+
+        container.innerHTML =
+          `<div class="card">
+
+            <div class="loading">
+              Loading market data...
+            </div>
+
+          </div>`;
+
+        return;
+
+      }
+
+
+      container.innerHTML =
+        available
+          .map(
+            symbol => {
+
+              const item =
+                marketData[symbol];
+
+
+              const decimals =
+                priceDecimals(symbol);
+
+
+              const movementClass =
+                item.pipMove > 0
+                  ? "positive"
+                  : item.pipMove < 0
+                    ? "negative"
+                    : "";
+
+
+              const movementText =
+                item.pipMove > 0
+                  ? `+${item.pipMove.toFixed(1)} pips`
+                  : `${item.pipMove.toFixed(1)} pips`;
+
+
+              const bid =
+                item.bid === null
+                  ? "—"
+                  : item.bid.toFixed(
+                      decimals
+                    );
+
+
+              const ask =
+                item.ask === null
+                  ? "—"
+                  : item.ask.toFixed(
+                      decimals
+                    );
+
+
+              return `
+
+                <div class="watch-card">
+
+                  <div class="watch-symbol">
+                    ${symbol}
+                  </div>
+
+                  <div class="watch-price">
+                    ${item.price.toFixed(
+                      decimals
+                    )}
+                  </div>
+
+                  <div class="watch-row">
+
+                    <span>
+                      Bid
+                    </span>
+
+                    <span>
+                      ${bid}
+                    </span>
+
+                  </div>
+
+                  <div class="watch-row">
+
+                    <span>
+                      Ask
+                    </span>
+
+                    <span>
+                      ${ask}
+                    </span>
+
+                  </div>
+
+                  <div class="watch-row">
+
+                    <span>
+                      Movement
+                    </span>
+
+                    <span class="${movementClass}">
+                      ${movementText}
+                    </span>
+
+                  </div>
+
+                </div>
+
+              `;
+
+            }
+          )
+          .join("");
+
+    }
+
+
+    /* =========================================
+       LOAD 15-MINUTE CANDLES
+    ========================================= */
+
+    async function loadChartCandles() {
+
+      chartSymbol =
+        $("symbol").value;
+
+
+      const message =
+        $("chartMessage");
+
+
+      message.textContent =
+        "Loading 15-minute candle data...";
+
+
+      if (!window.supabaseClient) {
+
+        message.textContent =
+          "Supabase unavailable.";
+
+        return;
+
+      }
+
+
+      const session =
+        await getSession();
+
+
+      if (!session) {
+
+        message.textContent =
+          "Not signed in.";
+
+        return;
+
+      }
+
+
+      try {
+
+        const response =
+          await fetch(
+
+            marketUrl(
+              "time_series",
+              chartSymbol
+            ) +
+            "&interval=15min",
+
+            {
+
+              headers: {
+
+                Authorization:
+                  `Bearer ${session.access_token}`
+
+              }
+
+            }
+
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            `Candle request failed: ${response.status}`
+          );
+
+        }
+
+
+        const data =
+          await response.json();
+
+
+        if (
+          !data ||
+          !Array.isArray(
+            data.candles
+          )
+        ) {
+
+          throw new Error(
+            "No candle data returned"
+          );
+
+        }
+
+
+        chartHistory =
+          data.candles
+            .map(
+              candle => ({
+
+                time:
+                  Number(
+                    candle.time
+                  ),
+
+                open:
+                  Number(
+                    candle.open
+                  ),
+
+                high:
+                  Number(
+                    candle.high
+                  ),
+
+                low:
+                  Number(
+                    candle.low
+                  ),
+
+                close:
+                  Number(
+                    candle.close
+                  )
+
+              })
+            )
+            .filter(
+              candle =>
+                Number.isFinite(
+                  candle.open
+                ) &&
+                Number.isFinite(
+                  candle.high
+                ) &&
+                Number.isFinite(
+                  candle.low
+                ) &&
+                Number.isFinite(
+                  candle.close
+                )
+            )
+            .slice(-40);
+
+
+        message.textContent =
+          `${chartHistory.length} real 15-minute candles • Live data`;
+
+
+        drawChart();
+
+      }
+      catch (error) {
+
+        console.error(
+          "Chart candle error:",
+          error
+        );
+
+
+        chartHistory = [];
+
+
+        message.textContent =
+          "Unable to load 15-minute candle data.";
+
+        drawChart();
+
+      }
+
+    }
+
+
+    /* =========================================
+       DRAW CANDLESTICK CHART
+    ========================================= */
+
+    function drawChart() {
+
+      const canvas =
+        $("chart");
+
+
+      if (!canvas) {
+
+        return;
+
+      }
+
+
+      const rect =
+        canvas.getBoundingClientRect();
+
+
+      const width =
+        Math.max(
+          300,
+          Math.floor(
+            rect.width
+          )
+        );
+
+
+      const height =
+        Math.max(
+          250,
+          Math.floor(
+            rect.height
+          )
+        );
+
+
+      const dpr =
+        window.devicePixelRatio ||
+        1;
+
+
+      canvas.width =
+        width * dpr;
+
+
+      canvas.height =
+        height * dpr;
+
+
+      const ctx =
+        canvas.getContext("2d");
+
+
+      ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+      );
+
+
+      ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+      );
+
+
+      ctx.fillStyle =
+        "#0b1016";
+
+
+      ctx.fillRect(
+        0,
+        0,
+        width,
+        height
+      );
+
+
+      if (!chartHistory.length) {
+
+        ctx.fillStyle =
+          "#8e9aa6";
+
+        ctx.font =
+          "14px Arial";
+
+        ctx.textAlign =
+          "center";
+
+        ctx.fillText(
+          "Waiting for real candle data...",
+          width / 2,
+          height / 2
+        );
+
+        return;
+
+      }
+
+
+      const visible =
+        chartHistory.slice(-35);
+
+
+      let min =
+        Math.min(
+          ...visible.map(
+            candle =>
+              candle.low
+          )
+        );
+
+
+      let max =
+        Math.max(
+          ...visible.map(
+            candle =>
+              candle.high
+          )
+        );
+
+
+      if (
+        min === max
+      ) {
+
+        min -= 0.001;
+
+        max += 0.001;
+
+      }
+
+
+      const padding = {
+
+        top: 20,
+
+        right: 55,
+
+        bottom: 30,
+
+        left: 10
+
+      };
+
+
+      const chartWidth =
+        width -
+        padding.left -
+        padding.right;
+
+
+      const chartHeight =
+        height -
+        padding.top -
+        padding.bottom;
+
+
+      function y(value) {
+
+        return (
+          padding.top +
+          (
+            max - value
+          ) /
+          (
+            max - min
+          ) *
+          chartHeight
+        );
+
+      }
+
+
+      /* GRID */
 
       ctx.strokeStyle =
-        bullish
-          ? "#35d07f"
-          : "#ff5f6d";
+        "#202a34";
 
       ctx.lineWidth =
         1;
 
 
+      for (
+        let i = 0;
+        i <= 5;
+        i++
+      ) {
+
+        const gy =
+          padding.top +
+          (
+            chartHeight *
+            i /
+            5
+          );
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+          padding.left,
+          gy
+        );
+
+        ctx.lineTo(
+          width -
+          padding.right,
+          gy
+        );
+
+        ctx.stroke();
+
+
+        const value =
+          max -
+          (
+            max - min
+          ) *
+          i /
+          5;
+
+
+        ctx.fillStyle =
+          "#7f8b96";
+
+        ctx.font =
+          "11px Arial";
+
+        ctx.textAlign =
+          "left";
+
+        ctx.fillText(
+          value.toFixed(
+            priceDecimals(
+              chartSymbol
+            )
+          ),
+          width -
+          padding.right +
+          5,
+          gy + 4
+        );
+
+      }
+
+
+      /* CANDLES */
+
+      const spacing =
+        chartWidth /
+        visible.length;
+
+
+      const bodyWidth =
+        Math.max(
+          3,
+          spacing * 0.55
+        );
+
+
+      visible.forEach(
+        (candle, index) => {
+
+          const x =
+            padding.left +
+            spacing *
+            index +
+            spacing / 2;
+
+
+          const openY =
+            y(candle.open);
+
+
+          const closeY =
+            y(candle.close);
+
+
+          const highY =
+            y(candle.high);
+
+
+          const lowY =
+            y(candle.low);
+
+
+          const bullish =
+            candle.close >=
+            candle.open;
+
+
+          ctx.strokeStyle =
+            bullish
+              ? "#28c76f"
+              : "#ff4d4d";
+
+
+          ctx.fillStyle =
+            bullish
+              ? "#28c76f"
+              : "#ff4d4d";
+
+
+          /* WICK */
+
+          ctx.beginPath();
+
+          ctx.moveTo(
+            x,
+            highY
+          );
+
+          ctx.lineTo(
+            x,
+            lowY
+          );
+
+          ctx.stroke();
+
+
+          /* BODY */
+
+          const bodyTop =
+            Math.min(
+              openY,
+              closeY
+            );
+
+
+          const bodyHeight =
+            Math.max(
+              1,
+              Math.abs(
+                closeY -
+                openY
+              )
+            );
+
+
+          ctx.fillRect(
+            x -
+            bodyWidth / 2,
+            bodyTop,
+            bodyWidth,
+            bodyHeight
+          );
+
+        }
+      );
+
+
+      /* CURRENT PRICE */
+
+      const current =
+        visible[
+          visible.length - 1
+        ].close;
+
+
+      const currentY =
+        y(current);
+
+
+      ctx.strokeStyle =
+        "#d4af37";
+
+      ctx.setLineDash(
+        [5, 5]
+      );
+
+
       ctx.beginPath();
 
       ctx.moveTo(
-        centerX,
-        highY
+        padding.left,
+        currentY
       );
 
       ctx.lineTo(
-        centerX,
-        lowY
+        width -
+        padding.right,
+        currentY
       );
 
       ctx.stroke();
 
+      ctx.setLineDash([]);
 
-      /* BODY */
 
       ctx.fillStyle =
-        bullish
-          ? "#35d07f"
-          : "#ff5f6d";
+        "#d4af37";
 
+      ctx.font =
+        "12px Arial";
 
-      const bodyTop =
-        Math.min(
-          openY,
-          closeY
-        );
+      ctx.textAlign =
+        "right";
 
-
-      const bodyHeight =
-        Math.max(
-          2,
-          Math.abs(
-            closeY -
-            openY
+      ctx.fillText(
+        current.toFixed(
+          priceDecimals(
+            chartSymbol
           )
-        );
-
-
-      ctx.fillRect(
-        centerX -
-        candleWidth / 2,
-
-        bodyTop,
-
-        candleWidth,
-
-        bodyHeight
+        ),
+        width -
+        5,
+        currentY -
+        5
       );
 
     }
-  );
 
 
-  /* CURRENT PRICE LINE */
+    /* =========================================
+       ECONOMIC CALENDAR
+    ========================================= */
 
-  const current =
-    marketData[symbol]?.price;
+    async function loadCalendar() {
 
+      const container =
+        $("calendar");
 
-  if (
-    Number.isFinite(current)
-  ) {
-
-    const currentY =
-      y(current);
-
-
-    ctx.strokeStyle =
-      "#d7b45a";
-
-    ctx.lineWidth =
-      1;
-
-
-    ctx.setLineDash([
-      5,
-      4
-    ]);
-
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-      paddingLeft,
-      currentY
-    );
-
-    ctx.lineTo(
-      width - paddingRight,
-      currentY
-    );
-
-    ctx.stroke();
-
-
-    ctx.setLineDash([]);
-
-
-    ctx.fillStyle =
-      "#d7b45a";
-
-    ctx.font =
-      "11px Arial";
-
-
-    ctx.fillText(
-      formatPrice(
-        symbol,
-        current
-      ),
-      width - 52,
-      currentY - 4
-    );
-
-  }
-
-}
-
-
-/* =========================================
-   ACADEMY PROGRESS
-========================================= */
-
-async function loadProgress() {
-
-  try {
-
-    const session =
-      await getSession();
-
-
-    if (!session) {
-      return;
-    }
-
-
-    const { data, error } =
-      await supabaseClient
-        .from("academy_progress")
-        .select("*")
-        .eq(
-          "user_id",
-          session.user.id
-        );
-
-
-    if (error) {
-
-      console.error(
-        "Academy progress error:",
-        error
-      );
-
-      return;
-
-    }
-
-
-    if (!data || data.length === 0) {
-
-      $("academyProgress").textContent =
-        "0%";
-
-      return;
-
-    }
-
-
-    const completed =
-      data.filter(
-        item =>
-          item.completed === true
-      ).length;
-
-
-    const total =
-      data.length;
-
-
-    const progress =
-      total > 0
-        ? Math.round(
-            (
-              completed /
-              total
-            ) * 100
-          )
-        : 0;
-
-
-    $("academyProgress").textContent =
-      `${progress}%`;
-
-  }
-  catch (error) {
-
-    console.error(
-      "loadProgress error:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================================
-   LOAD JOURNAL TRADES
-========================================= */
-
-async function loadTrades() {
-
-  try {
-
-    const session =
-      await getSession();
-
-
-    if (!session) {
-      return;
-    }
-
-
-    const { data, error } =
-      await supabaseClient
-        .from("trading_journal")
-        .select("*")
-        .eq(
-          "user_id",
-          session.user.id
-        )
-        .order(
-          "trade_date",
-          {
-            ascending: false
-          }
-        );
-
-
-    if (error) {
-
-      console.error(
-        "Journal load error:",
-        error
-      );
-
-      return;
-
-    }
-
-
-    const trades =
-      data || [];
-
-
-    $("tradeCount").textContent =
-      trades.length;
-
-
-    const container =
-      $("recentTrades");
-
-
-    if (!trades.length) {
 
       container.innerHTML = `
 
         <div class="loading">
-          No journal entries yet.
+          Economic Calendar provider not configured yet.
         </div>
 
       `;
 
-      return;
+    }
+
+
+    /* =========================================
+       MARKET NEWS
+    ========================================= */
+
+    async function loadNews() {
+
+      const container =
+        $("news");
+
+
+      container.innerHTML = `
+
+        <div class="loading">
+          Market News provider not configured yet.
+        </div>
+
+      `;
 
     }
 
 
-    container.innerHTML = "";
-
-
-    trades
-      .slice(0, 10)
-      .forEach(trade => {
-
-        const item =
-          document.createElement("div");
-
-
-        item.className =
-          "trade";
-
-
-        const directionClass =
-          trade.direction === "BUY"
-            ? "green"
-            : "red";
-
-
-        item.innerHTML = `
-
-          <div>
-            <strong>
-              ${trade.symbol || "—"}
-            </strong>
-
-            <span class="${directionClass}">
-              ${trade.direction || "—"}
-            </span>
-          </div>
-
-          <div class="muted">
-            Result:
-            ${trade.result || "—"}
-            • Risk:
-            ${trade.risk_percent ?? "—"}%
-          </div>
-
-          <div class="muted">
-            ${trade.trade_date || "—"}
-          </div>
-
-          <div class="muted">
-            ${trade.notes || ""}
-          </div>
-
-        `;
-
-
-        container.appendChild(item);
-
-      });
-
-  }
-  catch (error) {
-
-    console.error(
-      "loadTrades error:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================================
-   SAVE JOURNAL ENTRY
-========================================= */
-
-async function saveJournal(event) {
-
-  event.preventDefault();
-
-
-  const message =
-    $("journalMessage");
-
-
-  try {
-
-    const session =
-      await getSession();
-
-
-    if (!session) {
-
-      message.textContent =
-        "Please sign in first.";
-
-      return;
-
-    }
-
-
-    const entry = {
-
-      user_id:
-        session.user.id,
-
-      symbol:
-        $("journalSymbol").value,
-
-      direction:
-        $("direction").value,
-
-      result:
-        $("result").value.trim(),
-
-      risk_percent:
-        $("risk").value
-          ? Number($("risk").value)
-          : null,
-
-      trade_date:
-        $("tradeDate").value ||
-        new Date()
-          .toISOString()
-          .split("T")[0],
-
-      strategy:
-        $("strategy").value.trim(),
-
-      notes:
-        $("notes").value.trim()
-
-    };
-
-
-    const { error } =
-      await supabaseClient
-        .from("trading_journal")
-        .insert(entry);
-
-
-    if (error) {
-
-      throw error;
-
-    }
-
-
-    message.textContent =
-      "Journal entry saved successfully.";
-
-
-    $("journalForm").reset();
-
-
-    $("strategy").value =
-      "Breakout + Retest";
-
-
-    await loadTrades();
-
-  }
-  catch (error) {
-
-    console.error(
-      "saveJournal error:",
-      error
-    );
-
-
-    message.textContent =
-      "Unable to save journal entry.";
-
-  }
-
-}
-
-
-/* =========================================
-   ECONOMIC CALENDAR
-========================================= */
-
-async function loadCalendar() {
-
-  const container =
-    $("calendar");
-
-
-  container.innerHTML = `
-
-    <div class="loading">
-      Economic Calendar provider not configured yet.
-    </div>
-
-  `;
-
-}
-
-
-/* =========================================
-   MARKET NEWS
-========================================= */
-
-async function loadNews() {
-
-  const container =
-    $("news");
-
-
-  container.innerHTML = `
-
-    <div class="loading">
-      Market News provider not configured yet.
-    </div>
-
-  `;
-
-}
-
-
-/* =========================================
-   LOGOUT
-========================================= */
-
-async function logout() {
-
-  try {
-
-    await supabaseClient.auth.signOut();
-
-  }
-  catch (error) {
-
-    console.error(
-      "Logout error:",
-      error
-    );
-
-  }
-
-
-  window.location.href =
-    "auth.html";
-
-}
-
-
-/* =========================================
-   START DASHBOARD
-========================================= */
-
-async function start() {
-
-  document.getElementById("marketStatus").textContent = "STARTING...";
-
-  try {
-
-    if (
-      !window.supabaseClient
+    /* =========================================
+       SAVE JOURNAL
+    ========================================= */
+
+    async function saveJournal(
+      event
     ) {
 
-      $("marketStatus").textContent =
-        "Supabase unavailable";
+      event.preventDefault();
 
-      $("statusDot").className =
-        "dot error";
 
-      return;
+      if (!window.supabaseClient) {
+
+        alert(
+          "Supabase is unavailable."
+        );
+
+        return;
+
+      }
+
+
+      const session =
+        await getSession();
+
+
+      if (!session) {
+
+        alert(
+          "Please sign in first."
+        );
+
+        return;
+
+      }
+
+
+      const symbol =
+        $("journalSymbol")
+          .value
+          .trim()
+          .toUpperCase();
+
+
+      const side =
+        $("journalSide")
+          .value;
+
+
+      const result =
+        parseFloat(
+          $("journalResult")
+            .value
+        );
+
+
+      const risk =
+        parseFloat(
+          $("journalRisk")
+            .value
+        );
+
+
+      const tradeDate =
+        $("journalDate")
+          .value;
+
+
+      const strategy =
+        $("journalStrategy")
+          .value
+          .trim();
+
+
+      const note =
+        $("journalNote")
+          .value
+          .trim();
+
+
+      if (
+        !symbol ||
+        !side ||
+        !tradeDate ||
+        !strategy
+      ) {
+
+        alert(
+          "Please complete all required fields."
+        );
+
+        return;
+
+      }
+
+
+      try {
+
+        const {
+          error
+        } =
+          await window.supabaseClient
+            .from("trading_journal")
+            .insert({
+
+              symbol: symbol,
+
+              side: side,
+
+              result_r:
+                result,
+
+              risk_percent:
+                risk,
+
+              trade_date:
+                tradeDate,
+
+              strategy:
+                strategy,
+
+              note:
+                note
+
+            });
+
+
+        if (error) {
+
+          throw error;
+
+        }
+
+
+        alert(
+          "Journal entry saved successfully."
+        );
+
+
+        $("journalForm")
+          .reset();
+
+
+        $("journalStrategy")
+          .value =
+          "Breakout + Retest";
+
+
+        loadTrades();
+
+      }
+      catch (error) {
+
+        console.error(
+          "Save journal error:",
+          error
+        );
+
+
+        alert(
+          "Unable to save journal entry."
+        );
+
+      }
 
     }
 
 
-    const session =
-      await getSession();
+    /* =========================================
+       LOGOUT
+    ========================================= */
 
+    async function logout() {
 
-    if (!session) {
+      try {
+
+        if (
+          window.supabaseClient
+        ) {
+
+          await window.supabaseClient
+            .auth
+            .signOut();
+
+        }
+
+      }
+      catch (error) {
+
+        console.error(
+          "Logout error:",
+          error
+        );
+
+      }
+
 
       window.location.href =
         "auth.html";
 
-      return;
+    }
+
+
+    /* =========================================
+       START DASHBOARD
+    ========================================= */
+
+    async function start() {
+
+      console.log(
+        "Dashboard start() running"
+      );
+
+
+      const marketStatus =
+        $("marketStatus");
+
+
+      marketStatus.textContent =
+        "STARTING...";
+
+
+      try {
+
+        if (
+          !window.supabaseClient
+        ) {
+
+          marketStatus.textContent =
+            "Supabase unavailable";
+
+
+          $("statusDot").className =
+            "dot error";
+
+
+          return;
+
+        }
+
+
+        const session =
+          await getSession();
+
+
+        if (!session) {
+
+          marketStatus.textContent =
+            "Not signed in";
+
+
+          $("statusDot").className =
+            "dot error";
+
+
+          setTimeout(
+            () => {
+
+              window.location.href =
+                "auth.html";
+
+            },
+            1500
+          );
+
+
+          return;
+
+        }
+
+
+        await Promise.allSettled([
+
+          loadTrades(),
+
+          loadProgress(),
+
+          loadMarkets(),
+
+          loadChartCandles(),
+
+          loadCalendar(),
+
+          loadNews()
+
+        ]);
+
+
+        console.log(
+          "Dashboard loading completed"
+        );
+
+      }
+      catch (error) {
+
+        console.error(
+          "Dashboard start error:",
+          error
+        );
+
+
+        marketStatus.textContent =
+          "Dashboard error";
+
+
+        $("statusDot").className =
+          "dot error";
+
+      }
 
     }
 
 
-    await Promise.allSettled([
+    /* =========================================
+       EVENTS
+    ========================================= */
 
-      loadTrades(),
+    $("journalForm")
+      ?.addEventListener(
+        "submit",
+        saveJournal
+      );
 
-      loadProgress(),
 
-      loadMarkets(),
+    $("symbol")
+      ?.addEventListener(
+        "change",
+        loadChartCandles
+      );
 
-      loadChartCandles(),
 
-      loadCalendar(),
+    $("refreshChart")
+      ?.addEventListener(
+        "click",
+        loadChartCandles
+      );
 
-      loadNews()
 
-    ]);
+    $("logoutBtn")
+      ?.addEventListener(
+        "click",
+        event => {
 
-  }
-  catch (error) {
+          event.preventDefault();
 
-    console.error(
-      "Dashboard start error:",
-      error
+          logout();
+
+        }
+      );
+
+
+    /* =========================================
+       WINDOW RESIZE
+    ========================================= */
+
+    window.addEventListener(
+      "resize",
+      drawChart
     );
 
 
-    $("marketStatus").textContent =
-      "Dashboard error";
+    /* =========================================
+       LIVE UPDATES
+    ========================================= */
 
-    $("statusDot").className =
-      "dot error";
-
-  }
-
-}
-
-
-/* =========================================
-   EVENTS
-========================================= */
-
-$("journalForm")
-  ?.addEventListener(
-    "submit",
-    saveJournal
-  );
+    setInterval(
+      loadMarkets,
+      5000
+    );
 
 
-$("symbol")
-  ?.addEventListener(
-    "change",
-    loadChartCandles
-  );
+    setInterval(
+      drawChart,
+      1000
+    );
 
 
-$("refreshChart")
-  ?.addEventListener(
-    "click",
-    loadChartCandles
-  );
+    /* =========================================
+       START
+    ========================================= */
 
+    start();
 
-$("logoutBtn")
-  ?.addEventListener(
-    "click",
-    event => {
-
-      event.preventDefault();
-
-      logout();
-
-    }
-  );
-
-
-/* =========================================
-   WINDOW RESIZE
-========================================= */
-
-window.addEventListener(
-  "resize",
-  drawChart
-);
-
-
-/* =========================================
-   LIVE UPDATES
-========================================= */
-
-setInterval(
-  loadMarkets,
-  5000
-);
-
-
-setInterval(
-  drawChart,
-  1000
-);
-
-
-/* =========================================
-   START
-========================================= */
-
-start();
-
-</script>
+  </script>
 
 </body>
-  </html>
+      </html>
