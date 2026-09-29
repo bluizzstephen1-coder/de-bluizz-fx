@@ -1,22 +1,13 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>DE.Bluizz FX — V7 Trader Hub</title>
+<title>DE.Bluizz FX V7 Trader Hub</title>
 
 <style>
-:root{
-  --bg:#070707;
-  --card:#111;
-  --line:#302714;
-  --gold:#d7ad45;
-  --soft:#f4d27a;
-  --muted:#999;
-  --green:#22c55e;
-  --red:#ef4444;
-}
 
 *{
   box-sizing:border-box;
@@ -24,677 +15,811 @@
 
 body{
   margin:0;
-  background:var(--bg);
-  color:#eee;
-  font-family:Arial,sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#07110d;
+  color:#f4f7f5;
 }
 
-.wrap{
-  max-width:1150px;
-  margin:auto;
+header{
+  background:#0b1712;
+  border-bottom:1px solid #20382b;
   padding:18px;
-}
-
-.top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
+  position:sticky;
+  top:0;
+  z-index:20;
 }
 
 .brand{
-  font-size:25px;
+  font-size:22px;
   font-weight:800;
-  color:var(--gold);
+  color:#d7b45a;
 }
 
-button,.btn{
-  border:1px solid #5a451c;
-  background:#151515;
-  color:#eee;
-  border-radius:9px;
-  padding:10px 13px;
+.subtitle{
+  font-size:12px;
+  color:#9baaa1;
+  margin-top:4px;
 }
 
-.primary{
-  background:var(--gold);
-  color:#070707;
-  border:0;
-  font-weight:800;
+.container{
+  width:min(1200px,94%);
+  margin:20px auto;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:13px;
-  margin-top:16px;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
 }
 
 .card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:15px;
-  padding:17px;
+  background:#0d1b15;
+  border:1px solid #20382b;
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 8px 25px rgba(0,0,0,.2);
 }
 
-.stat{
-  font-size:28px;
+.card h3{
+  margin:0 0 12px;
+  font-size:15px;
+}
+
+.stat-title{
+  color:#91a097;
+  font-size:12px;
+}
+
+.stat-value{
+  font-size:22px;
   font-weight:800;
   margin-top:7px;
 }
 
+.green{
+  color:#35d07f;
+}
+
+.red{
+  color:#ff5f6d;
+}
+
 .gold{
-  color:var(--gold);
+  color:#d7b45a;
 }
 
 .muted{
-  color:var(--muted);
+  color:#91a097;
 }
 
-h2{
-  margin-top:0;
-  font-size:19px;
+.status{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-size:13px;
 }
 
-input,select,textarea{
-  width:100%;
-  margin:5px 0;
-  padding:11px;
-  background:#080808;
-  border:1px solid #444;
-  color:#fff;
-  border-radius:8px;
+.dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#777;
 }
 
-textarea{
-  min-height:70px;
+.dot.live{
+  background:#35d07f;
+  box-shadow:0 0 10px #35d07f;
+}
+
+.dot.error{
+  background:#ff5f6d;
+}
+
+.section{
+  margin-top:18px;
+}
+
+.section-title{
+  font-size:18px;
+  font-weight:800;
+  margin-bottom:10px;
+}
+
+.watch-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.pair{
+  background:#09140f;
+  border:1px solid #20382b;
+  border-radius:12px;
+  padding:13px;
+}
+
+.pair-name{
+  font-weight:800;
+  color:#d7b45a;
+  margin-bottom:9px;
 }
 
 .row{
-  border-top:1px solid #292929;
-  padding:10px 0;
-}
-
-.pill{
-  display:inline-block;
-  padding:4px 8px;
-  border:1px solid #4b3a19;
-  border-radius:20px;
-  color:var(--soft);
-  font-size:12px;
-}
-
-.watch{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:10px;
-  padding:11px 0;
-  border-top:1px solid #292929;
-}
-
-.watch-symbol{
-  font-size:16px;
-  font-weight:800;
-}
-
-.watch-prices{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:5px;
-}
-
-.quote-box{
-  min-width:75px;
-}
-
-.quote-label{
-  font-size:10px;
-  color:var(--muted);
-  text-transform:uppercase;
-}
-
-.quote-value{
-  font-size:17px;
-  font-weight:800;
-}
-
-.watch-change{
-  text-align:right;
-  font-size:13px;
-  font-weight:700;
-}
-
-.up{
-  color:var(--green);
-}
-
-.down{
-  color:var(--red);
-}
-
-.flat{
-  color:var(--muted);
-}
-
-.move{
-  margin-top:4px;
-  font-size:12px;
-}
-
-.chart-header{
   display:flex;
   justify-content:space-between;
-  align-items:center;
   gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:8px;
+  margin:5px 0;
+  font-size:12px;
 }
 
-.chart-price{
-  font-size:18px;
-  font-weight:800;
+.row span:first-child{
+  color:#899990;
 }
 
-.chart-pips{
-  font-size:13px;
-  font-weight:700;
-}
-
-.chart-wrap{
-  position:relative;
-  width:100%;
-  overflow:hidden;
-}
-
-canvas{
-  display:block;
-  width:100%;
-  height:300px;
-  background:#090909;
-  border-radius:10px;
-}
-
-.tabs{
+.chart-controls{
   display:flex;
-  gap:7px;
+  gap:10px;
+  align-items:center;
   flex-wrap:wrap;
   margin-bottom:10px;
 }
 
-.tabs button.active{
-  background:var(--gold);
-  color:#080808;
+select,
+input,
+textarea,
+button{
+  font-family:inherit;
 }
 
-.news{
-  padding:10px 0;
-  border-top:1px solid #292929;
+select,
+input,
+textarea{
+  width:100%;
+  background:#08120d;
+  color:#fff;
+  border:1px solid #294335;
+  border-radius:9px;
+  padding:11px;
+  outline:none;
 }
 
-.news a{
-  color:var(--soft);
-  text-decoration:none;
+.chart-select{
+  width:auto;
+  min-width:150px;
 }
 
-.bar{
-  height:8px;
-  background:#252525;
-  border-radius:8px;
+button{
+  border:0;
+  border-radius:9px;
+  padding:11px 15px;
+  background:#d7b45a;
+  color:#10150f;
+  font-weight:800;
+  cursor:pointer;
+}
+
+button:hover{
+  opacity:.9;
+}
+
+.chart-box{
+  position:relative;
+  width:100%;
+  height:420px;
+  background:#07100c;
+  border:1px solid #20382b;
+  border-radius:12px;
   overflow:hidden;
 }
 
-.bar i{
-  display:block;
+#chart{
+  width:100%;
   height:100%;
-  background:var(--gold);
-  width:0;
+  display:block;
 }
+
+.chart-message{
+  margin-top:8px;
+  font-size:12px;
+  color:#91a097;
+}
+
+.two-col{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.news-item,
+.calendar-item{
+  padding:11px 0;
+  border-bottom:1px solid #20382b;
+}
+
+.news-item:last-child,
+.calendar-item:last-child{
+  border-bottom:0;
+}
+
+.news-title{
+  font-weight:700;
+  font-size:14px;
+}
+
+.news-meta,
+.calendar-meta{
+  color:#899990;
+  font-size:11px;
+  margin-top:5px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.trades{
+  margin-top:15px;
+}
+
+.trade{
+  border:1px solid #20382b;
+  border-radius:10px;
+  padding:12px;
+  margin-bottom:8px;
+  background:#09140f;
+}
+
+.nav{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.nav a{
+  text-decoration:none;
+  color:#d7b45a;
+  border:1px solid #3a493e;
+  padding:9px 12px;
+  border-radius:8px;
+  font-size:12px;
+}
+
+.footer{
+  text-align:center;
+  padding:30px 10px;
+  color:#718077;
+  font-size:11px;
+}
+
+.loading{
+  color:#91a097;
+}
+
+@media(max-width:900px){
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .watch-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:600px){
+
+  .grid,
+  .watch-grid,
+  .two-col,
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .chart-box{
+    height:330px;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<div class="wrap">
-
-<div class="top">
+<header>
 
   <div class="brand">
-    DE.Bluizz FX <span class="muted">V7 Trader Hub</span>
+    DE.Bluizz FX V7 Trader Hub
   </div>
 
-  <div>
-    <span id="email" class="muted"></span>
-    <button id="logout">Log out</button>
+  <div class="subtitle">
+    Forex education • Trading tools • Market insights • Breakout + Retest
   </div>
 
-</div>
+</header>
 
 
-<!-- STATS -->
-
-<div class="grid">
-
-  <div class="card">
-    <div class="muted">Journal trades</div>
-    <div class="stat" id="count">0</div>
-  </div>
-
-  <div class="card">
-    <div class="muted">Academy progress</div>
-    <div class="stat" id="progress">0%</div>
-
-    <div class="bar">
-      <i id="progressBar"></i>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="muted">Core strategy</div>
-
-    <div class="stat gold" style="font-size:22px">
-      Breakout + Retest
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="muted">Market status</div>
-    <div class="stat" id="status">Loading…</div>
-  </div>
-
-</div>
+<main class="container">
 
 
-<!-- LIVE WATCHLIST -->
+  <!-- =========================
+       STATISTICS
+  ========================== -->
 
-<div class="grid">
+  <div class="grid">
 
-<div class="card">
-
-<h2>Live Watchlist</h2>
-
-<div class="muted" style="font-size:12px;margin-bottom:8px">
-  Bid / Ask will appear when the connected market provider supplies genuine bid/ask quotes.
-</div>
-
-<div id="watch">
-  <span class="muted">
-    Loading market data…
-  </span>
-</div>
-
-</div>
-
-
-<!-- LIVE CHART -->
-
-<div class="card">
-
-<h2>Live 15-Minute Candlestick Chart</h2>
-
-<div class="chart-header">
-
-  <select id="symbol">
-    <option>EUR/USD</option>
-    <option>GBP/USD</option>
-    <option>USD/JPY</option>
-    <option>XAU/USD</option>
-  </select>
-
-  <div>
-
-    <div id="chartPrice" class="chart-price">
-      —
+    <div class="card">
+      <div class="stat-title">Journal Trades</div>
+      <div id="tradeCount" class="stat-value">—</div>
     </div>
 
-    <div id="chartPips" class="chart-pips flat">
-      Movement: 0.0 pips
+    <div class="card">
+      <div class="stat-title">Academy Progress</div>
+      <div id="academyProgress" class="stat-value">0%</div>
+    </div>
+
+    <div class="card">
+      <div class="stat-title">Core Strategy</div>
+      <div class="stat-value gold">Breakout + Retest</div>
+    </div>
+
+    <div class="card">
+
+      <div class="stat-title">Market Status</div>
+
+      <div class="stat-value">
+
+        <span class="status">
+
+          <span id="statusDot" class="dot"></span>
+
+          <span id="marketStatus">
+            Loading...
+          </span>
+
+        </span>
+
+      </div>
+
     </div>
 
   </div>
 
+
+
+  <!-- =========================
+       LIVE WATCHLIST
+  ========================== -->
+
+  <section class="section">
+
+    <div class="section-title">
+      Live Watchlist
+    </div>
+
+    <div id="watchlist" class="watch-grid">
+
+      <div class="card">
+        <div class="loading">
+          Loading market data...
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       CHART
+  ========================== -->
+
+  <section class="section">
+
+    <div class="card">
+
+      <div class="section-title">
+        Live 15-Minute Candlestick Chart
+      </div>
+
+      <div class="chart-controls">
+
+        <select
+          id="symbol"
+          class="chart-select"
+        >
+
+          <option value="EUR/USD">
+            EUR/USD
+          </option>
+
+          <option value="GBP/USD">
+            GBP/USD
+          </option>
+
+          <option value="USD/JPY">
+            USD/JPY
+          </option>
+
+          <option value="XAU/USD">
+            XAU/USD
+          </option>
+
+        </select>
+
+        <button
+          id="refreshChart"
+          type="button"
+        >
+          Refresh Chart
+        </button>
+
+      </div>
+
+
+      <div class="chart-box">
+
+        <canvas id="chart"></canvas>
+
+      </div>
+
+
+      <div
+        id="chartMsg"
+        class="chart-message"
+      >
+        Loading real 15-minute candles...
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       CALENDAR + NEWS
+  ========================== -->
+
+  <section class="section">
+
+    <div class="two-col">
+
+
+      <div class="card">
+
+        <div class="section-title">
+          Economic Calendar
+        </div>
+
+        <div id="calendar">
+
+          <div class="loading">
+            Loading economic calendar...
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="section-title">
+          Market News
+        </div>
+
+        <div id="news">
+
+          <div class="loading">
+            Loading market news...
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       TRADING JOURNAL
+  ========================== -->
+
+  <section class="section">
+
+    <div class="card">
+
+      <div class="section-title">
+        Trading Journal
+      </div>
+
+
+      <form id="journalForm">
+
+        <div class="form-grid">
+
+
+          <div>
+
+            <label class="muted">
+              Pair
+            </label>
+
+            <select id="journalSymbol">
+
+              <option>
+                EUR/USD
+              </option>
+
+              <option>
+                GBP/USD
+              </option>
+
+              <option>
+                USD/JPY
+              </option>
+
+              <option>
+                XAU/USD
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div>
+
+            <label class="muted">
+              Direction
+            </label>
+
+            <select id="direction">
+
+              <option value="BUY">
+                BUY
+              </option>
+
+              <option value="SELL">
+                SELL
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div>
+
+            <label class="muted">
+              Result
+            </label>
+
+            <input
+              id="result"
+              type="text"
+              placeholder="+2R"
+              required
+            >
+
+          </div>
+
+
+          <div>
+
+            <label class="muted">
+              Risk %
+            </label>
+
+            <input
+              id="risk"
+              type="number"
+              step="0.1"
+              placeholder="1"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label class="muted">
+              Date
+            </label>
+
+            <input
+              id="tradeDate"
+              type="date"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label class="muted">
+              Strategy
+            </label>
+
+            <input
+              id="strategy"
+              type="text"
+              value="Breakout + Retest"
+            >
+
+          </div>
+
+
+          <div class="full">
+
+            <label class="muted">
+              Notes
+            </label>
+
+            <textarea
+              id="notes"
+              placeholder="Describe your setup, entry, confirmation and result..."
+            ></textarea>
+
+          </div>
+
+
+          <div class="full">
+
+            <button type="submit">
+              Save Journal Entry
+            </button>
+
+          </div>
+
+
+        </div>
+
+      </form>
+
+
+      <div
+        id="journalMessage"
+        class="chart-message"
+      ></div>
+
+
+      <div class="trades">
+
+        <h3>
+          Recent Trades
+        </h3>
+
+        <div id="recentTrades">
+
+          <div class="loading">
+            Loading trades...
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================
+       REMINDER
+  ========================== -->
+
+  <section class="section">
+
+    <div class="card">
+
+      <h3>
+        Risk Reminder
+      </h3>
+
+      <div class="muted">
+
+        Protect your capital. Wait for your setup.
+        Do not enter simply because price is moving.
+        Follow your Breakout + Retest rules and manage risk consistently.
+
+      </div>
+
+
+      <div class="nav">
+
+        <a href="academy.html">
+          Open Academy
+        </a>
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="#" id="logoutBtn">
+          Logout
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<div class="footer">
+
+  DE.Bluizz FX V7 Trader Hub
+
 </div>
 
-<div class="chart-wrap">
-  <canvas id="chart"></canvas>
-</div>
-
-<div id="chartMsg" class="muted">
-  Loading 15-minute candles…
-</div>
-
-</div>
-
-</div>
 
 
-<!-- CALENDAR + NEWS -->
+<!-- =========================
+     SUPABASE
+========================== -->
 
-<div class="grid">
+<script
+  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</script>
 
-<div class="card">
-
-<h2>Economic Calendar</h2>
-
-<div class="tabs">
-
-  <button
-    class="active"
-    data-impact="all">
-    All
-  </button>
-
-  <button data-impact="high">
-    High
-  </button>
-
-  <button data-impact="medium">
-    Medium
-  </button>
-
-</div>
-
-<div id="calendar">
-  <span class="muted">
-    Loading calendar…
-  </span>
-</div>
-
-</div>
-
-
-<div class="card">
-
-<h2>Market News</h2>
-
-<div id="news">
-  <span class="muted">
-    Loading news…
-  </span>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- JOURNAL -->
-
-<div class="grid">
-
-<div class="card">
-
-<h2>Add journal trade</h2>
-
-<form id="tradeForm">
-
-<input
-  id="pair"
-  placeholder="Pair e.g. EUR/USD"
-  required
->
-
-<select id="direction">
-
-  <option>BUY</option>
-  <option>SELL</option>
-
-</select>
-
-<input
-  id="setup"
-  placeholder="Setup / reason"
->
-
-<input
-  id="risk"
-  type="number"
-  step="0.01"
-  placeholder="Risk %"
->
-
-<input
-  id="result"
-  placeholder="Result e.g. +2R / -1R"
->
-
-<textarea
-  id="notes"
-  placeholder="Notes"
-></textarea>
-
-<button class="primary">
-  Save trade
-</button>
-
-</form>
-
-</div>
-
-
-<div class="card">
-
-<h2>Recent trades</h2>
-
-<div id="rows">
-  <span class="muted">
-    Loading…
-  </span>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- RISK -->
-
-<div class="card" style="margin-top:14px">
-
-<h2>Risk reminder</h2>
-
-<p class="muted">
-
-Live data can be delayed or unavailable.
-Forex and leveraged products involve substantial risk.
-DE.Bluizz FX does not guarantee profits and educational
-content is not personalized financial advice.
-
-</p>
-
-<a
-  class="pill"
-  href="academy.html">
-
-  Open Academy
-
-</a>
-
-</div>
-
-</div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
+
+
 
 <script>
 
-let user;
+/* =========================================
+   BASIC HELPERS
+========================================= */
 
-let prices=[];
+const $ = id => document.getElementById(id);
 
-let calendarData=[];
 
+/* =========================================
+   SUPABASE FUNCTION URL
+========================================= */
 
-/*
-   REAL 15-MINUTE CANDLE DATA
+const SUPABASE_URL =
+  "https://jpzlepcevvbyburitjyp.supabase.co";
 
-   Structure:
 
-   chartHistory["EUR/USD"] = [
-      {
-        time,
-        open,
-        high,
-        low,
-        close
-      }
-   ]
-*/
+const MARKET_FUNCTION =
+  `${SUPABASE_URL}/functions/v1/market-data`;
 
-const chartHistory={};
-
-
-/*
-   Previous quote prices are used only
-   for watchlist movement.
-*/
-
-const previousPrices={};
-
-
-/*
-   Time of last successful market update.
-*/
-
-let lastMarketUpdate=0;
-
-
-const $=id=>document.getElementById(id);
-
-
-/* --------------------------------
-   SUPABASE EDGE FUNCTION HELPER
---------------------------------- */
-
-async function fn(name,body={}){
-
-  const {
-    data,
-    error
-  }=
-    await supabaseClient.functions.invoke(
-      name,
-      {
-        body
-      }
-    );
-
-  if(error){
-    throw error;
-  }
-
-  return data;
-
-}
-
-
-/* --------------------------------
-   START
---------------------------------- */
-
-async function start(){
-
-  if(!window.supabaseClient){
-
-    $("status").textContent=
-      "Configure Supabase";
-
-    return;
-
-  }
-
-
-  const {
-    data:{session}
-  }=
-    await supabaseClient.auth.getSession();
-
-
-  if(!session){
-
-    location.href="auth.html";
-
-    return;
-
-  }
-
-
-  user=session.user;
-
-
-  $("email").textContent=
-    user.email;
-
-
-  await Promise.all([
-
-    loadTrades(),
-
-    loadProgress(),
-
-    loadMarkets(),
-
-    loadChartCandles(),
-
-    loadCalendar(),
-
-    loadNews()
-
-  ]);
-
-}
-
-
-/* --------------------------------
-   PIP SIZE
---------------------------------- */
-
-function getPipSize(symbol){
-
-  if(symbol==="USD/JPY"){
-    return 0.01;
-  }
-
-  if(symbol==="XAU/USD"){
-    return 0.1;
-  }
-
-  return 0.0001;
-
-}
-
-
-/* --------------------------------
-   PRICE DECIMALS
---------------------------------- */
-
-function priceDecimals(symbol){
-
-  if(symbol==="USD/JPY"){
-    return 3;
-  }
-
-  if(symbol==="XAU/USD"){
-    return 2;
-  }
-
-  return 5;
-
-}
-
-
-/* --------------------------------
-   MARKET DATA URL
---------------------------------- */
 
 function marketUrl(action,symbol){
 
   return (
-    "https://jpzlepcevvbyburitjyp.supabase.co" +
-    "/functions/v1/market-data" +
+    MARKET_FUNCTION +
     "?action=" +
     encodeURIComponent(action) +
     "&symbol=" +
@@ -704,232 +829,435 @@ function marketUrl(action,symbol){
 }
 
 
-/* --------------------------------
-   LOAD LIVE QUOTES
---------------------------------- */
+/* =========================================
+   GLOBAL DATA
+========================================= */
+
+const symbols = [
+  "EUR/USD",
+  "GBP/USD",
+  "USD/JPY",
+  "XAU/USD"
+];
+
+
+const marketData = {};
+
+const previousPrices = {};
+
+const chartHistory = {};
+
+let lastMarketUpdate = 0;
+
+
+/* =========================================
+   PIP SIZE
+========================================= */
+
+function getPipSize(symbol){
+
+  if(symbol === "USD/JPY"){
+    return 0.01;
+  }
+
+  if(symbol === "XAU/USD"){
+    return 0.1;
+  }
+
+  return 0.0001;
+
+}
+
+
+/* =========================================
+   PRICE DECIMALS
+========================================= */
+
+function priceDecimals(symbol){
+
+  if(symbol === "USD/JPY"){
+    return 3;
+  }
+
+  if(symbol === "XAU/USD"){
+    return 2;
+  }
+
+  return 5;
+
+}
+
+
+/* =========================================
+   FORMAT PRICE
+========================================= */
+
+function formatPrice(symbol,value){
+
+  if(value === null || value === undefined){
+    return "—";
+  }
+
+  return Number(value)
+    .toFixed(priceDecimals(symbol));
+
+}
+
+
+/* =========================================
+   GET SESSION
+========================================= */
+
+async function getSession(){
+
+  const result =
+    await supabaseClient.auth.getSession();
+
+  return result?.data?.session || null;
+
+}
+
+
+/* =========================================
+   LOAD LIVE MARKET QUOTES
+========================================= */
 
 async function loadMarkets(){
 
   try{
 
-    const {
-      data:{session}
-    }=
-      await supabaseClient.auth.getSession();
-
+    const session =
+      await getSession();
 
     if(!session){
+
+      $("marketStatus").textContent =
+        "Not signed in";
+
+      $("statusDot").className =
+        "dot error";
+
       return;
+
     }
 
 
-    const symbols=[
+    const results =
+      await Promise.allSettled(
 
-      "EUR/USD",
-      "GBP/USD",
-      "USD/JPY",
-      "XAU/USD"
+        symbols.map(async symbol => {
 
-    ];
-
-
-    const results=
-      await Promise.all(
-
-        symbols.map(
-          async symbol=>{
-
-            const response=
-              await fetch(
-
-                marketUrl(
-                  "quote",
-                  symbol
-                ),
-
-                {
-                  headers:{
-                    Authorization:
-                      `Bearer ${session.access_token}`
-                  }
+          const response =
+            await fetch(
+              marketUrl("quote",symbol),
+              {
+                headers:{
+                  Authorization:
+                    `Bearer ${session.access_token}`
                 }
-
-              );
-
-
-            const data=
-              await response.json();
+              }
+            );
 
 
-            if(
-              !response.ok ||
-              data.error
-            ){
+          if(!response.ok){
 
-              throw new Error(
-                data.error ||
-                "Market request failed"
-              );
-
-            }
-
-
-            const price=
-              Number(data.close);
-
-
-            const previous=
-              previousPrices[symbol];
-
-
-            const pipSize=
-              getPipSize(symbol);
-
-
-            const pipMove=
-              previous !== undefined
-
-                ?
-
-                (
-                  price-
-                  previous
-                )/
-                pipSize
-
-                :
-
-                0;
-
-
-            previousPrices[symbol]=
-              price;
-
-
-            return{
-
-              symbol:
-                data.symbol ||
-                symbol,
-
-              price,
-
-              open:
-                Number(data.open),
-
-              high:
-                Number(data.high),
-
-              low:
-                Number(data.low),
-
-              close:
-                Number(data.close),
-
-              /*
-                 The current provider response
-                 does not contain genuine bid/ask.
-              */
-
-              bid:null,
-
-              ask:null,
-
-              pipMove,
-
-              time:
-                data.last_quote_at
-
-                  ?
-
-                  new Date(
-                    data.last_quote_at*1000
-                  ).toLocaleTimeString()
-
-                  :
-
-                  data.datetime
-
-            };
+            throw new Error(
+              `HTTP ${response.status}`
+            );
 
           }
-        )
+
+
+          const data =
+            await response.json();
+
+
+          if(!data || data.error){
+
+            throw new Error(
+              data?.error ||
+              "Invalid market response"
+            );
+
+          }
+
+
+          const price =
+            Number(data.close);
+
+
+          if(!Number.isFinite(price)){
+
+            throw new Error(
+              "Invalid close price"
+            );
+
+          }
+
+
+          let pipMove = 0;
+
+
+          if(
+            previousPrices[symbol] !== undefined
+          ){
+
+            pipMove =
+              (
+                price -
+                previousPrices[symbol]
+              ) /
+              getPipSize(symbol);
+
+          }
+
+
+          previousPrices[symbol] =
+            price;
+
+
+          marketData[symbol] = {
+
+            symbol,
+
+            open:Number(data.open),
+
+            high:Number(data.high),
+
+            low:Number(data.low),
+
+            close:price,
+
+            price,
+
+            bid:null,
+
+            ask:null,
+
+            pipMove,
+
+            datetime:data.datetime,
+
+            last_quote_at:data.last_quote_at
+
+          };
+
+
+        })
 
       );
 
 
-    prices=results;
+    const successful =
+      results.filter(
+        result =>
+          result.status === "fulfilled"
+      ).length;
 
 
-    lastMarketUpdate=
-      Date.now();
+    if(successful > 0){
 
+      $("marketStatus").textContent =
+        "Live feed";
 
-    $("status").textContent=
-      results.length
-        ? "Live feed"
-        : "Feed unavailable";
+      $("statusDot").className =
+        "dot live";
+
+      lastMarketUpdate =
+        Date.now();
+
+    }
+    else{
+
+      $("marketStatus").textContent =
+        "Feed unavailable";
+
+      $("statusDot").className =
+        "dot error";
+
+    }
 
 
     renderWatch();
 
-
-    drawChart();
-
-
-  }catch(e){
+  }
+  catch(error){
 
     console.error(
-      "Quote error:",
-      e
+      "loadMarkets error:",
+      error
     );
 
 
-    $("status").textContent=
+    $("marketStatus").textContent =
       "Feed unavailable";
 
-
-    $("watch").innerHTML=
-      "<span class='muted'>" +
-      "Market provider unavailable." +
-      "</span>";
+    $("statusDot").className =
+      "dot error";
 
   }
 
 }
 
 
-/* --------------------------------
+/* =========================================
+   WATCHLIST
+========================================= */
+
+function renderWatch(){
+
+  const container =
+    $("watchlist");
+
+
+  container.innerHTML = "";
+
+
+  symbols.forEach(symbol => {
+
+    const data =
+      marketData[symbol];
+
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "pair";
+
+
+    if(!data){
+
+      card.innerHTML = `
+
+        <div class="pair-name">
+          ${symbol}
+        </div>
+
+        <div class="row">
+          <span>Bid</span>
+          <strong>—</strong>
+        </div>
+
+        <div class="row">
+          <span>Ask</span>
+          <strong>—</strong>
+        </div>
+
+        <div class="row">
+          <span>Price</span>
+          <strong>Loading...</strong>
+        </div>
+
+        <div class="row">
+          <span>Movement</span>
+          <strong>—</strong>
+        </div>
+
+      `;
+
+      container.appendChild(card);
+
+      return;
+
+    }
+
+
+    const movement =
+      Number(data.pipMove || 0);
+
+
+    const movementClass =
+      movement > 0
+        ? "green"
+        : movement < 0
+          ? "red"
+          : "muted";
+
+
+    const movementText =
+      movement > 0
+        ? `+${movement.toFixed(1)} pips`
+        : `${movement.toFixed(1)} pips`;
+
+
+    card.innerHTML = `
+
+      <div class="pair-name">
+        ${symbol}
+      </div>
+
+      <div class="row">
+        <span>Bid</span>
+        <strong>—</strong>
+      </div>
+
+      <div class="row">
+        <span>Ask</span>
+        <strong>—</strong>
+      </div>
+
+      <div class="row">
+        <span>Price</span>
+        <strong>
+          ${formatPrice(symbol,data.price)}
+        </strong>
+      </div>
+
+      <div class="row">
+        <span>Movement</span>
+        <strong class="${movementClass}">
+          ${movementText}
+        </strong>
+      </div>
+
+    `;
+
+
+    container.appendChild(card);
+
+  });
+
+}
+
+
+/* =========================================
    LOAD REAL 15-MINUTE CANDLES
---------------------------------- */
+========================================= */
 
 async function loadChartCandles(){
 
   try{
 
-    const {
-      data:{session}
-    }=
-      await supabaseClient.auth.getSession();
+    const session =
+      await getSession();
 
 
     if(!session){
+
+      $("chartMsg").textContent =
+        "Please sign in to load chart data.";
+
       return;
+
     }
 
 
-    const symbol=
+    const symbol =
       $("symbol").value;
 
 
-    const response=
+    $("chartMsg").textContent =
+      "Loading real 15-minute candles...";
+
+
+    const response =
       await fetch(
 
         marketUrl(
-          "candles",
+          "time_series",
           symbol
-        )
-        +
+        ) +
         "&interval=15min",
 
         {
@@ -942,90 +1270,95 @@ async function loadChartCandles(){
       );
 
 
-    const data=
+    if(!response.ok){
+
+      throw new Error(
+        `Chart HTTP ${response.status}`
+      );
+
+    }
+
+
+    const data =
       await response.json();
 
 
-    if(
-      !response.ok ||
-      data.error
-    ){
+    if(data.error){
 
       throw new Error(
-        data.error ||
-        "Candle request failed"
+        data.error
       );
 
     }
 
 
-    if(
-      !Array.isArray(data.candles)
-    ){
+    if(!Array.isArray(data.candles)){
 
       throw new Error(
-        "No candle data returned"
+        "No candle data returned."
       );
 
     }
 
 
-    /*
-       Convert the API response into the
-       format used by the chart.
-    */
-
-    chartHistory[symbol]=
+    const candles =
       data.candles
-      .map(c=>({
 
-        time:Number(c.time),
+        .map(candle => ({
 
-        open:Number(c.open),
+          time:
+            Number(candle.time),
 
-        high:Number(c.high),
+          open:
+            Number(candle.open),
 
-        low:Number(c.low),
+          high:
+            Number(candle.high),
 
-        close:Number(c.close)
+          low:
+            Number(candle.low),
 
-      }))
-      .filter(c=>
+          close:
+            Number(candle.close)
 
-        Number.isFinite(c.time) &&
+        }))
 
-        Number.isFinite(c.open) &&
+        .filter(candle =>
 
-        Number.isFinite(c.high) &&
+          Number.isFinite(candle.time) &&
+          Number.isFinite(candle.open) &&
+          Number.isFinite(candle.high) &&
+          Number.isFinite(candle.low) &&
+          Number.isFinite(candle.close)
 
-        Number.isFinite(c.low) &&
+        )
 
-        Number.isFinite(c.close)
-
-      )
-      .sort(
-        (a,b)=>
-          a.time-b.time
-      )
-      .slice(-40);
+        .sort(
+          (a,b) =>
+            a.time - b.time
+        );
 
 
-    $("chartMsg").textContent=
+    chartHistory[symbol] =
+      candles.slice(-40);
+
+
+    $("chartMsg").textContent =
       `${chartHistory[symbol].length} real 15-minute candles • Live data`;
 
 
     drawChart();
 
-
-  }catch(e){
+  }
+  catch(error){
 
     console.error(
-      "Candle error:",
-      e
+      "loadChartCandles error:",
+      error
     );
 
 
-    $("chartMsg").textContent=
+    $("chartMsg").textContent =
       "Unable to load 15-minute candle data.";
 
   }
@@ -1033,85 +1366,169 @@ async function loadChartCandles(){
 }
 
 
-/* --------------------------------
-   WATCHLIST
---------------------------------- */
+/* =========================================
+   DRAW CANDLESTICK CHART
+========================================= */
 
-function renderWatch(){
+function drawChart(){
 
-  $("watch").innerHTML=
-
-    prices.map(p=>{
-
-      const move=
-        Number(
-          p.pipMove||0
-        );
+  const canvas =
+    $("chart");
 
 
-      const movementClass=
-        move>0
-          ? "up"
-          : move<0
-            ? "down"
-            : "flat";
+  if(!canvas){
+    return;
+  }
 
 
-      const arrow=
-        move>0
-          ? "▲"
-          : move<0
-            ? "▼"
-            : "•";
+  const box =
+    canvas.parentElement;
 
 
-      const decimals=
-        priceDecimals(
-          p.symbol
-        );
+  const width =
+    box.clientWidth;
 
 
-      return`
-
-      <div class="watch">
-
-        <div>
-
-          <div class="watch-symbol">
-            ${p.symbol}
-          </div>
+  const height =
+    box.clientHeight;
 
 
-          <div class="watch-prices">
-
-            <div class="quote-box">
-
-              <div class="quote-label">
-                Bid
-              </div>
-
-              <div class="quote-value">
-
-                ${
-                  p.bid===null
-                    ? "—"
-                    : p.bid.toFixed(decimals)
-                }
-
-              </div>
-
-            </div>
+  const dpr =
+    window.devicePixelRatio || 1;
 
 
-            <div class="quote-box">
+  canvas.width =
+    width * dpr;
 
-              <div class="quote-label">
-                Ask
-              </div>
 
-              <div class="quote-value">
+  canvas.height =
+    height * dpr;
 
-                ${
-                  p.ask===null
-                    ? "—"
-                    : p.ask
+
+  canvas.style.width =
+    width + "px";
+
+
+  canvas.style.height =
+    height + "px";
+
+
+  const ctx =
+    canvas.getContext("2d");
+
+
+  ctx.setTransform(
+    dpr,
+    0,
+    0,
+    dpr,
+    0,
+    0
+  );
+
+
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  const symbol =
+    $("symbol").value;
+
+
+  const candles =
+    chartHistory[symbol] || [];
+
+
+  if(!candles.length){
+
+    ctx.fillStyle =
+      "#91a097";
+
+    ctx.font =
+      "14px Arial";
+
+    ctx.fillText(
+      "Waiting for candle data...",
+      20,
+      30
+    );
+
+    return;
+
+  }
+
+
+  let min =
+    Math.min(
+      ...candles.map(c => c.low)
+    );
+
+
+  let max =
+    Math.max(
+      ...candles.map(c => c.high)
+    );
+
+
+  if(min === max){
+
+    min -= getPipSize(symbol) * 10;
+
+    max += getPipSize(symbol) * 10;
+
+  }
+
+
+  const paddingTop =
+    20;
+
+  const paddingBottom =
+    35;
+
+  const paddingLeft =
+    12;
+
+  const paddingRight =
+    58;
+
+
+  const chartWidth =
+    width -
+    paddingLeft -
+    paddingRight;
+
+
+  const chartHeight =
+    height -
+    paddingTop -
+    paddingBottom;
+
+
+  const range =
+    max - min;
+
+
+  function y(price){
+
+    return (
+      paddingTop +
+      (
+        max - price
+      ) /
+      range *
+      chartHeight
+    );
+
+  }
+
+
+  /* GRID */
+
+  ctx.strokeStyle =
+    "#183025";
+
+  ctx.lineWidth =
