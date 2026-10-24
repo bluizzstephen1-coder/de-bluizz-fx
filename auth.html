@@ -3,18 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#070707">
+<meta name="theme-color" content="#05070d">
 <title>DE.Bluizz FX — Member Access</title>
 
 <style>
 :root {
-  --gold: #e5bd59;
-  --gold-light: #ffe6a0;
-  --black: #070707;
-  --panel: #101010;
-  --border: rgba(229, 189, 89, 0.3);
-  --text: #f5f2e9;
-  --muted: #aaa69b;
+  --blue: #168bff;
+  --blue-light: #73c7ff;
+  --blue-dark: #0755a8;
+  --black: #05070d;
+  --panel: #0b1220;
+  --border: rgba(22, 139, 255, 0.35);
+  --text: #f2f7ff;
+  --muted: #a4b2c8;
 }
 
 * {
@@ -29,21 +30,21 @@ body {
   margin: 0;
   min-height: 100vh;
   min-height: 100svh;
-  padding: 28px 14px;
+  padding: 25px 14px;
   display: grid;
   place-items: center;
-  overflow-x: hidden;
   position: relative;
   isolation: isolate;
+  overflow-x: hidden;
   background:
-    radial-gradient(ellipse at 50% 0%, #30230d 0%, transparent 48%),
-    radial-gradient(ellipse at 100% 100%, #211605 0%, transparent 42%),
-    #070707;
+    radial-gradient(ellipse at 50% 0%, #071a35 0%, transparent 50%),
+    radial-gradient(ellipse at 100% 100%, #061329 0%, transparent 45%),
+    var(--black);
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Moving ambient golden light */
+/* Animated blue atmosphere */
 body::before,
 body::after {
   content: "";
@@ -51,42 +52,43 @@ body::after {
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.13;
+  filter: blur(95px);
+  opacity: 0.17;
   pointer-events: none;
   z-index: -1;
 }
 
 body::before {
-  background: #e5bd59;
-  top: -150px;
+  top: -140px;
   left: -120px;
+  background: #168bff;
   animation: ambientLight 9s ease-in-out infinite alternate;
 }
 
 body::after {
-  background: #a87819;
   right: -150px;
   bottom: -140px;
+  background: #0755a8;
   animation: ambientLight 11s ease-in-out infinite alternate-reverse;
 }
 
+/* Main login card */
 .card {
   position: relative;
   width: min(440px, 100%);
   padding: 34px 28px;
   overflow: hidden;
   isolation: isolate;
-  background: linear-gradient(145deg, #171717, #0b0b0b 70%);
+  background: linear-gradient(145deg, #111c2e, #080d17 75%);
   border: 1px solid var(--border);
   border-radius: 22px;
   box-shadow:
-    0 25px 70px rgba(0, 0, 0, 0.7),
-    0 0 35px rgba(229, 189, 89, 0.07);
+    0 25px 70px rgba(0, 0, 0, 0.75),
+    0 0 35px rgba(22, 139, 255, 0.09);
   animation: cardEntrance 0.8s cubic-bezier(.2,.8,.2,1) both;
 }
 
-/* Animated gold border glow */
+/* Moving blue light along the top border */
 .card::before {
   content: "";
   position: absolute;
@@ -97,15 +99,15 @@ body::after {
   background: linear-gradient(
     90deg,
     transparent,
-    var(--gold-light),
+    var(--blue-light),
     transparent
   );
-  box-shadow: 0 0 18px var(--gold);
+  box-shadow: 0 0 18px var(--blue);
   animation: borderSweep 5s ease-in-out infinite;
   pointer-events: none;
 }
 
-/* Subtle light moving across the card */
+/* Subtle animated card reflection */
 .card::after {
   content: "";
   position: absolute;
@@ -114,7 +116,7 @@ body::after {
   background: linear-gradient(
     115deg,
     transparent 25%,
-    rgba(255, 230, 160, 0.035) 45%,
+    rgba(115, 199, 255, 0.035) 45%,
     transparent 65%
   );
   background-size: 250% 100%;
@@ -123,22 +125,23 @@ body::after {
   z-index: -1;
 }
 
+/* Brand emblem */
 .brand-mark {
   display: grid;
   place-items: center;
   width: 68px;
   height: 68px;
   margin: 0 auto 20px;
-  border: 1px solid rgba(229, 189, 89, 0.65);
+  border: 1px solid rgba(22, 139, 255, 0.7);
   border-radius: 20px;
-  background: linear-gradient(145deg, #241b0b, #0b0b0b);
-  color: var(--gold-light);
+  background: linear-gradient(145deg, #0a1c35, #080d17);
+  color: var(--blue-light);
   font-size: 25px;
   font-weight: 900;
   letter-spacing: -2px;
   box-shadow:
-    0 0 25px rgba(229, 189, 89, 0.12),
-    inset 0 0 18px rgba(229, 189, 89, 0.06);
+    0 0 25px rgba(22, 139, 255, 0.14),
+    inset 0 0 18px rgba(22, 139, 255, 0.06);
   animation: logoGlow 3s ease-in-out infinite;
 }
 
@@ -149,7 +152,7 @@ body::after {
 
 .brand-name strong {
   display: block;
-  color: var(--gold-light);
+  color: var(--blue-light);
   font-size: 15px;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -158,7 +161,7 @@ body::after {
 .brand-name span {
   display: block;
   margin-top: 8px;
-  color: #8e887a;
+  color: #8596b0;
   font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -167,7 +170,7 @@ body::after {
 .back {
   display: inline-block;
   margin-bottom: 12px;
-  color: var(--gold);
+  color: var(--blue-light);
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
@@ -175,13 +178,13 @@ body::after {
 }
 
 .back:hover {
-  color: var(--gold-light);
+  color: #ffffff;
   transform: translateX(-3px);
 }
 
 h1 {
   margin: 5px 0 12px;
-  color: var(--gold);
+  color: var(--blue-light);
   font-size: clamp(27px, 6vw, 34px);
   letter-spacing: 0.4px;
 }
@@ -193,14 +196,15 @@ h1 {
   line-height: 1.7;
 }
 
+/* Login and signup tabs */
 .tabs {
   display: flex;
   gap: 10px;
   margin: 25px 0 20px;
   padding: 5px;
-  border: 1px solid #28251e;
+  border: 1px solid #1b2b42;
   border-radius: 13px;
-  background: #090909;
+  background: #070b13;
 }
 
 .tabs button {
@@ -210,7 +214,7 @@ h1 {
   border: 1px solid transparent;
   border-radius: 9px;
   background: transparent;
-  color: #b9b4a8;
+  color: #b2bfd2;
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
@@ -223,16 +227,17 @@ h1 {
 
 .tabs button:hover {
   border-color: var(--border);
-  color: var(--gold-light);
+  color: var(--blue-light);
 }
 
 .tabs .on {
-  border-color: var(--gold);
-  background: linear-gradient(135deg, var(--gold-light), #d7ad45);
-  color: #100d06;
-  box-shadow: 0 3px 15px rgba(215, 173, 69, 0.15);
+  border-color: var(--blue);
+  background: linear-gradient(135deg, #73c7ff, #0878e8);
+  color: #04101f;
+  box-shadow: 0 3px 18px rgba(22, 139, 255, 0.22);
 }
 
+/* Form inputs */
 #form > input,
 .password-wrap input {
   display: block;
@@ -240,11 +245,11 @@ h1 {
   min-height: 49px;
   margin: 12px 0;
   padding: 14px;
-  border: 1px solid #353535;
+  border: 1px solid #29364a;
   border-radius: 10px;
   outline: none;
-  background: #080808;
-  color: #fff;
+  background: #070b13;
+  color: #ffffff;
   font-family: inherit;
   font-size: 14px;
   transition:
@@ -255,13 +260,13 @@ h1 {
 
 #form > input:focus,
 .password-wrap input:focus {
-  border-color: var(--gold);
-  background: #0c0b08;
-  box-shadow: 0 0 0 3px rgba(229, 189, 89, 0.1);
+  border-color: var(--blue);
+  background: #09101d;
+  box-shadow: 0 0 0 3px rgba(22, 139, 255, 0.12);
 }
 
 input::placeholder {
-  color: #88857e;
+  color: #8290a6;
   opacity: 1;
 }
 
@@ -283,16 +288,17 @@ input::placeholder {
   border: 0;
   border-radius: 6px;
   background: transparent;
-  color: var(--gold);
+  color: var(--blue-light);
   font-size: 12px;
   font-weight: 800;
   cursor: pointer;
 }
 
 .toggle-pass:hover {
-  color: var(--gold-light);
+  color: #ffffff;
 }
 
+/* Animated submit button */
 .action {
   position: relative;
   width: 100%;
@@ -300,16 +306,21 @@ input::placeholder {
   margin-top: 14px;
   padding: 14px;
   overflow: hidden;
-  border: 1px solid #f0ce78;
+  border: 1px solid #73c7ff;
   border-radius: 10px;
-  background: linear-gradient(120deg, #ffe6a0, #d7ad45, #f1d27e);
+  background: linear-gradient(
+    120deg,
+    #73c7ff,
+    #168bff,
+    #0878e8
+  );
   background-size: 200% 100%;
-  color: #100d06;
+  color: #04101f;
   font-size: 14px;
   font-weight: 900;
   letter-spacing: 0.5px;
   cursor: pointer;
-  box-shadow: 0 5px 22px rgba(215, 173, 69, 0.13);
+  box-shadow: 0 5px 22px rgba(22, 139, 255, 0.17);
   transition:
     transform 0.2s,
     box-shadow 0.25s,
@@ -319,7 +330,7 @@ input::placeholder {
 .action:hover {
   transform: translateY(-2px);
   background-position: 100% 0;
-  box-shadow: 0 8px 30px rgba(215, 173, 69, 0.27);
+  box-shadow: 0 8px 30px rgba(22, 139, 255, 0.35);
 }
 
 .action:active {
@@ -332,7 +343,7 @@ input::placeholder {
   transform: none;
 }
 
-/* Animated light streak across the main button */
+/* Moving light streak */
 .action::after {
   content: "";
   position: absolute;
@@ -349,7 +360,7 @@ input::placeholder {
 .msg {
   min-height: 8px;
   margin-top: 18px;
-  color: var(--gold-light);
+  color: var(--blue-light);
   font-size: 13px;
   line-height: 1.7;
   overflow-wrap: anywhere;
@@ -358,8 +369,8 @@ input::placeholder {
 .footer {
   margin-top: 25px;
   padding-top: 17px;
-  border-top: 1px solid rgba(229, 189, 89, 0.12);
-  color: #797469;
+  border-top: 1px solid rgba(22, 139, 255, 0.16);
+  color: #7f8da3;
   text-align: center;
   font-size: 10px;
   letter-spacing: 1.3px;
@@ -367,7 +378,7 @@ input::placeholder {
 }
 
 .footer span {
-  color: var(--gold);
+  color: var(--blue-light);
 }
 
 /* Animations */
@@ -394,13 +405,13 @@ input::placeholder {
 @keyframes logoGlow {
   0%, 100% {
     box-shadow:
-      0 0 18px rgba(229, 189, 89, 0.1),
-      inset 0 0 15px rgba(229, 189, 89, 0.04);
+      0 0 18px rgba(22, 139, 255, 0.12),
+      inset 0 0 15px rgba(22, 139, 255, 0.04);
   }
   50% {
     box-shadow:
-      0 0 30px rgba(229, 189, 89, 0.25),
-      inset 0 0 20px rgba(229, 189, 89, 0.1);
+      0 0 30px rgba(22, 139, 255, 0.32),
+      inset 0 0 20px rgba(22, 139, 255, 0.1);
   }
 }
 
@@ -431,9 +442,10 @@ input::placeholder {
   }
 }
 
+/* Keyboard accessibility */
 button:focus-visible,
 .back:focus-visible {
-  outline: 2px solid var(--gold-light);
+  outline: 2px solid var(--blue-light);
   outline-offset: 3px;
 }
 
@@ -458,6 +470,7 @@ button:focus-visible,
   }
 }
 
+/* Respect reduced-motion settings */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -472,7 +485,8 @@ button:focus-visible,
 
 <body>
 <main class="card">
-  <div class="brand-mark" aria-label="DE.Bluizz FX logo">DB</div>
+
+  <div class="brand-mark" aria-label="DE.Bluizz FX emblem">DB</div>
 
   <div class="brand-name">
     <strong>DE.Bluizz FX</strong>
@@ -536,6 +550,7 @@ button:focus-visible,
     BUILT FOR TRADERS WHO WANT MORE<br>
     <span>DE.Bluizz FX V7 Trader Hub</span>
   </div>
+
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -676,14 +691,11 @@ $("form").addEventListener("submit", async event => {
     );
   } finally {
     submitButton.disabled = false;
-
-    if (mode === "signup") {
-      submitButton.textContent = "Create account";
-    } else {
-      submitButton.textContent = "Login";
-    }
+    submitButton.textContent = mode === "signup"
+      ? "Create account"
+      : "Login";
   }
 });
 </script>
 </body>
-   </html>
+</html>
