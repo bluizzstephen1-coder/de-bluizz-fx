@@ -1071,8 +1071,8 @@ loadMarkets();
 
     } catch (error) {
       setConnection("Startup error");
-      setNotice("Dashboard startup error: " + error.message, "error");
-      console.error("Dashboard startup error:", error);
+setNotice("globalNotice", "Dashboard startup error: " + error.message, "error");
+console.error("Dashboard startup error:", error);
     }
   }
 
