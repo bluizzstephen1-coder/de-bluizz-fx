@@ -11,6 +11,225 @@ input{width:100%;box-sizing:border-box;margin:8px 0;padding:13px;border-radius:9
 .action{width:100%;padding:13px;margin-top:10px;border:0;border-radius:10px;background:#d7ad45;font-weight:700}
 .password-wrap{position:relative}.password-wrap input{padding-right:72px}.toggle-pass{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:#d7ad45;font-weight:700;cursor:pointer;padding:8px}.msg{margin-top:15px;color:#f4d27a;line-height:1.5}
 small{color:#999}.back{color:#d7ad45;text-decoration:none}
+ /* DE.Bluizz FX — Premium Black & Gold Upgrade */
+
+:root {
+  --gold: #e5bd59;
+  --gold-light: #ffe6a0;
+  --black: #070707;
+  --panel: #101010;
+  --border: rgba(229, 189, 89, 0.28);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  padding: 24px 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, #30230d 0%, transparent 48%),
+    radial-gradient(ellipse at bottom right, #171108 0%, transparent 45%),
+    var(--black);
+  color: #f5f2e9;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.card {
+  width: min(440px, 92%);
+  padding: 34px 28px;
+  background: linear-gradient(145deg, #151515, #0b0b0b);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.65),
+    0 0 35px rgba(229, 189, 89, 0.07);
+  animation: cardEntrance 0.65s ease-out;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: var(--gold);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.back:hover {
+  color: var(--gold-light);
+}
+
+h1 {
+  margin: 8px 0 12px;
+  color: var(--gold);
+  font-size: clamp(27px, 6vw, 34px);
+  letter-spacing: 0.5px;
+}
+
+.card > small {
+  display: block;
+  color: #aaa69b;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin: 26px 0 20px;
+}
+
+.tabs button {
+  flex: 1;
+  min-height: 46px;
+  padding: 12px 8px;
+  border: 1px solid #393329;
+  border-radius: 10px;
+  background: #151515;
+  color: #d6d0c3;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tabs button:hover {
+  border-color: var(--gold);
+}
+
+.tabs .on {
+  border-color: var(--gold);
+  background: linear-gradient(135deg, #ffe6a0, #d7ad45);
+  color: #100d06;
+  box-shadow: 0 4px 18px rgba(215, 173, 69, 0.15);
+}
+
+#form > input,
+.password-wrap input {
+  display: block;
+  width: 100%;
+  min-height: 49px;
+  margin: 12px 0;
+  padding: 14px;
+  border: 1px solid #393939;
+  border-radius: 10px;
+  outline: none;
+  background: #080808;
+  color: #fff;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#form > input:focus,
+.password-wrap input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(229, 189, 89, 0.1);
+}
+
+input::placeholder {
+  color: #88857e;
+}
+
+.password-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrap input {
+  padding-right: 75px;
+}
+
+.toggle-pass {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  padding: 9px;
+  border: none;
+  background: transparent;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.action {
+  width: 100%;
+  min-height: 49px;
+  margin-top: 14px;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ffe6a0, #d7ad45);
+  color: #100d06;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(215, 173, 69, 0.12);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(215, 173, 69, 0.22);
+}
+
+.action:active {
+  transform: translateY(0);
+}
+
+button:focus-visible,
+.back:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 3px;
+}
+
+.msg {
+  min-height: 8px;
+  margin-top: 18px;
+  color: var(--gold-light);
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 18px 0;
+  }
+
+  .card {
+    padding: 27px 21px;
+    border-radius: 18px;
+  }
+
+  .tabs {
+    gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+ }
 </style>
 </head>
 <body>
