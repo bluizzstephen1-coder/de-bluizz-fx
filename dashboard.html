@@ -603,7 +603,84 @@
     el.className = "notice" + (type ? " " + type : "");
     el.textContent = message;
   }
+async function loadEconomicCalendar() {
+const container = $("economicCalendar");
+if (!container) return;
 
+try {
+  const base = window.SUPABASE_URL;
+  if (!base) {
+    throw new Error("Supabase URL is missing.");
+  }
+
+  const response = await fetch(
+    base.replace(/\/+$/, "") + "/functions/v1/economic-calendar"
+  );
+
+  if (!response.ok) {
+    throw new Error("Calendar request failed: HTTP " + response.status);
+  }
+
+  const result = await response.json();
+
+  if (!result.success || !Array.isArray(result.events)) {
+    throw new Error("Calendar data is unavailable.");
+  }
+
+  const now = Date.now();
+
+  const upcoming = result.events
+    .filter(event => {
+      const time = Date.parse(event.date);
+      return event.title && Number.isFinite(time) && time >= now;
+    })
+    .sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
+    .slice(0, 15);
+
+  if (upcoming.length === 0) {
+    container.textContent = "No upcoming events were found in the current feed.";
+    setNotice("insightsStatus", "Calendar connected, but no upcoming events were found.");
+    return;
+  }
+
+  container.innerHTML = upcoming.map(event => {
+    const dateText = new Intl.DateTimeFormat("en-KE", {
+      timeZone: "Africa/Nairobi",
+      dateStyle: "medium",
+      timeStyle: "short"
+    }).format(new Date(event.date));
+
+    return `
+      <div class="card" style="margin-top:12px;">
+        <strong>${escapeHtml(event.title)}</strong>
+        <div class="muted small">${escapeHtml(dateText)} EAT</div>
+        <div class="small">
+          Currency: ${escapeHtml(event.country || "—")}
+          &nbsp;|&nbsp;
+          Impact: ${escapeHtml(event.impact || "Unspecified")}
+        </div>
+        ${event.forecast
+          ? `<div class="small">Forecast: ${escapeHtml(event.forecast)}</div>`
+          : ""}
+        ${event.previous
+          ? `<div class="small">Previous: ${escapeHtml(event.previous)}</div>`
+          : ""}
+      </div>
+    `;
+  }).join("");
+
+  setNotice(
+    "insightsStatus",
+    "Economic calendar connected. Showing " + upcoming.length + " upcoming events.",
+    "success"
+  );
+} catch (error) {
+  console.error("Economic calendar error:", error);
+  container.textContent = "Unable to load economic events. Please try again later.";
+  setNotice("insightsStatus", "Economic calendar could not be loaded.", "error");
+}
+
+  }
   function setConnection(message, ok = false) {
     $("connectionStatus").textContent = message;
     $("connectionStatus").style.color = ok ? "var(--green)" : "var(--gold)";
