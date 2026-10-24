@@ -1062,9 +1062,12 @@
       await refreshAll();
 
       if (refreshTimer) clearInterval(refreshTimer);
-      refreshTimer = setInterval(() => {
-        loadMarkets();
-      }, 30000);
+refreshTimer = setInterval(() => {
+loadMarkets();
+}, 30000);
+
+  loadEconomicCalendar();
+  setInterval(loadEconomicCalendar, 300000);
 
     } catch (error) {
       setConnection("Startup error");
