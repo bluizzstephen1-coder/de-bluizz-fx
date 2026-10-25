@@ -6,6 +6,8 @@
 <meta name="theme-color" content="#05070d">
 <title>DE.Bluizz FX — Member Access</title>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.1/build/css/intlTelInput.css">
+
 <style>
 :root {
   --blue: #168bff;
@@ -13,7 +15,7 @@
   --red: #ff475f;
   --black: #05070d;
   --panel: #0b1220;
-  --border: rgba(22, 139, 255, 0.35);
+  --border: rgba(22,139,255,.35);
   --text: #f2f7ff;
   --muted: #a4b2c8;
 }
@@ -31,19 +33,19 @@ body {
   min-height: 100svh;
   padding: 28px;
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 440px);
+  grid-template-columns: minmax(0,1.15fr) minmax(320px,440px);
   align-items: center;
   justify-content: center;
-  gap: clamp(24px, 5vw, 80px);
+  gap: clamp(24px,5vw,80px);
   position: relative;
   isolation: isolate;
   overflow-x: hidden;
   background:
-    radial-gradient(ellipse at 15% 20%, #071a35 0%, transparent 48%),
-    radial-gradient(ellipse at 100% 100%, #061329 0%, transparent 45%),
+    radial-gradient(ellipse at 15% 20%,#071a35 0%,transparent 48%),
+    radial-gradient(ellipse at 100% 100%,#061329 0%,transparent 45%),
     var(--black);
   color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial,Helvetica,sans-serif;
 }
 
 body::before,
@@ -73,7 +75,7 @@ body::after {
   animation: ambientLight 11s ease-in-out infinite alternate-reverse;
 }
 
-/* CHART PANEL */
+/* MARKET CHART */
 .market-panel {
   min-width: 0;
   width: 100%;
@@ -82,9 +84,7 @@ body::after {
   animation: cardEntrance .8s both;
 }
 
-.market-heading {
-  margin-bottom: 24px;
-}
+.market-heading { margin-bottom: 24px; }
 
 .market-heading .eyebrow {
   color: var(--blue-light);
@@ -97,14 +97,12 @@ body::after {
 .market-heading h2 {
   margin: 12px 0;
   max-width: 600px;
-  font-size: clamp(30px, 4vw, 54px);
+  font-size: clamp(30px,4vw,54px);
   line-height: 1.08;
   letter-spacing: -1.5px;
 }
 
-.market-heading h2 span {
-  color: var(--blue-light);
-}
+.market-heading h2 span { color: var(--blue-light); }
 
 .market-heading p {
   max-width: 490px;
@@ -116,25 +114,24 @@ body::after {
 .chart-window {
   position: relative;
   width: 100%;
-  height: clamp(260px, 36vw, 410px);
+  height: clamp(260px,36vw,410px);
   overflow: hidden;
   border: 1px solid rgba(22,139,255,.28);
   border-radius: 18px;
   background:
-    linear-gradient(rgba(22,139,255,.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(22,139,255,.055) 1px, transparent 1px),
-    linear-gradient(145deg, #091321, #050912 80%);
-  background-size: 36px 36px, 36px 36px, auto;
-  box-shadow:
-    0 20px 55px rgba(0,0,0,.4),
-    inset 0 0 40px rgba(22,139,255,.045);
+    linear-gradient(rgba(22,139,255,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(22,139,255,.055) 1px,transparent 1px),
+    linear-gradient(145deg,#091321,#050912 80%);
+  background-size: 36px 36px,36px 36px,auto;
+  box-shadow: 0 20px 55px rgba(0,0,0,.4),
+              inset 0 0 40px rgba(22,139,255,.045);
 }
 
 .chart-window::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent 70%, rgba(5,7,13,.65));
+  background: linear-gradient(90deg,transparent 70%,rgba(5,7,13,.65));
   pointer-events: none;
 }
 
@@ -204,19 +201,18 @@ body::after {
   line-height: 1.7;
 }
 
-/* LOGIN CARD */
+/* ACCESS CARD */
 .card {
   position: relative;
   width: 100%;
   padding: 34px 28px;
   overflow: hidden;
   isolation: isolate;
-  background: linear-gradient(145deg, #111c2e, #080d17 75%);
+  background: linear-gradient(145deg,#111c2e,#080d17 75%);
   border: 1px solid var(--border);
   border-radius: 22px;
-  box-shadow:
-    0 25px 70px rgba(0,0,0,.75),
-    0 0 35px rgba(22,139,255,.09);
+  box-shadow: 0 25px 70px rgba(0,0,0,.75),
+              0 0 35px rgba(22,139,255,.09);
   animation: cardEntrance .8s cubic-bezier(.2,.8,.2,1) both;
 }
 
@@ -227,7 +223,7 @@ body::after {
   left: -120%;
   width: 80%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--blue-light), transparent);
+  background: linear-gradient(90deg,transparent,var(--blue-light),transparent);
   box-shadow: 0 0 18px var(--blue);
   animation: borderSweep 5s ease-in-out infinite;
   pointer-events: none;
@@ -238,7 +234,7 @@ body::after {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(115deg, transparent 25%, rgba(115,199,255,.035) 45%, transparent 65%);
+  background: linear-gradient(115deg,transparent 25%,rgba(115,199,255,.035) 45%,transparent 65%);
   background-size: 250% 100%;
   animation: cardShimmer 8s ease-in-out infinite;
   pointer-events: none;
@@ -253,12 +249,13 @@ body::after {
   margin: 0 auto 20px;
   border: 1px solid rgba(22,139,255,.7);
   border-radius: 20px;
-  background: linear-gradient(145deg, #0a1c35, #080d17);
+  background: linear-gradient(145deg,#0a1c35,#080d17);
   color: var(--blue-light);
   font-size: 25px;
   font-weight: 900;
   letter-spacing: -2px;
-  box-shadow: 0 0 25px rgba(22,139,255,.14), inset 0 0 18px rgba(22,139,255,.06);
+  box-shadow: 0 0 25px rgba(22,139,255,.14),
+              inset 0 0 18px rgba(22,139,255,.06);
   animation: logoGlow 3s ease-in-out infinite;
 }
 
@@ -291,7 +288,7 @@ body::after {
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
-  transition: color .25s, transform .25s;
+  transition: color .25s,transform .25s;
 }
 
 .back:hover {
@@ -302,7 +299,7 @@ body::after {
 h1 {
   margin: 5px 0 12px;
   color: var(--blue-light);
-  font-size: clamp(27px, 6vw, 34px);
+  font-size: clamp(27px,6vw,34px);
   letter-spacing: .4px;
 }
 
@@ -334,7 +331,7 @@ h1 {
   font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  transition: background .25s, color .25s, border-color .25s, box-shadow .25s;
+  transition: background .25s,color .25s,border-color .25s,box-shadow .25s;
 }
 
 .tabs button:hover {
@@ -344,7 +341,7 @@ h1 {
 
 .tabs .on {
   border-color: var(--blue);
-  background: linear-gradient(135deg, #73c7ff, #0878e8);
+  background: linear-gradient(135deg,#73c7ff,#0878e8);
   color: #04101f;
   box-shadow: 0 3px 18px rgba(22,139,255,.22);
 }
@@ -363,7 +360,7 @@ h1 {
   color: white;
   font-family: inherit;
   font-size: 14px;
-  transition: border-color .25s, box-shadow .25s, background .25s;
+  transition: border-color .25s,box-shadow .25s,background .25s;
 }
 
 #form > input:focus,
@@ -383,9 +380,7 @@ input::placeholder {
   width: 100%;
 }
 
-.password-wrap input {
-  padding-right: 75px;
-}
+.password-wrap input { padding-right: 75px; }
 
 .toggle-pass {
   position: absolute;
@@ -404,6 +399,80 @@ input::placeholder {
 
 .toggle-pass:hover { color: white; }
 
+/* PHONE FIELD AND COUNTRY SELECTOR */
+.phone-field {
+  width: 100%;
+  margin: 12px 0;
+}
+
+.field-label {
+  display: block;
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.field-hint {
+  display: block;
+  margin-top: 7px;
+  color: #8290a6;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.phone-field .iti { display: block; width: 100%; }
+
+.phone-field .iti input {
+  display: block;
+  width: 100%;
+  min-height: 49px;
+  margin: 0;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border: 1px solid #29364a;
+  border-radius: 10px;
+  outline: none;
+  background: #070b13;
+  color: white;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.phone-field .iti input:focus {
+  border-color: var(--blue);
+  background: #09101d;
+  box-shadow: 0 0 0 3px rgba(22,139,255,.12);
+}
+
+.phone-field .iti__country-list {
+  max-width: min(300px,75vw);
+  background: #0b1220;
+  border: 1px solid #29364a;
+  color: white;
+}
+
+.phone-field .iti__country:hover,
+.phone-field .iti__country.iti__highlight {
+  background: #142640;
+}
+
+.phone-field .iti__selected-country {
+  background: #0b1220;
+  color: white;
+}
+
+.phone-field .iti__dial-code { color: #9eacc1; }
+
+.phone-field .iti__search-input {
+  width: 100%;
+  min-height: 40px;
+  padding: 8px;
+  border: 1px solid #29364a;
+  background: #070b13;
+  color: white;
+}
+
 .action {
   position: relative;
   width: 100%;
@@ -413,7 +482,7 @@ input::placeholder {
   overflow: hidden;
   border: 1px solid #73c7ff;
   border-radius: 10px;
-  background: linear-gradient(120deg, #73c7ff, #168bff, #0878e8);
+  background: linear-gradient(120deg,#73c7ff,#168bff,#0878e8);
   background-size: 200% 100%;
   color: #04101f;
   font-size: 14px;
@@ -421,7 +490,7 @@ input::placeholder {
   letter-spacing: .5px;
   cursor: pointer;
   box-shadow: 0 5px 22px rgba(22,139,255,.17);
-  transition: transform .2s, box-shadow .25s, background-position .5s;
+  transition: transform .2s,box-shadow .25s,background-position .5s;
 }
 
 .action:hover {
@@ -491,8 +560,8 @@ button:focus-visible,
 }
 
 @keyframes logoGlow {
-  0%,100% { box-shadow: 0 0 18px rgba(22,139,255,.12), inset 0 0 15px rgba(22,139,255,.04); }
-  50% { box-shadow: 0 0 30px rgba(22,139,255,.32), inset 0 0 20px rgba(22,139,255,.1); }
+  0%,100% { box-shadow: 0 0 18px rgba(22,139,255,.12),inset 0 0 15px rgba(22,139,255,.04); }
+  50% { box-shadow: 0 0 30px rgba(22,139,255,.32),inset 0 0 20px rgba(22,139,255,.1); }
 }
 
 @keyframes borderSweep {
@@ -510,10 +579,10 @@ button:focus-visible,
   85%,100% { left: 140%; }
 }
 
-/* MOBILE LAYOUT */
-@media (max-width: 850px) {
+/* MOBILE */
+@media (max-width:850px) {
   body {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: minmax(0,1fr);
     gap: 26px;
     padding: 24px 14px;
   }
@@ -523,21 +592,17 @@ button:focus-visible,
     justify-self: center;
   }
 
-  .market-heading {
-    margin-bottom: 16px;
-  }
+  .market-heading { margin-bottom: 16px; }
 
   .market-heading h2 {
-    font-size: clamp(27px, 7vw, 40px);
+    font-size: clamp(27px,7vw,40px);
   }
 
   .chart-window {
-    height: clamp(220px, 55vw, 320px);
+    height: clamp(220px,55vw,320px);
   }
 
-  .market-note {
-    margin-top: 12px;
-  }
+  .market-note { margin-top: 12px; }
 
   .card {
     max-width: 440px;
@@ -545,16 +610,12 @@ button:focus-visible,
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width:480px) {
   body { padding: 18px 12px; }
 
-  .market-heading h2 {
-    font-size: 29px;
-  }
+  .market-heading h2 { font-size: 29px; }
 
-  .market-heading p {
-    font-size: 12px;
-  }
+  .market-heading p { font-size: 12px; }
 
   .chart-window {
     height: 230px;
@@ -575,9 +636,8 @@ button:focus-visible,
   .tabs { gap: 7px; }
 }
 
-/* ACCESSIBILITY */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
@@ -614,7 +674,7 @@ button:focus-visible,
   </div>
 </section>
 
-<!-- LOGIN CARD -->
+<!-- MEMBER ACCESS -->
 <main class="card">
   <div class="brand-mark" aria-label="DE.Bluizz FX emblem">DB</div>
 
@@ -653,6 +713,19 @@ button:focus-visible,
       required
     >
 
+    <div id="phoneField" class="phone-field" style="display:none">
+      <label for="phone" class="field-label">Phone Number</label>
+      <input
+        id="phone"
+        type="tel"
+        autocomplete="tel"
+        placeholder="Enter phone number"
+      >
+      <small class="field-hint">
+        Choose your country and enter your number. Phone verification is not required.
+      </small>
+    </div>
+
     <div class="password-wrap">
       <input
         id="password"
@@ -682,14 +755,14 @@ button:focus-visible,
   </div>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.1/build/js/intlTelInput.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>
 
 <script>
 "use strict";
 
-/* ANIMATED CANDLESTICK CHART
-   All candle values are illustrative, not live market data. */
+/* ANIMATED ILLUSTRATIVE CANDLESTICK CHART */
 (function () {
   const canvas = document.getElementById("candleChart");
   const ctx = canvas.getContext("2d");
@@ -714,16 +787,13 @@ button:focus-visible,
   }
 
   function makeCandle(open) {
-    const close = Math.max(
-      0.12,
-      Math.min(0.88, open + randomBetween(-0.12, 0.12))
-    );
+    const close = Math.max(0.12, Math.min(0.88, open + randomBetween(-0.12,0.12)));
 
     return {
       open,
       close,
-      high: Math.min(0.96, Math.max(open, close) + randomBetween(0.015, 0.10)),
-      low: Math.max(0.04, Math.min(open, close) - randomBetween(0.015, 0.10))
+      high: Math.min(0.96, Math.max(open,close) + randomBetween(0.015,0.10)),
+      low: Math.max(0.04, Math.min(open,close) - randomBetween(0.015,0.10))
     };
   }
 
@@ -744,68 +814,63 @@ button:focus-visible,
 
     width = rect.width;
     height = rect.height;
-    pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+    pixelRatio = Math.min(window.devicePixelRatio || 1,2);
 
     canvas.width = Math.round(width * pixelRatio);
     canvas.height = Math.round(height * pixelRatio);
 
-    ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    ctx.setTransform(pixelRatio,0,0,pixelRatio,0,0);
     drawChart();
   }
 
   function drawChart() {
     if (!width || !height) return;
 
-    ctx.clearRect(0, 0, width, height);
+    ctx.clearRect(0,0,width,height);
 
     const left = 12;
     const right = width - 12;
     const top = 47;
     const bottom = height - 18;
     const plotHeight = bottom - top;
-    const count = Math.max(20, Math.floor((right - left) / 9));
+    const count = Math.max(20,Math.floor((right-left)/9));
     const visible = candles.slice(-count);
-    const gap = (right - left) / visible.length;
-    const candleWidth = Math.max(3, Math.min(8, gap * 0.55));
+    const gap = (right-left)/visible.length;
+    const candleWidth = Math.max(3,Math.min(8,gap*0.55));
 
-    // Horizontal price levels
     ctx.save();
     ctx.strokeStyle = "rgba(115,199,255,0.10)";
     ctx.lineWidth = 1;
 
     for (let i = 0; i < 5; i++) {
-      const y = top + (plotHeight * i / 4);
+      const y = top + plotHeight*i/4;
       ctx.beginPath();
-      ctx.moveTo(left, y);
-      ctx.lineTo(right, y);
+      ctx.moveTo(left,y);
+      ctx.lineTo(right,y);
       ctx.stroke();
     }
-
     ctx.restore();
 
-    // Map candle values into the visible chart area
-    const allValues = visible.flatMap(c => [c.high, c.low]);
-    let minValue = Math.min(...allValues);
-    let maxValue = Math.max(...allValues);
-    const range = Math.max(0.1, maxValue - minValue);
+    const values = visible.flatMap(c => [c.high,c.low]);
+    let minValue = Math.min(...values);
+    let maxValue = Math.max(...values);
+    const range = Math.max(0.1,maxValue-minValue);
 
-    minValue -= range * 0.08;
-    maxValue += range * 0.08;
+    minValue -= range*0.08;
+    maxValue += range*0.08;
 
     function yFor(value) {
-      return top + ((maxValue - value) / (maxValue - minValue)) * plotHeight;
+      return top + ((maxValue-value)/(maxValue-minValue))*plotHeight;
     }
 
-    // Soft blue moving average
     ctx.save();
     ctx.beginPath();
 
-    visible.forEach((c, i) => {
-      const x = left + i * gap + gap / 2;
+    visible.forEach((c,i) => {
+      const x = left+i*gap+gap/2;
       const y = yFor(c.close);
-
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
+      if (i === 0) ctx.moveTo(x,y);
+      else ctx.lineTo(x,y);
     });
 
     ctx.strokeStyle = "rgba(115,199,255,0.45)";
@@ -813,71 +878,54 @@ button:focus-visible,
     ctx.stroke();
     ctx.restore();
 
-    // Candles and wicks
-    visible.forEach((c, i) => {
-      const x = left + i * gap + gap / 2;
+    visible.forEach((c,i) => {
+      const x = left+i*gap+gap/2;
       const openY = yFor(c.open);
       const closeY = yFor(c.close);
       const highY = yFor(c.high);
       const lowY = yFor(c.low);
-      const bullish = c.close >= c.open;
-      const color = bullish ? BLUE : RED;
+      const color = c.close >= c.open ? BLUE : RED;
 
       ctx.save();
       ctx.strokeStyle = color;
       ctx.lineWidth = 1.2;
-
-      // Wick
       ctx.beginPath();
-      ctx.moveTo(x, highY);
-      ctx.lineTo(x, lowY);
+      ctx.moveTo(x,highY);
+      ctx.lineTo(x,lowY);
       ctx.stroke();
 
-      // Body
-      const bodyTop = Math.min(openY, closeY);
-      const bodyHeight = Math.max(2, Math.abs(closeY - openY));
+      const bodyTop = Math.min(openY,closeY);
+      const bodyHeight = Math.max(2,Math.abs(closeY-openY));
 
       ctx.globalAlpha = 0.95;
       ctx.fillStyle = color;
       ctx.shadowColor = color;
       ctx.shadowBlur = 5;
-      ctx.fillRect(
-        x - candleWidth / 2,
-        bodyTop,
-        candleWidth,
-        bodyHeight
-      );
-
+      ctx.fillRect(x-candleWidth/2,bodyTop,candleWidth,bodyHeight);
       ctx.shadowBlur = 0;
       ctx.globalAlpha = 1;
-      ctx.strokeRect(
-        x - candleWidth / 2,
-        bodyTop,
-        candleWidth,
-        bodyHeight
-      );
-
+      ctx.strokeRect(x-candleWidth/2,bodyTop,candleWidth,bodyHeight);
       ctx.restore();
     });
 
-    // Soft current-price guide
-    const latest = visible[visible.length - 1];
+    const latest = visible[visible.length-1];
+
     if (latest) {
       const priceY = yFor(latest.close);
 
       ctx.save();
-      ctx.setLineDash([4, 4]);
+      ctx.setLineDash([4,4]);
       ctx.strokeStyle = "rgba(115,199,255,0.6)";
       ctx.beginPath();
-      ctx.moveTo(left, priceY);
-      ctx.lineTo(right, priceY);
+      ctx.moveTo(left,priceY);
+      ctx.lineTo(right,priceY);
       ctx.stroke();
       ctx.restore();
 
       ctx.save();
       ctx.fillStyle = BLUE_LIGHT;
       ctx.beginPath();
-      ctx.arc(right - 2, priceY, 3, 0, Math.PI * 2);
+      ctx.arc(right-2,priceY,3,0,Math.PI*2);
       ctx.fill();
       ctx.restore();
     }
@@ -886,12 +934,9 @@ button:focus-visible,
   function animate(time) {
     if (!lastTime) lastTime = time;
 
-    const delta = Math.min(time - lastTime, 100);
+    stepProgress += Math.min(time-lastTime,100);
     lastTime = time;
-    stepProgress += delta;
 
-    // Add a new candle approximately every 650 milliseconds.
-    // The animation is intentionally decorative and not market data.
     if (stepProgress >= 650) {
       stepProgress = 0;
 
@@ -900,11 +945,10 @@ button:focus-visible,
       previousClose = next.close;
 
       if (candles.length > 180) candles.shift();
-
       drawChart();
     }
 
-    animationFrame = window.requestAnimationFrame(animate);
+    animationFrame = requestAnimationFrame(animate);
   }
 
   seedCandles();
@@ -914,29 +958,42 @@ button:focus-visible,
     const observer = new ResizeObserver(resizeCanvas);
     observer.observe(canvas);
   } else {
-    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("resize",resizeCanvas);
   }
 
-  // Pause animation when the page is not visible to save resources.
-  document.addEventListener("visibilitychange", () => {
+  document.addEventListener("visibilitychange",() => {
     if (document.hidden) {
-      window.cancelAnimationFrame(animationFrame);
+      cancelAnimationFrame(animationFrame);
       lastTime = 0;
     } else {
       lastTime = 0;
-      animationFrame = window.requestAnimationFrame(animate);
+      animationFrame = requestAnimationFrame(animate);
     }
   });
 
   if (!document.hidden) {
-    animationFrame = window.requestAnimationFrame(animate);
+    animationFrame = requestAnimationFrame(animate);
   }
 })();
 
-/* EXISTING SUPABASE LOGIN AND SIGNUP */
-let mode = "login";
-
+/* PHONE NUMBER COUNTRY SELECTOR */
 const $ = id => document.getElementById(id);
+let phoneInput = null;
+
+if (window.intlTelInput && $("phone")) {
+  phoneInput = window.intlTelInput($("phone"), {
+    initialCountry: "ke",
+    separateDialCode: true,
+    nationalMode: true,
+    allowDropdown: true,
+    countryOrder: ["ke","ug","tz","gb","us"],
+    loadUtils: () =>
+      import("https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.1/build/js/utils.js")
+  });
+}
+
+/* SUPABASE AUTHENTICATION */
+let mode = "login";
 
 function setMessage(message) {
   $("msg").textContent = message;
@@ -947,48 +1004,42 @@ function setMode(newMode) {
 
   const signup = mode === "signup";
 
-  $("loginTab").classList.toggle("on", !signup);
-  $("signupTab").classList.toggle("on", signup);
+  $("loginTab").classList.toggle("on",!signup);
+  $("signupTab").classList.toggle("on",signup);
 
   $("name").style.display = signup ? "block" : "none";
   $("name").required = signup;
 
-  $("password").autocomplete = signup
-    ? "new-password"
-    : "current-password";
+  $("phoneField").style.display = signup ? "block" : "none";
+  $("phone").required = signup;
 
-  $("submit").textContent = signup
-    ? "Create account"
-    : "Login";
+  $("password").autocomplete = signup ? "new-password" : "current-password";
+
+  $("submit").textContent = signup ? "Create account" : "Login";
 
   setMessage("");
 }
 
-$("loginTab").addEventListener("click", () => setMode("login"));
-$("signupTab").addEventListener("click", () => setMode("signup"));
+$("loginTab").addEventListener("click",() => setMode("login"));
+$("signupTab").addEventListener("click",() => setMode("signup"));
 
-$("togglePassword").addEventListener("click", () => {
+$("togglePassword").addEventListener("click",() => {
   const password = $("password");
   const toggle = $("togglePassword");
   const show = password.type === "password";
 
   password.type = show ? "text" : "password";
   toggle.textContent = show ? "Hide" : "Show";
-  toggle.setAttribute(
-    "aria-label",
-    show ? "Hide password" : "Show password"
-  );
+  toggle.setAttribute("aria-label",show ? "Hide password" : "Show password");
 });
 
-$("form").addEventListener("submit", async event => {
+$("form").addEventListener("submit",async event => {
   event.preventDefault();
 
   const submitButton = $("submit");
 
   if (!window.supabaseClient) {
-    setMessage(
-      "Supabase is not connected. Please check your supabase.js configuration."
-    );
+    setMessage("Supabase is not connected. Check your supabase.js configuration.");
     return;
   }
 
@@ -996,22 +1047,36 @@ $("form").addEventListener("submit", async event => {
   const password = $("password").value;
   const fullName = $("name").value.trim();
 
+  let phoneNumber = "";
+
+  if (mode === "signup") {
+    if (!fullName) {
+      setMessage("Please enter your full name.");
+      $("name").focus();
+      return;
+    }
+
+    if (!phoneInput) {
+      setMessage("The country selector could not load. Check your internet connection and refresh the page.");
+      return;
+    }
+
+    phoneNumber = phoneInput.getNumber();
+
+    if (!phoneNumber || !phoneInput.isValidNumber()) {
+      setMessage("Please select your country and enter a valid phone number.");
+      $("phone").focus();
+      return;
+    }
+  }
+
   if (password.length < 6) {
     setMessage("Your password must contain at least 6 characters.");
     return;
   }
 
-  if (mode === "signup" && !fullName) {
-    setMessage("Please enter your full name.");
-    $("name").focus();
-    return;
-  }
-
   submitButton.disabled = true;
-  submitButton.textContent = mode === "signup"
-    ? "Creating account..."
-    : "Signing in...";
-
+  submitButton.textContent = mode === "signup" ? "Creating account..." : "Signing in...";
   setMessage("");
 
   try {
@@ -1023,7 +1088,8 @@ $("form").addEventListener("submit", async event => {
         password,
         options: {
           data: {
-            full_name: fullName
+            full_name: fullName,
+            phone_number: phoneNumber
           }
         }
       });
@@ -1045,18 +1111,16 @@ $("form").addEventListener("submit", async event => {
 
         setTimeout(() => {
           window.location.href = "dashboard.html";
-        }, 700);
+        },700);
       } else {
-        setMessage(
-          "Account created. Check your email if confirmation is enabled, then return here to log in."
-        );
+        setMessage("Account created. Check your email if confirmation is enabled, then return here to log in.");
       }
     } else {
       setMessage("Login successful. Opening your dashboard...");
 
       setTimeout(() => {
         window.location.href = "dashboard.html";
-      }, 400);
+      },400);
     }
   } catch (error) {
     setMessage(
@@ -1066,9 +1130,7 @@ $("form").addEventListener("submit", async event => {
     );
   } finally {
     submitButton.disabled = false;
-    submitButton.textContent = mode === "signup"
-      ? "Create account"
-      : "Login";
+    submitButton.textContent = mode === "signup" ? "Create account" : "Login";
   }
 });
 </script>
