@@ -13,6 +13,7 @@
   --blue: #168bff;
   --blue-light: #73c7ff;
   --red: #ff475f;
+  --green: #20d9a1;
   --black: #05070d;
   --panel: #0b1220;
   --border: rgba(22,139,255,.35);
@@ -75,7 +76,8 @@ body::after {
   animation: ambientLight 11s ease-in-out infinite alternate-reverse;
 }
 
-/* MARKET CHART */
+/* MARKET PANEL */
+
 .market-panel {
   min-width: 0;
   width: 100%;
@@ -114,7 +116,7 @@ body::after {
 .chart-window {
   position: relative;
   width: 100%;
-  height: clamp(260px,36vw,410px);
+  height: clamp(300px,36vw,430px);
   overflow: hidden;
   border: 1px solid rgba(22,139,255,.28);
   border-radius: 18px;
@@ -123,45 +125,109 @@ body::after {
     linear-gradient(90deg,rgba(22,139,255,.055) 1px,transparent 1px),
     linear-gradient(145deg,#091321,#050912 80%);
   background-size: 36px 36px,36px 36px,auto;
-  box-shadow: 0 20px 55px rgba(0,0,0,.4),
-              inset 0 0 40px rgba(22,139,255,.045);
-}
-
-.chart-window::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg,transparent 70%,rgba(5,7,13,.65));
-  pointer-events: none;
+  box-shadow:
+    0 20px 55px rgba(0,0,0,.4),
+    inset 0 0 40px rgba(22,139,255,.045);
 }
 
 .chart-topbar {
   position: absolute;
-  z-index: 2;
-  top: 15px;
-  left: 16px;
-  right: 16px;
+  z-index: 5;
+  top: 13px;
+  left: 13px;
+  right: 13px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  font-size: 11px;
+  gap: 8px;
+  pointer-events: none;
 }
 
 .pair-name {
   color: #f2f7ff;
+  font-size: 11px;
   font-weight: 800;
-  letter-spacing: 1px;
+  letter-spacing: .8px;
 }
 
 .demo-badge {
-  padding: 6px 9px;
+  padding: 6px 8px;
   border: 1px solid rgba(115,199,255,.2);
   border-radius: 20px;
   background: rgba(22,139,255,.08);
   color: var(--blue-light);
+  font-size: 8px;
+  letter-spacing: .7px;
+  white-space: nowrap;
+}
+
+/* PRICE INFORMATION */
+
+.chart-info {
+  position: absolute;
+  z-index: 4;
+  top: 43px;
+  left: 13px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  pointer-events: none;
+}
+
+.quote-box {
+  min-width: 102px;
+  padding: 7px 9px;
+  border: 1px solid #253348;
+  border-radius: 7px;
+  background: rgba(5,9,18,.92);
+}
+
+.quote-label {
+  display: block;
+  margin-bottom: 4px;
   font-size: 9px;
   letter-spacing: 1px;
+  color: #91a2ba;
+}
+
+.quote-value {
+  font-size: 12px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.ask-value { color: var(--blue-light); }
+.bid-value { color: var(--red); }
+
+.pip-box {
+  padding: 7px 9px;
+  border: 1px solid rgba(32,217,161,.3);
+  border-radius: 7px;
+  background: rgba(5,22,23,.93);
+}
+
+.pip-label {
+  display: block;
+  margin-bottom: 4px;
+  color: #91a2ba;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.pip-value {
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--green);
+  font-variant-numeric: tabular-nums;
+}
+
+.pip-value.negative { color: var(--red); }
+
+/* CHART CANVAS AND PRICE SCALE */
+
+.chart-plot {
+  position: absolute;
+  inset: 0;
 }
 
 .chart-canvas {
@@ -170,10 +236,58 @@ body::after {
   height: 100%;
 }
 
+.price-scale {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 65px;
+  border-left: 1px solid rgba(115,199,255,.17);
+  background: rgba(5,9,18,.83);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.scale-label {
+  position: absolute;
+  right: 5px;
+  transform: translateY(-50%);
+  color: #91a2ba;
+  font-size: 9px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.price-tag {
+  position: absolute;
+  right: 2px;
+  min-width: 60px;
+  padding: 5px 3px;
+  border-radius: 3px 0 0 3px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  z-index: 5;
+}
+
+.ask-tag {
+  background: var(--blue);
+  box-shadow: 0 0 12px rgba(22,139,255,.35);
+}
+
+.bid-tag {
+  background: var(--red);
+  box-shadow: 0 0 12px rgba(255,71,95,.25);
+}
+
 .chart-legend {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 15px;
   margin-top: 16px;
   color: #9eacc1;
   font-size: 11px;
@@ -194,6 +308,15 @@ body::after {
 .legend-dot.bull { background: var(--blue); }
 .legend-dot.bear { background: var(--red); }
 
+.legend-line {
+  width: 19px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.legend-line.ask { background: var(--blue-light); }
+.legend-line.bid { background: var(--red); }
+
 .market-note {
   margin-top: 18px;
   color: #73839b;
@@ -202,6 +325,7 @@ body::after {
 }
 
 /* ACCESS CARD */
+
 .card {
   position: relative;
   width: 100%;
@@ -211,8 +335,9 @@ body::after {
   background: linear-gradient(145deg,#111c2e,#080d17 75%);
   border: 1px solid var(--border);
   border-radius: 22px;
-  box-shadow: 0 25px 70px rgba(0,0,0,.75),
-              0 0 35px rgba(22,139,255,.09);
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.75),
+    0 0 35px rgba(22,139,255,.09);
   animation: cardEntrance .8s cubic-bezier(.2,.8,.2,1) both;
 }
 
@@ -254,8 +379,7 @@ body::after {
   font-size: 25px;
   font-weight: 900;
   letter-spacing: -2px;
-  box-shadow: 0 0 25px rgba(22,139,255,.14),
-              inset 0 0 18px rgba(22,139,255,.06);
+  box-shadow: 0 0 25px rgba(22,139,255,.14),inset 0 0 18px rgba(22,139,255,.06);
   animation: logoGlow 3s ease-in-out infinite;
 }
 
@@ -399,7 +523,8 @@ input::placeholder {
 
 .toggle-pass:hover { color: white; }
 
-/* PHONE FIELD AND COUNTRY SELECTOR */
+/* PHONE FIELD */
+
 .phone-field {
   width: 100%;
   margin: 12px 0;
@@ -472,6 +597,8 @@ input::placeholder {
   background: #070b13;
   color: white;
 }
+
+/* SUBMIT BUTTON */
 
 .action {
   position: relative;
@@ -549,6 +676,7 @@ button:focus-visible,
 }
 
 /* ANIMATIONS */
+
 @keyframes cardEntrance {
   from { opacity: 0; transform: translateY(24px) scale(.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
@@ -580,6 +708,7 @@ button:focus-visible,
 }
 
 /* MOBILE */
+
 @media (max-width:850px) {
   body {
     grid-template-columns: minmax(0,1fr);
@@ -599,7 +728,7 @@ button:focus-visible,
   }
 
   .chart-window {
-    height: clamp(220px,55vw,320px);
+    height: clamp(300px,62vw,350px);
   }
 
   .market-note { margin-top: 12px; }
@@ -614,13 +743,45 @@ button:focus-visible,
   body { padding: 18px 12px; }
 
   .market-heading h2 { font-size: 29px; }
-
   .market-heading p { font-size: 12px; }
 
   .chart-window {
-    height: 230px;
+    height: 300px;
     border-radius: 13px;
   }
+
+  .chart-topbar {
+    top: 11px;
+    left: 9px;
+    right: 9px;
+  }
+
+  .pair-name { font-size: 9px; }
+  .demo-badge { font-size: 7px; padding: 5px 6px; }
+
+  .chart-info {
+    top: 40px;
+    left: 8px;
+    gap: 5px;
+  }
+
+  .quote-box,
+  .pip-box { padding: 6px; min-width: 0; }
+
+  .quote-value,
+  .pip-value { font-size: 10px; }
+
+  .quote-label,
+  .pip-label { font-size: 8px; }
+
+  .price-scale { width: 59px; }
+
+  .price-tag {
+    min-width: 55px;
+    font-size: 9px;
+  }
+
+  .scale-label { font-size: 8px; }
 
   .card {
     padding: 27px 21px;
@@ -648,8 +809,9 @@ button:focus-visible,
 
 <body>
 
-<!-- DECORATIVE FOREX CHART -->
-<section class="market-panel" aria-label="Decorative animated candlestick chart">
+<!-- ANIMATED DEMONSTRATION CHART -->
+
+<section class="market-panel" aria-label="Illustrative animated forex chart">
   <div class="market-heading">
     <div class="eyebrow">DE.Bluizz FX · Trading Hub</div>
     <h2>Read the market.<br><span>Master your strategy.</span></h2>
@@ -657,24 +819,55 @@ button:focus-visible,
   </div>
 
   <div class="chart-window">
+
     <div class="chart-topbar">
       <span class="pair-name">EUR/USD · PRICE ACTION</span>
-      <span class="demo-badge">ILLUSTRATIVE CHART</span>
+      <span class="demo-badge">DEMO MARKET</span>
     </div>
-    <canvas id="candleChart" class="chart-canvas" aria-label="Animated blue bullish and red bearish candlesticks"></canvas>
+
+    <div class="chart-info">
+      <div class="quote-box">
+        <span class="quote-label">ASK PRICE</span>
+        <span class="quote-value ask-value" id="askValue">1.08524</span>
+      </div>
+
+      <div class="quote-box">
+        <span class="quote-label">BID PRICE</span>
+        <span class="quote-value bid-value" id="bidValue">1.08512</span>
+      </div>
+
+      <div class="pip-box">
+        <span class="pip-label">PIP MOVE</span>
+        <span class="pip-value" id="pipValue">+0.0 pips</span>
+      </div>
+    </div>
+
+    <div class="chart-plot">
+      <canvas
+        id="candleChart"
+        class="chart-canvas"
+        aria-label="Simulated moving forex candlesticks with bid and ask lines">
+      </canvas>
+    </div>
+
+    <div class="price-scale" id="priceScale" aria-hidden="true"></div>
   </div>
 
   <div class="chart-legend">
     <span class="legend-item"><span class="legend-dot bull"></span>Bullish candle</span>
     <span class="legend-item"><span class="legend-dot bear"></span>Bearish candle</span>
+    <span class="legend-item"><span class="legend-line ask"></span>Ask line</span>
+    <span class="legend-item"><span class="legend-line bid"></span>Bid line</span>
   </div>
 
   <div class="market-note">
-    Learn with purpose. Trade with discipline. &nbsp;|&nbsp; Chart is decorative and does not show live prices.
+    Learn with purpose. Trade with discipline.<br>
+    Chart prices and pip movements are simulated for demonstration only.
   </div>
 </section>
 
 <!-- MEMBER ACCESS -->
+
 <main class="card">
   <div class="brand-mark" aria-label="DE.Bluizz FX emblem">DB</div>
 
@@ -762,10 +955,12 @@ button:focus-visible,
 <script>
 "use strict";
 
-/* ANIMATED ILLUSTRATIVE CANDLESTICK CHART */
+/* SIMULATED FOREX CHART */
+
 (function () {
   const canvas = document.getElementById("candleChart");
   const ctx = canvas.getContext("2d");
+  const scale = document.getElementById("priceScale");
 
   if (!ctx) return;
 
@@ -773,51 +968,64 @@ button:focus-visible,
   const BLUE_LIGHT = "#73c7ff";
   const RED = "#ff475f";
 
+  const BASE_PRICE = 1.08520;
+  const PIP_SIZE = 0.0001;
+  const SPREAD = 0.00012;
+
   let candles = [];
   let width = 0;
   let height = 0;
   let pixelRatio = 1;
   let animationFrame = 0;
   let lastTime = 0;
-  let stepProgress = 0;
-  let previousClose = 0.55;
+  let elapsed = 0;
+  let lastCandleTime = 0;
+  let price = BASE_PRICE;
+  let startPrice = BASE_PRICE;
+  let ask = BASE_PRICE + SPREAD / 2;
+  let bid = BASE_PRICE - SPREAD / 2;
+  let pipMove = 0;
 
-  function randomBetween(min, max) {
-    return min + Math.random() * (max - min);
+  function randomBetween(min,max) {
+    return min + Math.random() * (max-min);
   }
 
   function makeCandle(open) {
-    const close = Math.max(0.12, Math.min(0.88, open + randomBetween(-0.12,0.12)));
+    const change = randomBetween(-0.00018,0.00018);
+    const close = Math.max(1.08000,Math.min(1.09000,open+change));
+    const high = Math.max(open,close)+randomBetween(0.00002,0.00012);
+    const low = Math.min(open,close)-randomBetween(0.00002,0.00012);
 
-    return {
-      open,
-      close,
-      high: Math.min(0.96, Math.max(open,close) + randomBetween(0.015,0.10)),
-      low: Math.max(0.04, Math.min(open,close) - randomBetween(0.015,0.10))
-    };
+    return {open,close,high,low};
   }
 
   function seedCandles() {
     candles = [];
-    previousClose = 0.55;
+    let current = BASE_PRICE - 0.00045;
 
-    for (let i = 0; i < 46; i++) {
-      const candle = makeCandle(previousClose);
+    for (let i=0;i<45;i++) {
+      const candle = makeCandle(current);
       candles.push(candle);
-      previousClose = candle.close;
+      current = candle.close;
     }
+
+    price = candles[candles.length-1].close;
+    startPrice = price;
+    ask = price + SPREAD/2;
+    bid = price - SPREAD/2;
   }
 
   function resizeCanvas() {
     const rect = canvas.getBoundingClientRect();
+
     if (!rect.width || !rect.height) return;
 
     width = rect.width;
     height = rect.height;
     pixelRatio = Math.min(window.devicePixelRatio || 1,2);
 
-    canvas.width = Math.round(width * pixelRatio);
-    canvas.height = Math.round(height * pixelRatio);
+    canvas.width = Math.round(width*pixelRatio);
+    canvas.height = Math.round(height*pixelRatio);
 
     ctx.setTransform(pixelRatio,0,0,pixelRatio,0,0);
     drawChart();
@@ -828,155 +1036,276 @@ button:focus-visible,
 
     ctx.clearRect(0,0,width,height);
 
-    const left = 12;
-    const right = width - 12;
-    const top = 47;
-    const bottom = height - 18;
-    const plotHeight = bottom - top;
-    const count = Math.max(20,Math.floor((right-left)/9));
+    const left = 10;
+    const scaleWidth = width <= 400 ? 59 : 65;
+    const right = width-scaleWidth-4;
+
+    const top = Math.max(103,height*0.34);
+    const bottom = height-17;
+    const plotHeight = bottom-top;
+
+    if (plotHeight <= 10 || right <= left) return;
+
+    const availableWidth = right-left;
+    const count = Math.max(15,Math.floor(availableWidth/8));
     const visible = candles.slice(-count);
-    const gap = (right-left)/visible.length;
-    const candleWidth = Math.max(3,Math.min(8,gap*0.55));
+    const gap = availableWidth/visible.length;
+    const candleWidth = Math.max(2.5,Math.min(7,gap*0.58));
+
+    const values = visible.flatMap(c=>[c.high,c.low]);
+    values.push(ask,bid);
+
+    let minValue = Math.min(...values);
+    let maxValue = Math.max(...values);
+
+    const range = Math.max(0.0006,maxValue-minValue);
+    minValue -= range*0.12;
+    maxValue += range*0.12;
+
+    function yFor(value) {
+      return top+((maxValue-value)/(maxValue-minValue))*plotHeight;
+    }
+
+    /* Horizontal price grid */
 
     ctx.save();
     ctx.strokeStyle = "rgba(115,199,255,0.10)";
     ctx.lineWidth = 1;
 
-    for (let i = 0; i < 5; i++) {
-      const y = top + plotHeight*i/4;
+    for (let i=0;i<=5;i++) {
+      const y=top+plotHeight*i/5;
       ctx.beginPath();
       ctx.moveTo(left,y);
       ctx.lineTo(right,y);
       ctx.stroke();
     }
+
     ctx.restore();
 
-    const values = visible.flatMap(c => [c.high,c.low]);
-    let minValue = Math.min(...values);
-    let maxValue = Math.max(...values);
-    const range = Math.max(0.1,maxValue-minValue);
+    /* Right-hand price labels */
 
-    minValue -= range*0.08;
-    maxValue += range*0.08;
+    scale.innerHTML = "";
 
-    function yFor(value) {
-      return top + ((maxValue-value)/(maxValue-minValue))*plotHeight;
+    for (let i=0;i<=5;i++) {
+      const value=maxValue-(maxValue-minValue)*i/5;
+      const label=document.createElement("span");
+
+      label.className="scale-label";
+      label.style.top=(top+plotHeight*i/5)+"px";
+      label.textContent=value.toFixed(5);
+
+      scale.appendChild(label);
     }
+
+    /* Historical closing-price path */
 
     ctx.save();
     ctx.beginPath();
 
-    visible.forEach((c,i) => {
-      const x = left+i*gap+gap/2;
-      const y = yFor(c.close);
-      if (i === 0) ctx.moveTo(x,y);
+    visible.forEach((c,i)=>{
+      const x=left+i*gap+gap/2;
+      const y=yFor(c.close);
+
+      if (i===0) ctx.moveTo(x,y);
       else ctx.lineTo(x,y);
     });
 
-    ctx.strokeStyle = "rgba(115,199,255,0.45)";
-    ctx.lineWidth = 1.2;
+    ctx.strokeStyle="rgba(115,199,255,0.20)";
+    ctx.lineWidth=1;
     ctx.stroke();
     ctx.restore();
 
-    visible.forEach((c,i) => {
-      const x = left+i*gap+gap/2;
-      const openY = yFor(c.open);
-      const closeY = yFor(c.close);
-      const highY = yFor(c.high);
-      const lowY = yFor(c.low);
-      const color = c.close >= c.open ? BLUE : RED;
+    /* Candlesticks */
+
+    visible.forEach((c,i)=>{
+      const x=left+i*gap+gap/2;
+      const openY=yFor(c.open);
+      const closeY=yFor(c.close);
+      const highY=yFor(c.high);
+      const lowY=yFor(c.low);
+      const color=c.close>=c.open?BLUE:RED;
 
       ctx.save();
-      ctx.strokeStyle = color;
-      ctx.lineWidth = 1.2;
+      ctx.strokeStyle=color;
+      ctx.lineWidth=1.2;
+
       ctx.beginPath();
       ctx.moveTo(x,highY);
       ctx.lineTo(x,lowY);
       ctx.stroke();
 
-      const bodyTop = Math.min(openY,closeY);
-      const bodyHeight = Math.max(2,Math.abs(closeY-openY));
+      const bodyTop=Math.min(openY,closeY);
+      const bodyHeight=Math.max(2,Math.abs(closeY-openY));
 
-      ctx.globalAlpha = 0.95;
-      ctx.fillStyle = color;
-      ctx.shadowColor = color;
-      ctx.shadowBlur = 5;
-      ctx.fillRect(x-candleWidth/2,bodyTop,candleWidth,bodyHeight);
-      ctx.shadowBlur = 0;
-      ctx.globalAlpha = 1;
-      ctx.strokeRect(x-candleWidth/2,bodyTop,candleWidth,bodyHeight);
+      ctx.fillStyle=color;
+      ctx.shadowColor=color;
+      ctx.shadowBlur=4;
+      ctx.fillRect(
+        x-candleWidth/2,
+        bodyTop,
+        candleWidth,
+        bodyHeight
+      );
+
+      ctx.shadowBlur=0;
+      ctx.strokeRect(
+        x-candleWidth/2,
+        bodyTop,
+        candleWidth,
+        bodyHeight
+      );
+
       ctx.restore();
     });
 
-    const latest = visible[visible.length-1];
+    /* Ask line: blue */
+
+    const askY=yFor(ask);
+
+    ctx.save();
+    ctx.strokeStyle=BLUE_LIGHT;
+    ctx.lineWidth=1.5;
+    ctx.setLineDash([5,3]);
+
+    ctx.beginPath();
+    ctx.moveTo(left,askY);
+    ctx.lineTo(width-scaleWidth,askY);
+    ctx.stroke();
+
+    ctx.restore();
+
+    /* Bid line: red */
+
+    const bidY=yFor(bid);
+
+    ctx.save();
+    ctx.strokeStyle=RED;
+    ctx.lineWidth=1.5;
+    ctx.setLineDash([5,3]);
+
+    ctx.beginPath();
+    ctx.moveTo(left,bidY);
+    ctx.lineTo(width-scaleWidth,bidY);
+    ctx.stroke();
+
+    ctx.restore();
+
+    /* Current-price labels */
+
+    const askTag=document.createElement("span");
+    askTag.className="price-tag ask-tag";
+    askTag.textContent=ask.toFixed(5);
+    askTag.style.top=askY+"px";
+    scale.appendChild(askTag);
+
+    const bidTag=document.createElement("span");
+    bidTag.className="price-tag bid-tag";
+    bidTag.textContent=bid.toFixed(5);
+    bidTag.style.top=bidY+"px";
+    scale.appendChild(bidTag);
+
+    /* Current candle marker */
+
+    ctx.save();
+    ctx.fillStyle=BLUE_LIGHT;
+    ctx.beginPath();
+    ctx.arc(right-2,yFor(price),2.5,0,Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function updatePrice() {
+    /* Small simulated market movement */
+
+    const drift=randomBetween(-0.000035,0.000035);
+    price=Math.max(1.08000,Math.min(1.09000,price+drift));
+
+    ask=price+SPREAD/2;
+    bid=price-SPREAD/2;
+
+    pipMove=(price-startPrice)/PIP_SIZE;
+
+    document.getElementById("askValue").textContent=ask.toFixed(5);
+    document.getElementById("bidValue").textContent=bid.toFixed(5);
+
+    const pipElement=document.getElementById("pipValue");
+    const sign=pipMove>0?"+":"";
+
+    pipElement.textContent=sign+pipMove.toFixed(1)+" pips";
+    pipElement.classList.toggle("negative",pipMove<0);
+
+    const latest=candles[candles.length-1];
 
     if (latest) {
-      const priceY = yFor(latest.close);
-
-      ctx.save();
-      ctx.setLineDash([4,4]);
-      ctx.strokeStyle = "rgba(115,199,255,0.6)";
-      ctx.beginPath();
-      ctx.moveTo(left,priceY);
-      ctx.lineTo(right,priceY);
-      ctx.stroke();
-      ctx.restore();
-
-      ctx.save();
-      ctx.fillStyle = BLUE_LIGHT;
-      ctx.beginPath();
-      ctx.arc(right-2,priceY,3,0,Math.PI*2);
-      ctx.fill();
-      ctx.restore();
+      latest.close=price;
+      latest.high=Math.max(latest.high,price);
+      latest.low=Math.min(latest.low,price);
     }
   }
 
+  function createNewCandle() {
+    const open=price;
+    const candle=makeCandle(open);
+
+    candles.push(candle);
+    price=candle.close;
+
+    if (candles.length>180) candles.shift();
+  }
+
   function animate(time) {
-    if (!lastTime) lastTime = time;
+    if (!lastTime) lastTime=time;
 
-    stepProgress += Math.min(time-lastTime,100);
-    lastTime = time;
+    const delta=Math.min(time-lastTime,100);
+    lastTime=time;
+    elapsed+=delta;
+    lastCandleTime+=delta;
 
-    if (stepProgress >= 650) {
-      stepProgress = 0;
-
-      const next = makeCandle(previousClose);
-      candles.push(next);
-      previousClose = next.close;
-
-      if (candles.length > 180) candles.shift();
+    if (elapsed>=180) {
+      elapsed=0;
+      updatePrice();
       drawChart();
     }
 
-    animationFrame = requestAnimationFrame(animate);
+    if (lastCandleTime>=2500) {
+      lastCandleTime=0;
+      createNewCandle();
+      updatePrice();
+      drawChart();
+    }
+
+    animationFrame=requestAnimationFrame(animate);
   }
 
   seedCandles();
   resizeCanvas();
+  updatePrice();
+  drawChart();
 
   if ("ResizeObserver" in window) {
-    const observer = new ResizeObserver(resizeCanvas);
+    const observer=new ResizeObserver(resizeCanvas);
     observer.observe(canvas);
   } else {
     window.addEventListener("resize",resizeCanvas);
   }
 
-  document.addEventListener("visibilitychange",() => {
+  document.addEventListener("visibilitychange",()=>{
     if (document.hidden) {
       cancelAnimationFrame(animationFrame);
-      lastTime = 0;
+      lastTime=0;
     } else {
-      lastTime = 0;
-      animationFrame = requestAnimationFrame(animate);
+      lastTime=0;
+      animationFrame=requestAnimationFrame(animate);
     }
   });
 
   if (!document.hidden) {
-    animationFrame = requestAnimationFrame(animate);
+    animationFrame=requestAnimationFrame(animate);
   }
 })();
 
 /* PHONE NUMBER COUNTRY SELECTOR */
+
 const $ = id => document.getElementById(id);
 let phoneInput = null;
 
@@ -993,63 +1322,64 @@ if (window.intlTelInput && $("phone")) {
 }
 
 /* SUPABASE AUTHENTICATION */
+
 let mode = "login";
 
 function setMessage(message) {
-  $("msg").textContent = message;
+  $("msg").textContent=message;
 }
 
 function setMode(newMode) {
-  mode = newMode;
+  mode=newMode;
 
-  const signup = mode === "signup";
+  const signup=mode==="signup";
 
   $("loginTab").classList.toggle("on",!signup);
   $("signupTab").classList.toggle("on",signup);
 
-  $("name").style.display = signup ? "block" : "none";
-  $("name").required = signup;
+  $("name").style.display=signup?"block":"none";
+  $("name").required=signup;
 
-  $("phoneField").style.display = signup ? "block" : "none";
-  $("phone").required = signup;
+  $("phoneField").style.display=signup?"block":"none";
+  $("phone").required=signup;
 
-  $("password").autocomplete = signup ? "new-password" : "current-password";
+  $("password").autocomplete=signup?"new-password":"current-password";
 
-  $("submit").textContent = signup ? "Create account" : "Login";
+  $("submit").textContent=signup?"Create account":"Login";
 
   setMessage("");
 }
 
-$("loginTab").addEventListener("click",() => setMode("login"));
-$("signupTab").addEventListener("click",() => setMode("signup"));
+$("loginTab").addEventListener("click",()=>setMode("login"));
+$("signupTab").addEventListener("click",()=>setMode("signup"));
 
-$("togglePassword").addEventListener("click",() => {
-  const password = $("password");
-  const toggle = $("togglePassword");
-  const show = password.type === "password";
+$("togglePassword").addEventListener("click",()=>{
+  const password=$("password");
+  const toggle=$("togglePassword");
+  const show=password.type==="password";
 
-  password.type = show ? "text" : "password";
-  toggle.textContent = show ? "Hide" : "Show";
-  toggle.setAttribute("aria-label",show ? "Hide password" : "Show password");
+  password.type=show?"text":"password";
+  toggle.textContent=show?"Hide":"Show";
+  toggle.setAttribute("aria-label",show?"Hide password":"Show password");
 });
 
-$("form").addEventListener("submit",async event => {
+$("form").addEventListener("submit",async event=>{
   event.preventDefault();
 
-  const submitButton = $("submit");
+  const submitButton=$("submit");
 
   if (!window.supabaseClient) {
     setMessage("Supabase is not connected. Check your supabase.js configuration.");
     return;
   }
 
-  const email = $("email").value.trim();
-  const password = $("password").value;
-  const fullName = $("name").value.trim();
+  const email=$("email").value.trim();
+  const password=$("password").value;
+  const fullName=$("name").value.trim();
 
-  let phoneNumber = "";
+  let phoneNumber="";
 
-  if (mode === "signup") {
+  if (mode==="signup") {
     if (!fullName) {
       setMessage("Please enter your full name.");
       $("name").focus();
@@ -1061,7 +1391,7 @@ $("form").addEventListener("submit",async event => {
       return;
     }
 
-    phoneNumber = phoneInput.getNumber();
+    phoneNumber=phoneInput.getNumber();
 
     if (!phoneNumber || !phoneInput.isValidNumber()) {
       setMessage("Please select your country and enter a valid phone number.");
@@ -1070,31 +1400,31 @@ $("form").addEventListener("submit",async event => {
     }
   }
 
-  if (password.length < 6) {
+  if (password.length<6) {
     setMessage("Your password must contain at least 6 characters.");
     return;
   }
 
-  submitButton.disabled = true;
-  submitButton.textContent = mode === "signup" ? "Creating account..." : "Signing in...";
+  submitButton.disabled=true;
+  submitButton.textContent=mode==="signup"?"Creating account...":"Signing in...";
   setMessage("");
 
   try {
     let result;
 
-    if (mode === "signup") {
-      result = await window.supabaseClient.auth.signUp({
+    if (mode==="signup") {
+      result=await window.supabaseClient.auth.signUp({
         email,
         password,
-        options: {
-          data: {
-            full_name: fullName,
-            phone_number: phoneNumber
+        options:{
+          data:{
+            full_name:fullName,
+            phone_number:phoneNumber
           }
         }
       });
     } else {
-      result = await window.supabaseClient.auth.signInWithPassword({
+      result=await window.supabaseClient.auth.signInWithPassword({
         email,
         password
       });
@@ -1105,12 +1435,12 @@ $("form").addEventListener("submit",async event => {
       return;
     }
 
-    if (mode === "signup") {
+    if (mode==="signup") {
       if (result.data.session) {
         setMessage("Account created successfully. Opening your dashboard...");
 
-        setTimeout(() => {
-          window.location.href = "dashboard.html";
+        setTimeout(()=>{
+          window.location.href="dashboard.html";
         },700);
       } else {
         setMessage("Account created. Check your email if confirmation is enabled, then return here to log in.");
@@ -1118,8 +1448,8 @@ $("form").addEventListener("submit",async event => {
     } else {
       setMessage("Login successful. Opening your dashboard...");
 
-      setTimeout(() => {
-        window.location.href = "dashboard.html";
+      setTimeout(()=>{
+        window.location.href="dashboard.html";
       },400);
     }
   } catch (error) {
@@ -1129,8 +1459,8 @@ $("form").addEventListener("submit",async event => {
         : "Something went wrong. Please try again."
     );
   } finally {
-    submitButton.disabled = false;
-    submitButton.textContent = mode === "signup" ? "Create account" : "Login";
+    submitButton.disabled=false;
+    submitButton.textContent=mode==="signup"?"Create account":"Login";
   }
 });
 </script>
