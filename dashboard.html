@@ -1201,7 +1201,7 @@ let calendarTimer = null;
 
     try {
       const { data, error } = await client
-        .from("trades")
+        .from("journal_entries")
         .select("*")
         .eq("user_id", session.user.id)
         .order("trade_date", { ascending: false });
