@@ -1251,7 +1251,7 @@ let calendarTimer = null;
 
     try {
       const { error } = await client
-        .from("trades")
+        .from("journal_entries")
         .insert(record);
 
       if (error) throw error;
