@@ -624,6 +624,8 @@
 <script>
 (() => {
   "use strict";
+  let marketTimer = null;
+let calendarTimer = null;
 
   const $ = id => document.getElementById(id);
   const pairs = ["EUR/USD", "GBP/USD", "USD/JPY", "XAU/USD"];
