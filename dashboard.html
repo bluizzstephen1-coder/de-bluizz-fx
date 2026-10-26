@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080d18">
-  <meta name="description" content="DE.Bluizz FX V7 Trader Hub — forex education, market tools, and trading journal.">
-  <title>DE.Bluizz FX V7 Trader Hub</title>
+  <meta name="theme-color" content="#080f20">
+  <meta name="description" content="DE.Bluizz FX NEXUS — Your World of Trading Intelligence. Forex education, market intelligence, trading tools, and performance tracking.">
+  <title>DE.Bluizz FX NEXUS | Trading Intelligence</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="./supabase.js"></script>
@@ -13,254 +13,442 @@
   <style>
     :root {
       color-scheme: dark;
-      --bg: #080d18;
-      --panel: #111a2b;
-      --panel2: #172238;
-      --border: #283650;
-      --text: #f4f7ff;
-      --muted: #91a1bd;
-      --green: #20d99a;
-      --red: #ff6378;
-      --gold: #f6c453;
-      --blue: #68a4ff;
+      --bg: #070c18;
+      --panel: #101a2d;
+      --panel2: #16233a;
+      --panel3: #0b1425;
+      --border: #283852;
+      --text: #f3f6fc;
+      --muted: #9aaac3;
+      --gold: #e9bd58;
+      --gold-light: #ffe09a;
+      --green: #22d3a0;
+      --red: #ff657a;
+      --blue: #76aaff;
+      --radius: 15px;
+      --shadow: 0 12px 30px rgba(0,0,0,.17);
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
-      background: var(--bg);
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at top right, rgba(233,189,88,.055), transparent 35%),
+        var(--bg);
       color: var(--text);
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
     }
 
-    button, input, select, textarea { font: inherit; }
-    button { cursor: pointer; }
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
 
     .topbar {
-      padding: 18px;
-      background: #0d1422;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 15px 22px;
+      background: rgba(8,15,30,.96);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 15px;
       flex-wrap: wrap;
     }
 
-    .brand {
-      font-weight: 900;
-      letter-spacing: .5px;
-      font-size: 18px;
+    .brand-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
     }
 
-    .brand span { color: var(--gold); }
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(233,189,88,.65);
+      border-radius: 12px;
+      color: var(--gold);
+      background: linear-gradient(145deg,#18243a,#0b1221);
+      font-weight: 950;
+      font-size: 17px;
+      box-shadow: inset 0 0 16px rgba(233,189,88,.06);
+    }
+
+    .brand {
+      font-weight: 950;
+      letter-spacing: .6px;
+      font-size: 19px;
+      line-height: 1.3;
+    }
+
+    .brand span {
+      color: var(--gold);
+    }
 
     .subtitle {
       color: var(--muted);
-      font-size: 12px;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
       margin-top: 4px;
     }
 
     .top-actions {
       display: flex;
-      gap: 8px;
       align-items: center;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .pill, .btn {
       border: 1px solid var(--border);
-      border-radius: 9px;
-      padding: 9px 12px;
+      border-radius: 10px;
+      padding: 10px 13px;
       background: var(--panel2);
       color: var(--text);
+      transition: border-color .2s, background .2s, transform .2s;
+    }
+
+    .btn:hover {
+      border-color: var(--gold);
+      transform: translateY(-1px);
     }
 
     .btn:disabled {
       opacity: .6;
       cursor: wait;
+      transform: none;
     }
 
     .btn.primary {
-      background: var(--green);
-      color: #04150f;
-      border-color: var(--green);
-      font-weight: 800;
+      background: linear-gradient(135deg,var(--gold-light),var(--gold));
+      color: #111827;
+      border-color: var(--gold);
+      font-weight: 850;
     }
 
-    .btn.danger { color: var(--red); }
+    .btn.primary:hover {
+      background: var(--gold-light);
+    }
+
+    .btn.danger {
+      color: var(--red);
+    }
+
+    .btn.small-btn {
+      padding: 7px 10px;
+      font-size: 12px;
+    }
 
     .layout {
-      max-width: 1450px;
+      max-width: 1550px;
       margin: auto;
-      padding: 18px;
+      padding: 22px;
       display: grid;
-      grid-template-columns: 210px minmax(0, 1fr);
-      gap: 18px;
+      grid-template-columns: 225px minmax(0,1fr);
+      gap: 22px;
+      align-items: start;
     }
 
     .sidebar {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 12px;
-      height: fit-content;
       position: sticky;
-      top: 12px;
+      top: 100px;
+      padding: 12px;
+      background: rgba(16,26,45,.94);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .sidebar-label {
+      padding: 10px 12px 8px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
     }
 
     .nav-btn {
       width: 100%;
       text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       background: transparent;
       color: var(--muted);
-      border: 0;
+      border: 1px solid transparent;
       padding: 12px;
-      border-radius: 9px;
-      margin-bottom: 4px;
+      border-radius: 10px;
+      margin-bottom: 5px;
+      transition: .2s;
     }
 
-    .nav-btn.active, .nav-btn:hover {
+    .nav-btn:hover {
       background: var(--panel2);
       color: var(--text);
     }
 
-    main { min-width: 0; }
-    .welcome { margin-bottom: 18px; }
+    .nav-btn.active {
+      background: linear-gradient(100deg,rgba(233,189,88,.15),rgba(233,189,88,.035));
+      color: var(--gold-light);
+      border-color: rgba(233,189,88,.25);
+    }
 
-    h1 { font-size: 25px; margin: 0 0 6px; }
-    h2 { font-size: 17px; margin: 0 0 14px; }
-    h3 { font-size: 14px; margin: 0 0 8px; }
+    main {
+      min-width: 0;
+    }
 
-    .muted { color: var(--muted); }
-    .small { font-size: 12px; }
+    .welcome {
+      margin-bottom: 20px;
+      padding: 6px 0;
+    }
 
-    .grid { display: grid; gap: 14px; }
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 800;
+      font-size: 10px;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: clamp(23px,3vw,32px);
+      line-height: 1.2;
+      margin: 0 0 8px;
+      letter-spacing: -.7px;
+    }
+
+    h2 {
+      font-size: 17px;
+      margin: 0 0 15px;
+    }
+
+    h3 {
+      font-size: 14px;
+      margin: 0 0 8px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .small {
+      font-size: 12px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 15px;
+    }
 
     .stats {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(4,minmax(0,1fr));
       margin-bottom: 18px;
     }
 
     .two {
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0,1.35fr) minmax(0,1fr);
       margin-bottom: 18px;
     }
 
     .card {
       min-width: 0;
-      padding: 17px;
-      background: var(--panel);
+      padding: 19px;
+      background: linear-gradient(145deg,rgba(18,29,49,.98),rgba(13,22,39,.98));
       border: 1px solid var(--border);
-      border-radius: 14px;
-      margin-bottom: 14px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 15px;
+    }
+
+    .stat-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 42px;
+      height: 2px;
+      background: var(--gold);
     }
 
     .stat-value {
-      font-size: 24px;
-      font-weight: 850;
+      font-size: clamp(21px,2.5vw,29px);
+      font-weight: 900;
+      letter-spacing: -.6px;
       overflow-wrap: anywhere;
     }
 
     .stat-label {
       color: var(--muted);
-      font-size: 12px;
+      font-size: 11px;
       margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+    }
+
+    .stat-foot {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 7px;
     }
 
     .market-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(2,minmax(0,1fr));
       gap: 10px;
     }
 
     .market-item {
-      padding: 12px;
+      padding: 14px;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #0b1321;
+      border-radius: 12px;
+      background: rgba(7,14,27,.72);
       min-width: 0;
+      transition: border-color .2s;
+    }
+
+    .market-item:hover {
+      border-color: rgba(233,189,88,.5);
     }
 
     .market-pair {
-      font-weight: 800;
-      margin-bottom: 7px;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 750;
+      margin-bottom: 6px;
     }
 
     .market-price {
-      font-size: 19px;
-      font-weight: 800;
+      font-size: clamp(17px,2vw,21px);
+      font-weight: 850;
       overflow-wrap: anywhere;
     }
 
-    .positive { color: var(--green); }
-    .negative { color: var(--red); }
+    .positive {
+      color: var(--green);
+    }
+
+    .negative {
+      color: var(--red);
+    }
+
+    .gold-text {
+      color: var(--gold);
+    }
 
     .chart-toolbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 10px;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .chart-toolbar h2 {
+      margin-bottom: 4px;
     }
 
     #chart {
       display: block;
       width: 100%;
-      height: 330px;
-      background: #0a1220;
-      border-radius: 10px;
+      height: 360px;
+      background: #081120;
+      border-radius: 12px;
       border: 1px solid var(--border);
     }
 
     .chart-stats {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(4,minmax(0,1fr));
       gap: 10px;
-      margin: 12px 0;
+      margin: 14px 0;
     }
 
     .chart-stat {
       min-width: 0;
       padding: 12px;
       border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #0b1321;
+      border-radius: 11px;
+      background: rgba(7,14,27,.7);
     }
 
-    .chart-stat .stat-value { font-size: 17px; }
+    .chart-stat .stat-value {
+      font-size: 16px;
+    }
 
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(2,minmax(0,1fr));
+      gap: 14px;
     }
 
     label {
       display: block;
       color: var(--muted);
       font-size: 12px;
-      margin-bottom: 6px;
+      margin-bottom: 7px;
     }
 
     input, select, textarea {
       width: 100%;
-      background: #0a1220;
+      min-width: 0;
+      background: #080f1e;
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 11px;
+      border-radius: 9px;
+      padding: 12px;
       color: var(--text);
     }
 
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold);
+    }
+
     textarea {
-      min-height: 75px;
+      min-height: 90px;
       resize: vertical;
     }
 
-    .field { min-width: 0; }
-    .full { grid-column: 1 / -1; }
+    .field {
+      min-width: 0;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
 
     .table-wrap {
       overflow-x: auto;
@@ -275,18 +463,26 @@
     }
 
     th, td {
-      padding: 11px 9px;
+      padding: 12px 10px;
       border-bottom: 1px solid var(--border);
       text-align: left;
     }
 
-    th { color: var(--muted); }
+    th {
+      color: var(--gold);
+      font-weight: 750;
+      background: rgba(7,14,27,.5);
+    }
+
+    tbody tr:hover {
+      background: rgba(233,189,88,.035);
+    }
 
     .notice {
-      padding: 12px;
+      padding: 13px 14px;
       border: 1px solid var(--border);
-      background: #0a1220;
-      border-radius: 9px;
+      background: rgba(7,14,27,.7);
+      border-radius: 10px;
       font-size: 13px;
       overflow-wrap: anywhere;
     }
@@ -301,119 +497,272 @@
       color: #a5f5d7;
     }
 
-    .section { display: none; }
-    .section.active { display: block; }
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+      animation: fadeIn .2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: .5; transform: translateY(3px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .lesson {
       border: 1px solid var(--border);
-      padding: 14px;
-      border-radius: 10px;
-      margin-bottom: 10px;
+      padding: 15px;
+      border-radius: 11px;
+      margin-bottom: 11px;
+      background: rgba(7,14,27,.42);
     }
 
     .lesson p {
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.7;
       font-size: 13px;
+      margin-bottom: 0;
+    }
+
+    .lesson h3 {
+      color: var(--gold-light);
+    }
+
+    .brand-banner {
+      border: 1px solid rgba(233,189,88,.28);
+      background: linear-gradient(120deg,rgba(233,189,88,.09),rgba(22,35,58,.15));
+      border-radius: 13px;
+      padding: 16px;
+      margin-bottom: 18px;
+    }
+
+    .brand-banner strong {
+      color: var(--gold-light);
+    }
+
+    .event-card {
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: rgba(7,14,27,.65);
+      margin-top: 10px;
     }
 
     footer {
-      padding: 20px;
+      padding: 25px 18px;
       text-align: center;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 11px;
+      border-top: 1px solid rgba(40,56,82,.6);
     }
 
-    @media (max-width: 850px) {
+    footer strong {
+      color: var(--gold);
+    }
+
+    @media (max-width: 1000px) {
       .layout {
         grid-template-columns: 1fr;
-        padding: 12px;
+        padding: 14px;
+        gap: 14px;
       }
 
       .sidebar {
         position: static;
         display: flex;
+        align-items: center;
         gap: 5px;
         overflow-x: auto;
+        padding: 7px;
+      }
+
+      .sidebar-label {
+        display: none;
       }
 
       .nav-btn {
         width: auto;
         white-space: nowrap;
         margin: 0;
+        padding: 10px 12px;
       }
 
-      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .two { grid-template-columns: 1fr; }
-      .chart-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .stats {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+      }
+
+      .two {
+        grid-template-columns: 1fr;
+      }
     }
 
-    @media (max-width: 420px) {
-      .market-grid, .form-grid { grid-template-columns: 1fr; }
-      .full { grid-column: auto; }
-      h1 { font-size: 22px; }
-      .stat-value { font-size: 21px; }
-      #chart { height: 280px; }
+    @media (max-width: 600px) {
+      .topbar {
+        padding: 12px;
+      }
+
+      .brand {
+        font-size: 16px;
+      }
+
+      .brand-mark {
+        width: 39px;
+        height: 39px;
+      }
+
+      .subtitle {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+
+      .top-actions {
+        width: 100%;
+      }
+
+      .top-actions .pill {
+        flex: 1;
+        text-align: center;
+      }
+
+      .top-actions .btn {
+        padding: 9px 10px;
+      }
+
+      .layout {
+        padding: 10px;
+      }
+
+      .sidebar {
+        border-radius: 12px;
+      }
+
+      .nav-btn {
+        font-size: 12px;
+        padding: 10px;
+      }
+
+      .card {
+        padding: 14px;
+        border-radius: 12px;
+      }
+
+      .market-grid, .form-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+      }
+
+      .chart-stats {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+      }
+
+      #chart {
+        height: 290px;
+      }
+
+      .full {
+        grid-column: 1 / -1;
+      }
+
+      .chart-toolbar select {
+        flex: 1;
+      }
+    }
+
+    @media (max-width: 370px) {
+      .market-grid, .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        gap: 9px;
+      }
+
+      .stat-value {
+        font-size: 21px;
+      }
+
+      .top-actions .btn {
+        font-size: 12px;
+      }
     }
   </style>
 </head>
 
 <body>
+
 <header class="topbar">
-  <div>
-    <div class="brand">DE.BLU IZZ <span>FX V7</span></div>
-    <div class="subtitle">TRADER HUB · Breakout + Retest</div>
+  <div class="brand-area">
+    <div class="brand-mark" aria-label="DE.Bluizz">DB</div>
+    <div>
+      <div class="brand">DE.Bluizz <span>FX NEXUS</span></div>
+      <div class="subtitle">Your World of Trading Intelligence</div>
+    </div>
   </div>
 
   <div class="top-actions">
     <span class="pill small" id="connectionStatus">Connecting…</span>
-    <button class="btn" id="refreshBtn" type="button">Refresh</button>
+    <button class="btn" id="refreshBtn" type="button">↻ Refresh</button>
     <button class="btn danger" id="logoutBtn" type="button">Logout</button>
   </div>
 </header>
 
 <div class="layout">
+
   <nav class="sidebar" aria-label="Main navigation">
-    <button class="nav-btn active" data-section="overview">🏠 Overview</button>
-    <button class="nav-btn" data-section="terminal">📈 Trading Terminal</button>
-    <button class="nav-btn" data-section="journal">📔 Trading Journal</button>
-    <button class="nav-btn" data-section="academy">🎓 Forex Academy</button>
-    <button class="nav-btn" data-section="insights">🌍 Market Insights</button>
+    <div class="sidebar-label">Workspace</div>
+    <button class="nav-btn active" data-section="overview" type="button">⌂ Overview</button>
+    <button class="nav-btn" data-section="terminal" type="button">↗ Trading Terminal</button>
+    <button class="nav-btn" data-section="journal" type="button">▤ Trading Journal</button>
+    <button class="nav-btn" data-section="academy" type="button">▣ Forex Academy</button>
+    <button class="nav-btn" data-section="insights" type="button">◎ Market Insights</button>
   </nav>
 
   <main>
     <section class="welcome">
-      <h1>Welcome to your Trading Hub</h1>
+      <div class="eyebrow">Welcome to your workspace</div>
+      <h1>Trade with intelligence.</h1>
       <div class="muted small">
-        Trade with discipline. Protect your capital. Keep learning.
+        Analyse the market. Follow your strategy. Protect your capital.
       </div>
     </section>
 
-    <div id="globalNotice" class="notice" role="status">
-      Connecting to your trading hub…
+    <div id="globalNotice" class="notice" role="status" aria-live="polite">
+      Connecting to DE.Bluizz FX NEXUS…
     </div>
 
     <section id="overview" class="section active">
+
+      <div class="brand-banner">
+        <strong>DE.Bluizz FX NEXUS</strong>
+        <div class="muted small">
+          Forex education · Market intelligence · Trading tools · Performance tracking
+        </div>
+      </div>
+
       <div class="grid stats">
-        <div class="card">
+        <div class="card stat-card">
           <div class="stat-label">Journal Trades</div>
           <div class="stat-value" id="statTrades">—</div>
-          <div class="small muted">Saved records</div>
+          <div class="stat-foot">Saved records</div>
         </div>
-        <div class="card">
+
+        <div class="card stat-card">
           <div class="stat-label">Winning Trades</div>
           <div class="stat-value positive" id="statWins">—</div>
-          <div class="small muted">Positive numeric results</div>
+          <div class="stat-foot">Positive recorded results</div>
         </div>
-        <div class="card">
+
+        <div class="card stat-card">
           <div class="stat-label">Win Rate</div>
-          <div class="stat-value" id="statWinRate">—</div>
-          <div class="small muted">Based on recorded results</div>
+          <div class="stat-value gold-text" id="statWinRate">—</div>
+          <div class="stat-foot">Based on decided trades</div>
         </div>
-        <div class="card">
+
+        <div class="card stat-card">
           <div class="stat-label">Market Feed</div>
           <div class="stat-value" id="statMarket">—</div>
-          <div class="small muted">Latest connection check</div>
+          <div class="stat-foot">Instrument availability</div>
         </div>
       </div>
 
@@ -428,18 +777,20 @@
 
         <div class="card">
           <h2>Trading Discipline</h2>
+
           <div class="lesson">
-            <h3>Protect your capital</h3>
+            <h3>01 · Protect your capital</h3>
             <p>
-              Plan your risk before entering a trade. Avoid revenge trading
-              and never increase risk just to recover a loss.
+              Determine your risk before entering a trade. Avoid revenge trading
+              and never increase your risk simply to recover a loss.
             </p>
           </div>
+
           <div class="lesson">
-            <h3>Follow the setup</h3>
+            <h3>02 · Follow the setup</h3>
             <p>
-              For Breakout + Retest, wait for a clear breakout, a retest of
-              the broken level and confirmation before considering entry.
+              With Breakout + Retest, wait for a meaningful breakout, a retest
+              of the broken level, and confirmation before considering entry.
             </p>
           </div>
         </div>
@@ -455,6 +806,7 @@
       <div class="card">
         <div class="chart-toolbar">
           <div>
+            <div class="eyebrow">Market Analysis</div>
             <h2>15-Minute Candlestick Chart</h2>
             <div id="chartStatus" class="small muted">Waiting for candles…</div>
           </div>
@@ -466,9 +818,7 @@
               <option value="USD/JPY">USD/JPY</option>
               <option value="XAU/USD">XAU/USD</option>
             </select>
-            <button class="btn" id="chartRefreshBtn" type="button">
-              Refresh chart
-            </button>
+            <button class="btn" id="chartRefreshBtn" type="button">↻ Chart</button>
           </div>
         </div>
 
@@ -477,14 +827,17 @@
             <div class="stat-label">Latest Close</div>
             <div class="stat-value" id="latestPrice">—</div>
           </div>
+
           <div class="chart-stat">
             <div class="stat-label">Displayed Movement</div>
             <div class="stat-value" id="chartMovement">—</div>
           </div>
+
           <div class="chart-stat">
             <div class="stat-label">Latest Candle</div>
             <div class="small" id="lastCandleTime">—</div>
           </div>
+
           <div class="chart-stat">
             <div class="stat-label">Feed Status</div>
             <div class="stat-value" id="chartFeedStatus">Waiting…</div>
@@ -498,16 +851,19 @@
           indicate a close below the open. Displayed movement compares the
           first and latest candle closes; it is not your trade profit or loss.
         </p>
+
         <p class="muted small">
-          Gold movement is shown in price points using a 0.1 price increment.
-          Broker conventions may differ.
+          Gold movement is displayed using a 0.1 price increment. Broker
+          conventions may differ.
         </p>
       </div>
     </section>
 
     <section id="journal" class="section">
       <div class="card">
+        <div class="eyebrow">Performance Tracking</div>
         <h2>Record a Trade</h2>
+
         <div id="journalNotice" class="notice">
           Your saved entries will appear below.
         </div>
@@ -518,6 +874,7 @@
               <label for="tradeDate">Trade date</label>
               <input id="tradeDate" type="date" required>
             </div>
+
             <div class="field">
               <label for="pair">Instrument</label>
               <select id="pair" required>
@@ -528,6 +885,7 @@
                 <option>Other</option>
               </select>
             </div>
+
             <div class="field">
               <label for="direction">Direction</label>
               <select id="direction" required>
@@ -535,25 +893,29 @@
                 <option value="SELL">SELL</option>
               </select>
             </div>
+
             <div class="field">
               <label for="setup">Setup / strategy</label>
-              <input id="setup" value="Breakout + Retest"
-                     maxlength="120" required>
+              <input id="setup" value="Breakout + Retest" maxlength="120" required>
             </div>
+
             <div class="field">
               <label for="riskPercent">Risk (%)</label>
               <input id="riskPercent" type="number" min="0" max="100"
                      step="0.01" placeholder="1" required>
             </div>
+
             <div class="field">
               <label for="result">Result (e.g. +2R, -1R, BE)</label>
               <input id="result" maxlength="40" placeholder="+2R" required>
             </div>
+
             <div class="field full">
-              <label for="notes">Notes</label>
+              <label for="notes">Trade notes</label>
               <textarea id="notes" maxlength="2000"
-                        placeholder="Entry reason, confirmation, lessons learned…"></textarea>
+                placeholder="Entry reason, confirmation, lessons learned…"></textarea>
             </div>
+
             <div class="field full">
               <button class="btn primary" id="saveTradeBtn" type="submit">
                 Save Trade
@@ -564,68 +926,101 @@
       </div>
 
       <div class="card">
-        <h2>All Journal Entries</h2>
+        <h2>Trading History</h2>
         <div id="journalTable" class="notice">Waiting for journal data…</div>
       </div>
     </section>
 
     <section id="academy" class="section">
       <div class="card">
+        <div class="eyebrow">Learn · Practise · Improve</div>
         <h2>DE.Bluizz Forex Academy</h2>
         <p class="muted">
-          Start with the core strategy and develop consistent habits.
+          Build your understanding of the market and develop disciplined trading habits.
         </p>
+
         <article class="lesson">
           <h3>Lesson 1 — Market Structure</h3>
-          <p>Learn to identify swing highs, swing lows, support, resistance and the direction of the current market.</p>
+          <p>
+            Learn to identify swing highs, swing lows, support, resistance,
+            and the direction of the current market.
+          </p>
         </article>
+
         <article class="lesson">
-          <h3>Lesson 2 — Breakout</h3>
-          <p>Look for a clear candle close beyond a meaningful support or resistance level. Be cautious of false breakouts.</p>
+          <h3>Lesson 2 — The Breakout</h3>
+          <p>
+            Look for a candle close beyond a meaningful support or resistance
+            level. Be cautious of false breakouts and weak moves.
+          </p>
         </article>
+
         <article class="lesson">
           <h3>Lesson 3 — Retest and Confirmation</h3>
-          <p>After a breakout, wait to see whether price retests the broken level and whether price action supports your trading idea.</p>
+          <p>
+            After a breakout, observe whether price retests the broken level
+            and whether price action supports your trading idea.
+          </p>
         </article>
+
         <article class="lesson">
           <h3>Lesson 4 — Risk Management</h3>
-          <p>Decide your stop-loss, position size and acceptable risk before entry. A good setup can still lose.</p>
+          <p>
+            Decide your stop-loss, position size, and acceptable risk before
+            entering. Even a well-planned trade can lose.
+          </p>
         </article>
+
         <article class="lesson">
           <h3>Lesson 5 — Trading Psychology</h3>
-          <p>Keep a journal, follow your rules, accept losses and avoid taking trades merely because you want to be in the market.</p>
+          <p>
+            Keep a journal, follow your rules, accept losses, and avoid
+            entering trades simply because you want to be in the market.
+          </p>
         </article>
       </div>
     </section>
 
     <section id="insights" class="section">
       <div class="card">
-        <h2>🌍 Market Insights</h2>
-        <div id="insightsStatus" class="notice">Loading economic calendar...</div>
-        <h3>📅 Upcoming Economic Events</h3>
-        <p class="muted small">
-          Upcoming events that may affect currency markets. Times are shown in East Africa Time (EAT).
-        </p>
-        <div id="economicCalendar">
-          <p class="muted">Fetching economic events...</p>
+        <div class="eyebrow">Market Intelligence</div>
+        <h2>Economic Calendar & Market Insights</h2>
+
+        <div id="insightsStatus" class="notice">
+          Checking economic calendar…
         </div>
+
+        <h3 style="margin-top:20px">Upcoming Economic Events</h3>
         <p class="muted small">
-          Economic events can cause significant price movements. Verify important releases with an official source before trading.
+          Times are shown in East Africa Time (EAT), where the source provides
+          a date and time that can be interpreted reliably.
+        </p>
+
+        <div id="economicCalendar">
+          <p class="muted">Checking for economic events…</p>
+        </div>
+
+        <p class="muted small">
+          Economic releases can cause significant price movements. Verify
+          important announcements with an official source before trading.
         </p>
       </div>
     </section>
+
   </main>
 </div>
 
 <footer>
-  DE.Bluizz FX V7 Trader Hub · Learn, plan and trade responsibly.
+  <strong>DE.Bluizz FX NEXUS</strong>
+  <br>
+  Your World of Trading Intelligence.
+  <br>
+  Learn, plan, and trade responsibly.
 </footer>
 
 <script>
 (() => {
   "use strict";
-  let marketTimer = null;
-let calendarTimer = null;
 
   const $ = id => document.getElementById(id);
   const pairs = ["EUR/USD", "GBP/USD", "USD/JPY", "XAU/USD"];
@@ -634,6 +1029,9 @@ let calendarTimer = null;
   let session = null;
   let candles = [];
   let marketData = {};
+
+  let marketTimer = null;
+  let calendarTimer = null;
 
   let marketRequestRunning = false;
   let chartRequestRunning = false;
@@ -644,6 +1042,7 @@ let calendarTimer = null;
   function setNotice(id, message, type = "") {
     const el = $(id);
     if (!el) return;
+
     el.className = "notice" + (type ? " " + type : "");
     el.textContent = message;
   }
@@ -651,6 +1050,7 @@ let calendarTimer = null;
   function setConnection(message, ok = false) {
     const el = $("connectionStatus");
     if (!el) return;
+
     el.textContent = message;
     el.style.color = ok ? "var(--green)" : "var(--gold)";
   }
@@ -663,11 +1063,6 @@ let calendarTimer = null;
       '"': "&quot;",
       "'": "&#39;"
     })[ch]);
-  }
-
-  function showNumber(value, digits = 5) {
-    const number = Number(value);
-    return Number.isFinite(number) ? number.toFixed(digits) : "—";
   }
 
   function digitsFor(pair) {
@@ -691,9 +1086,7 @@ let calendarTimer = null;
     }).formatToParts(new Date());
 
     const values = {};
-    parts.forEach(part => {
-      values[part.type] = part.value;
-    });
+    parts.forEach(part => values[part.type] = part.value);
 
     return `${values.year}-${values.month}-${values.day}`;
   }
@@ -702,7 +1095,7 @@ let calendarTimer = null;
     const base = window.SUPABASE_URL;
 
     if (!base) {
-      throw new Error("SUPABASE_URL is missing from supabase.js");
+      throw new Error("SUPABASE_URL is missing from supabase.js.");
     }
 
     const params = new URLSearchParams({
@@ -725,27 +1118,26 @@ let calendarTimer = null;
     const raw = await response.text();
 
     let data;
+
     try {
       data = JSON.parse(raw);
     } catch {
-      throw new Error(`Market API returned non-JSON data (HTTP ${response.status})`);
+      throw new Error(`Market API returned invalid JSON (HTTP ${response.status}).`);
     }
 
     if (!response.ok || data.error) {
-      throw new Error(data.error || data.message || `Market API HTTP ${response.status}`);
+      throw new Error(
+        data.error || data.message || `Market API HTTP ${response.status}`
+      );
     }
 
     return data;
   }
 
-  // ------------------------------
   // MARKET WATCHLIST
-  // ------------------------------
 
   function drawWatchlist() {
     const root = $("watchlist");
-    if (!root) return;
-
     root.innerHTML = "";
 
     pairs.forEach(pair => {
@@ -755,7 +1147,7 @@ let calendarTimer = null;
 
       div.innerHTML = `
         <div class="market-pair">${escapeHtml(pair)}</div>
-        <div class="market-price">${item ? showNumber(item.price, digitsFor(pair)) : "—"}</div>
+        <div class="market-price">${item ? item.price.toFixed(digitsFor(pair)) : "—"}</div>
         <div class="small muted">${item ? "Updated " + escapeHtml(item.updated) : "Waiting for quote"}</div>
       `;
 
@@ -767,6 +1159,7 @@ let calendarTimer = null;
     if (marketRequestRunning || !session) return;
 
     marketRequestRunning = true;
+
     let successCount = 0;
     const errors = [];
 
@@ -783,7 +1176,7 @@ let calendarTimer = null;
             rawPrice === "" ||
             !Number.isFinite(price)
           ) {
-            throw new Error("No valid quote price returned");
+            throw new Error("No valid quote price returned.");
           }
 
           marketData[pair] = {
@@ -803,6 +1196,7 @@ let calendarTimer = null;
       drawWatchlist();
 
       $("statMarket").textContent = `${successCount}/${pairs.length}`;
+
       $("marketUpdated").textContent =
         "Last check: " + new Date().toLocaleTimeString("en-KE", {
           timeZone: "Africa/Nairobi",
@@ -816,20 +1210,32 @@ let calendarTimer = null;
       }
 
       if (successCount === pairs.length) {
-        setNotice("globalNotice", "All watchlist instruments returned prices.", "success");
+        setNotice(
+          "globalNotice",
+          "All watchlist instruments returned prices.",
+          "success"
+        );
       } else if (successCount > 0) {
-        setNotice("globalNotice", `${successCount} of ${pairs.length} instruments returned prices. Some quotes may be unavailable.`);
+        setNotice(
+          "globalNotice",
+          `${successCount} of ${pairs.length} instruments returned prices.`
+        );
       } else {
-        setNotice("globalNotice", errors[0] || "Market quotes are unavailable.", "error");
+        setNotice(
+          "globalNotice",
+          errors[0] || "Market quotes are unavailable.",
+          "error"
+        );
       }
+    } catch (error) {
+      console.error("Market loading error:", error);
+      setNotice("globalNotice", error.message, "error");
     } finally {
       marketRequestRunning = false;
     }
   }
 
-  // ------------------------------
-  // CANDLE DATA AND CHART
-  // ------------------------------
+  // CANDLESTICK CHART
 
   function timestampValue(value) {
     if (value === null || value === undefined || value === "") {
@@ -838,7 +1244,11 @@ let calendarTimer = null;
 
     if (typeof value === "number" || /^\d+$/.test(String(value))) {
       let timestamp = Number(value);
-      if (timestamp < 100000000000) timestamp *= 1000;
+
+      if (timestamp < 100000000000) {
+        timestamp *= 1000;
+      }
+
       return timestamp;
     }
 
@@ -847,7 +1257,10 @@ let calendarTimer = null;
 
   function formatCandleTime(value) {
     const timestamp = timestampValue(value);
-    if (!Number.isFinite(timestamp)) return "Time unavailable";
+
+    if (!Number.isFinite(timestamp)) {
+      return "Time unavailable";
+    }
 
     return new Intl.DateTimeFormat("en-KE", {
       timeZone: "Africa/Nairobi",
@@ -861,9 +1274,13 @@ let calendarTimer = null;
     if (!canvas) return false;
 
     const rect = canvas.getBoundingClientRect();
-    if (!rect.width || !rect.height) return false;
+
+    if (!rect.width || !rect.height) {
+      return false;
+    }
 
     const ratio = window.devicePixelRatio || 1;
+
     canvas.width = Math.round(rect.width * ratio);
     canvas.height = Math.round(rect.height * ratio);
 
@@ -875,6 +1292,7 @@ let calendarTimer = null;
 
   function drawChart() {
     const canvas = $("chart");
+
     if (!canvas || !resizeCanvas()) return;
 
     const ctx = canvas.getContext("2d");
@@ -884,31 +1302,37 @@ let calendarTimer = null;
     const digits = digitsFor(pair);
 
     ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = "#0a1220";
+    ctx.fillStyle = "#081120";
     ctx.fillRect(0, 0, width, height);
 
-    const pad = { left: 12, right: 76, top: 20, bottom: 30 };
+    const pad = {
+      left: 12,
+      right: 78,
+      top: 20,
+      bottom: 34
+    };
+
     const plotW = width - pad.left - pad.right;
     const plotH = height - pad.top - pad.bottom;
 
     if (plotW <= 0 || plotH <= 0) return;
 
     if (candles.length < 2) {
-      ctx.fillStyle = "#91a1bd";
+      ctx.fillStyle = "#9aaac3";
       ctx.font = "12px system-ui";
       ctx.fillText("Waiting for market candles…", 16, 30);
       return;
     }
 
-    const lows = candles.map(c => c.low);
-    const highs = candles.map(c => c.high);
+    const minLow = Math.min(...candles.map(c => c.low));
+    const maxHigh = Math.max(...candles.map(c => c.high));
 
-    let min = Math.min(...lows);
-    let max = Math.max(...highs);
+    let min = minLow;
+    let max = maxHigh;
 
     if (!Number.isFinite(min) || !Number.isFinite(max)) {
-      ctx.fillStyle = "#91a1bd";
-      ctx.fillText("Invalid candle prices", 16, 30);
+      ctx.fillStyle = "#9aaac3";
+      ctx.fillText("Invalid candle prices.", 16, 30);
       return;
     }
 
@@ -930,76 +1354,87 @@ let calendarTimer = null;
       const price = max - (max - min) * i / 4;
 
       ctx.beginPath();
-      ctx.strokeStyle = "#243149";
+      ctx.strokeStyle = "#263650";
       ctx.lineWidth = 1;
       ctx.moveTo(pad.left, gy);
       ctx.lineTo(width - pad.right, gy);
       ctx.stroke();
 
-      ctx.fillStyle = "#91a1bd";
+      ctx.fillStyle = "#9aaac3";
       ctx.font = "11px Arial";
       ctx.textAlign = "left";
-      ctx.fillText(price.toFixed(digits), width - pad.right + 5, gy + 4);
+      ctx.fillText(
+        price.toFixed(digits),
+        width - pad.right + 5,
+        gy + 4
+      );
     }
 
     const step = plotW / candles.length;
     const bodyW = Math.max(2, Math.min(12, step * 0.62));
 
-    // Draw every candle
     candles.forEach((candle, index) => {
       const x = pad.left + index * step + step / 2;
+
       const openY = y(candle.open);
       const closeY = y(candle.close);
       const highY = y(candle.high);
       const lowY = y(candle.low);
 
       const bullish = candle.close >= candle.open;
-      const candleColor = bullish ? "#20c997" : "#ff5b6e";
+      const color = bullish ? "#22d3a0" : "#ff657a";
 
-      ctx.strokeStyle = candleColor;
+      ctx.strokeStyle = color;
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(x, highY);
       ctx.lineTo(x, lowY);
       ctx.stroke();
 
-      ctx.fillStyle = candleColor;
+      ctx.fillStyle = color;
 
       const bodyTop = Math.min(openY, closeY);
       const bodyHeight = Math.max(1.5, Math.abs(closeY - openY));
 
-      ctx.fillRect(x - bodyW / 2, bodyTop, bodyW, bodyHeight);
+      ctx.fillRect(
+        x - bodyW / 2,
+        bodyTop,
+        bodyW,
+        bodyHeight
+      );
     });
 
     const latest = candles[candles.length - 1];
     const first = candles[0];
-
-    // Latest-price line
     const latestY = y(latest.close);
 
+    // Latest price line
     ctx.save();
     ctx.setLineDash([5, 4]);
-    ctx.strokeStyle = "#e8c547";
+    ctx.strokeStyle = "#e9bd58";
     ctx.lineWidth = 1;
+
     ctx.beginPath();
     ctx.moveTo(pad.left, latestY);
     ctx.lineTo(width - pad.right, latestY);
     ctx.stroke();
     ctx.restore();
 
-    ctx.fillStyle = "#e8c547";
+    ctx.fillStyle = "#ffe09a";
     ctx.font = "bold 11px Arial";
     ctx.textAlign = "left";
+
     ctx.fillText(
       latest.close.toFixed(digits),
       width - pad.right + 5,
-      Math.max(12, Math.min(height - 32, latestY - 5))
+      Math.max(12, Math.min(height - 36, latestY - 5))
     );
 
     // Time labels
-    ctx.fillStyle = "#91a1bd";
+    ctx.fillStyle = "#9aaac3";
     ctx.font = "10px Arial";
     ctx.textAlign = "left";
+
     ctx.fillText(
       formatCandleTime(first.time),
       pad.left,
@@ -1007,18 +1442,21 @@ let calendarTimer = null;
     );
 
     ctx.textAlign = "right";
+
     ctx.fillText(
       formatCandleTime(latest.time),
       width - pad.right,
       height - 8
     );
 
-    // Chart statistics
+    // Statistics
     $("latestPrice").textContent = latest.close.toFixed(digits);
     $("lastCandleTime").textContent = formatCandleTime(latest.time);
-    $("chartFeedStatus").textContent = "Live feed";
+    $("chartFeedStatus").textContent = "Connected";
 
-    const movement = (latest.close - first.close) / pipSizeFor(pair);
+    const movement =
+      (latest.close - first.close) / pipSizeFor(pair);
+
     const sign = movement > 0 ? "+" : "";
 
     $("chartMovement").textContent =
@@ -1034,6 +1472,7 @@ let calendarTimer = null;
     if (!session || chartRequestRunning) return;
 
     chartRequestRunning = true;
+
     const requestId = ++chartRequestId;
     const pair = $("chartPair").value;
 
@@ -1045,7 +1484,10 @@ let calendarTimer = null;
         interval: "15min"
       });
 
-      if (requestId !== chartRequestId || pair !== $("chartPair").value) {
+      if (
+        requestId !== chartRequestId ||
+        pair !== $("chartPair").value
+      ) {
         return;
       }
 
@@ -1070,7 +1512,8 @@ let calendarTimer = null;
           !Number.isFinite(open) ||
           !Number.isFinite(high) ||
           !Number.isFinite(low) ||
-          !Number.isFinite(close)
+          !Number.isFinite(close) ||
+          !Number.isFinite(time)
         ) {
           return null;
         }
@@ -1080,11 +1523,12 @@ let calendarTimer = null;
       .filter(Boolean)
       .sort((a, b) => a.time - b.time);
 
-      if (parsed.length === 0) {
+      if (!parsed.length) {
         throw new Error("The returned candle data is invalid.");
       }
 
       candles = parsed.slice(-60);
+
       drawChart();
 
       $("chartStatus").textContent =
@@ -1093,6 +1537,7 @@ let calendarTimer = null;
       $("chartFeedStatus").textContent = "Connected";
     } catch (error) {
       console.error("Candle loading error:", error);
+
       $("chartStatus").textContent = "Chart error: " + error.message;
       $("chartFeedStatus").textContent = "Unavailable";
     } finally {
@@ -1101,6 +1546,7 @@ let calendarTimer = null;
   }
 
   $("chartPair").addEventListener("change", () => {
+    chartRequestId++;
     candles = [];
     drawChart();
     loadCandles();
@@ -1112,9 +1558,7 @@ let calendarTimer = null;
     if (candles.length) drawChart();
   });
 
-  // ------------------------------
-  // JOURNAL
-  // ------------------------------
+  // TRADING JOURNAL
 
   function isWinningResult(result) {
     const text = String(result ?? "").trim().toUpperCase();
@@ -1123,26 +1567,29 @@ let calendarTimer = null;
       return false;
     }
 
-    const match = text.match(/^[+]?\s*(\d+(?:\.\d+)?)/);
+    const match = text.match(/^\+?\s*(\d+(?:\.\d+)?)/);
+
     return !!match && Number(match[1]) > 0;
   }
 
   function isLosingResult(result) {
-    const text = String(result ?? "").trim().toUpperCase();
-    return /^-\s*\d/.test(text);
+    return /^-\s*\d/.test(String(result ?? "").trim());
   }
 
   function renderJournal(rows) {
     $("statTrades").textContent = rows.length;
 
     const wins = rows.filter(row => isWinningResult(row.result)).length;
+
     const decided = rows.filter(row =>
       isWinningResult(row.result) || isLosingResult(row.result)
     ).length;
 
     $("statWins").textContent = wins;
-    $("statWinRate").textContent =
-      decided ? ((wins / decided) * 100).toFixed(1) + "%" : "—";
+
+    $("statWinRate").textContent = decided
+      ? ((wins / decided) * 100).toFixed(1) + "%"
+      : "—";
 
     if (!rows.length) {
       $("recentTrades").textContent = "No journal entries yet.";
@@ -1151,7 +1598,7 @@ let calendarTimer = null;
     }
 
     $("recentTrades").innerHTML = rows.slice(0, 5).map(row => `
-      <div style="padding:10px 0;border-bottom:1px solid var(--border)">
+      <div style="padding:11px 0;border-bottom:1px solid var(--border)">
         <strong>${escapeHtml(row.pair)}</strong>
         · ${escapeHtml(row.direction)}
         · ${escapeHtml(row.result)}
@@ -1209,13 +1656,18 @@ let calendarTimer = null;
       if (error) throw error;
 
       renderJournal(data || []);
-      setNotice("journalNotice", "Journal loaded successfully.", "success");
+
+      setNotice(
+        "journalNotice",
+        "Journal loaded successfully.",
+        "success"
+      );
     } catch (error) {
       console.error("Journal loading error:", error);
 
       setNotice(
         "journalNotice",
-        "Unable to load journal data. Check the Supabase table name, columns and Row Level Security settings.",
+        "Unable to load journal data: " + error.message,
         "error"
       );
 
@@ -1230,11 +1682,16 @@ let calendarTimer = null;
     event.preventDefault();
 
     if (!client || !session) {
-      setNotice("journalNotice", "Please log in before saving a trade.", "error");
+      setNotice(
+        "journalNotice",
+        "Please log in before saving a trade.",
+        "error"
+      );
       return;
     }
 
     const button = $("saveTradeBtn");
+
     button.disabled = true;
     button.textContent = "Saving…";
 
@@ -1256,7 +1713,11 @@ let calendarTimer = null;
 
       if (error) throw error;
 
-      setNotice("journalNotice", "Trade saved successfully.", "success");
+      setNotice(
+        "journalNotice",
+        "Trade saved successfully.",
+        "success"
+      );
 
       $("result").value = "";
       $("notes").value = "";
@@ -1276,21 +1737,24 @@ let calendarTimer = null;
     }
   });
 
-  // ------------------------------
   // ECONOMIC CALENDAR
-  // ------------------------------
 
   async function loadEconomicCalendar() {
-    if (calendarRequestRunning) return;
+    if (calendarRequestRunning || !session) return;
+
     calendarRequestRunning = true;
 
     const container = $("economicCalendar");
 
     try {
       const base = window.SUPABASE_URL;
-      if (!base) throw new Error("Supabase URL is missing.");
+
+      if (!base) {
+        throw new Error("Supabase URL is missing.");
+      }
 
       const headers = {};
+
       if (session?.access_token) {
         headers.Authorization = "Bearer " + session.access_token;
       }
@@ -1300,25 +1764,41 @@ let calendarTimer = null;
         { headers }
       );
 
-      const result = await response.json();
+      const raw = await response.text();
+      let result;
+
+      try {
+        result = JSON.parse(raw);
+      } catch {
+        throw new Error("The calendar endpoint returned invalid JSON.");
+      }
 
       if (!response.ok) {
-        throw new Error(result.error || result.message || "Calendar request failed");
+        throw new Error(
+          result.error || result.message ||
+          "Calendar request failed: HTTP " + response.status
+        );
       }
 
       const events = Array.isArray(result.events) ? result.events : [];
 
       const upcoming = events
         .filter(event => {
-          const date = Date.parse(event.date);
-          return event.title && Number.isFinite(date) && date >= Date.now();
+          const timestamp = Date.parse(event.date);
+          return event.title && Number.isFinite(timestamp) && timestamp >= Date.now();
         })
         .sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
         .slice(0, 15);
 
       if (!upcoming.length) {
-        container.textContent = "No upcoming events were found in the current feed.";
-        setNotice("insightsStatus", "Calendar connected, but no upcoming events were found.");
+        container.textContent =
+          "No upcoming events were found in the current feed.";
+
+        setNotice(
+          "insightsStatus",
+          "Calendar responded, but no upcoming events were found."
+        );
+
         return;
       }
 
@@ -1330,7 +1810,7 @@ let calendarTimer = null;
         }).format(new Date(event.date));
 
         return `
-          <div class="card" style="margin-top:12px">
+          <div class="event-card">
             <strong>${escapeHtml(event.title)}</strong>
             <div class="muted small">${escapeHtml(dateText)} EAT</div>
             <div class="small">
@@ -1360,9 +1840,7 @@ let calendarTimer = null;
     }
   }
 
-  // ------------------------------
   // NAVIGATION
-  // ------------------------------
 
   function showSection(sectionId) {
     document.querySelectorAll(".section").forEach(section => {
@@ -1374,23 +1852,36 @@ let calendarTimer = null;
     });
 
     const section = $(sectionId);
-    if (section) section.classList.add("active");
+
+    if (section) {
+      section.classList.add("active");
+    }
 
     const button = document.querySelector(
       `.nav-btn[data-section="${sectionId}"]`
     );
 
-    if (button) button.classList.add("active");
+    if (button) {
+      button.classList.add("active");
+    }
 
     if (sectionId === "terminal") {
       setTimeout(() => {
-        if (candles.length) drawChart();
-        else loadCandles();
+        if (candles.length) {
+          drawChart();
+        } else {
+          loadCandles();
+        }
       }, 100);
     }
 
-    if (sectionId === "journal") loadJournal();
-    if (sectionId === "insights") loadEconomicCalendar();
+    if (sectionId === "journal") {
+      loadJournal();
+    }
+
+    if (sectionId === "insights") {
+      loadEconomicCalendar();
+    }
   }
 
   document.querySelectorAll(".nav-btn").forEach(button => {
@@ -1399,17 +1890,19 @@ let calendarTimer = null;
     });
   });
 
-  // ------------------------------
   // REFRESH AND LOGOUT
-  // ------------------------------
 
   async function refreshAll() {
     const button = $("refreshBtn");
+
     button.disabled = true;
     button.textContent = "Refreshing…";
 
     try {
-      await Promise.allSettled([loadMarkets(), loadJournal()]);
+      await Promise.allSettled([
+        loadMarkets(),
+        loadJournal()
+      ]);
 
       if ($("terminal").classList.contains("active")) {
         await loadCandles();
@@ -1417,15 +1910,16 @@ let calendarTimer = null;
 
       setNotice(
         "globalNotice",
-        "Refresh completed at " + new Date().toLocaleTimeString("en-KE", {
-          timeZone: "Africa/Nairobi",
-          hour12: false
-        }),
+        "Refresh completed at " +
+          new Date().toLocaleTimeString("en-KE", {
+            timeZone: "Africa/Nairobi",
+            hour12: false
+          }),
         "success"
       );
     } finally {
       button.disabled = false;
-      button.textContent = "Refresh";
+      button.textContent = "↻ Refresh";
     }
   }
 
@@ -1433,7 +1927,9 @@ let calendarTimer = null;
 
   $("logoutBtn").addEventListener("click", async () => {
     try {
-      if (client) await client.auth.signOut();
+      if (client) {
+        await client.auth.signOut();
+      }
     } catch (error) {
       console.error("Logout error:", error);
     }
@@ -1441,9 +1937,7 @@ let calendarTimer = null;
     window.location.href = "./auth.html";
   });
 
-  // ------------------------------
   // STARTUP
-  // ------------------------------
 
   async function startDashboard() {
     try {
@@ -1451,11 +1945,13 @@ let calendarTimer = null;
 
       if (!client) {
         setConnection("Supabase unavailable");
+
         setNotice(
           "globalNotice",
-          "Supabase client not found. Check supabase.js and the Supabase configuration.",
+          "Supabase client not found. Check supabase.js and its configuration.",
           "error"
         );
+
         return;
       }
 
@@ -1476,7 +1972,7 @@ let calendarTimer = null;
 
       setNotice(
         "globalNotice",
-        "Welcome back. Loading your market data and journal…",
+        "Welcome to DE.Bluizz FX NEXUS. Loading market data and journal…",
         "success"
       );
 
@@ -1501,7 +1997,6 @@ let calendarTimer = null;
         }
       }, 300000);
 
-      // Keep the session reference current.
       client.auth.onAuthStateChange((_event, newSession) => {
         session = newSession;
 
@@ -1511,8 +2006,14 @@ let calendarTimer = null;
       });
     } catch (error) {
       console.error("Dashboard startup error:", error);
+
       setConnection("Connection error");
-      setNotice("globalNotice", error.message || "Dashboard startup failed.", "error");
+
+      setNotice(
+        "globalNotice",
+        error.message || "Dashboard startup failed.",
+        "error"
+      );
     }
   }
 
@@ -1523,5 +2024,6 @@ let calendarTimer = null;
   }
 })();
 </script>
+
 </body>
   </html>
