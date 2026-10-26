@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#080d18">
+  <meta name="description" content="DE.Bluizz FX V7 Trader Hub — forex education, market tools, and trading journal.">
   <title>DE.Bluizz FX V7 Trader Hub</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -389,10 +390,9 @@
     </section>
 
     <div id="globalNotice" class="notice" role="status">
-      Dashboard ready
+      Connecting to your trading hub…
     </div>
 
-    <!-- OVERVIEW -->
     <section id="overview" class="section active">
       <div class="grid stats">
         <div class="card">
@@ -400,19 +400,16 @@
           <div class="stat-value" id="statTrades">—</div>
           <div class="small muted">Saved records</div>
         </div>
-
         <div class="card">
           <div class="stat-label">Winning Trades</div>
           <div class="stat-value positive" id="statWins">—</div>
           <div class="small muted">Positive numeric results</div>
         </div>
-
         <div class="card">
           <div class="stat-label">Win Rate</div>
           <div class="stat-value" id="statWinRate">—</div>
           <div class="small muted">Based on recorded results</div>
         </div>
-
         <div class="card">
           <div class="stat-label">Market Feed</div>
           <div class="stat-value" id="statMarket">—</div>
@@ -431,7 +428,6 @@
 
         <div class="card">
           <h2>Trading Discipline</h2>
-
           <div class="lesson">
             <h3>Protect your capital</h3>
             <p>
@@ -439,7 +435,6 @@
               and never increase risk just to recover a loss.
             </p>
           </div>
-
           <div class="lesson">
             <h3>Follow the setup</h3>
             <p>
@@ -456,15 +451,12 @@
       </div>
     </section>
 
-    <!-- TRADING TERMINAL -->
     <section id="terminal" class="section">
       <div class="card">
         <div class="chart-toolbar">
           <div>
             <h2>15-Minute Candlestick Chart</h2>
-            <div id="chartStatus" class="small muted">
-              Waiting for candles…
-            </div>
+            <div id="chartStatus" class="small muted">Waiting for candles…</div>
           </div>
 
           <div class="top-actions">
@@ -474,7 +466,6 @@
               <option value="USD/JPY">USD/JPY</option>
               <option value="XAU/USD">XAU/USD</option>
             </select>
-
             <button class="btn" id="chartRefreshBtn" type="button">
               Refresh chart
             </button>
@@ -486,17 +477,14 @@
             <div class="stat-label">Latest Close</div>
             <div class="stat-value" id="latestPrice">—</div>
           </div>
-
           <div class="chart-stat">
             <div class="stat-label">Displayed Movement</div>
             <div class="stat-value" id="chartMovement">—</div>
           </div>
-
           <div class="chart-stat">
             <div class="stat-label">Latest Candle</div>
             <div class="small" id="lastCandleTime">—</div>
           </div>
-
           <div class="chart-stat">
             <div class="stat-label">Feed Status</div>
             <div class="stat-value" id="chartFeedStatus">Waiting…</div>
@@ -510,7 +498,6 @@
           indicate a close below the open. Displayed movement compares the
           first and latest candle closes; it is not your trade profit or loss.
         </p>
-
         <p class="muted small">
           Gold movement is shown in price points using a 0.1 price increment.
           Broker conventions may differ.
@@ -518,11 +505,9 @@
       </div>
     </section>
 
-    <!-- JOURNAL -->
     <section id="journal" class="section">
       <div class="card">
         <h2>Record a Trade</h2>
-
         <div id="journalNotice" class="notice">
           Your saved entries will appear below.
         </div>
@@ -533,7 +518,6 @@
               <label for="tradeDate">Trade date</label>
               <input id="tradeDate" type="date" required>
             </div>
-
             <div class="field">
               <label for="pair">Instrument</label>
               <select id="pair" required>
@@ -544,7 +528,6 @@
                 <option>Other</option>
               </select>
             </div>
-
             <div class="field">
               <label for="direction">Direction</label>
               <select id="direction" required>
@@ -552,30 +535,25 @@
                 <option value="SELL">SELL</option>
               </select>
             </div>
-
             <div class="field">
               <label for="setup">Setup / strategy</label>
               <input id="setup" value="Breakout + Retest"
                      maxlength="120" required>
             </div>
-
             <div class="field">
               <label for="riskPercent">Risk (%)</label>
               <input id="riskPercent" type="number" min="0" max="100"
                      step="0.01" placeholder="1" required>
             </div>
-
             <div class="field">
               <label for="result">Result (e.g. +2R, -1R, BE)</label>
               <input id="result" maxlength="40" placeholder="+2R" required>
             </div>
-
             <div class="field full">
               <label for="notes">Notes</label>
               <textarea id="notes" maxlength="2000"
                         placeholder="Entry reason, confirmation, lessons learned…"></textarea>
             </div>
-
             <div class="field full">
               <button class="btn primary" id="saveTradeBtn" type="submit">
                 Save Trade
@@ -591,79 +569,48 @@
       </div>
     </section>
 
-    <!-- FOREX ACADEMY -->
     <section id="academy" class="section">
       <div class="card">
         <h2>DE.Bluizz Forex Academy</h2>
         <p class="muted">
           Start with the core strategy and develop consistent habits.
         </p>
-
         <article class="lesson">
           <h3>Lesson 1 — Market Structure</h3>
-          <p>
-            Learn to identify swing highs, swing lows, support, resistance
-            and the direction of the current market.
-          </p>
+          <p>Learn to identify swing highs, swing lows, support, resistance and the direction of the current market.</p>
         </article>
-
         <article class="lesson">
           <h3>Lesson 2 — Breakout</h3>
-          <p>
-            Look for a clear candle close beyond a meaningful support or
-            resistance level. Be cautious of false breakouts.
-          </p>
+          <p>Look for a clear candle close beyond a meaningful support or resistance level. Be cautious of false breakouts.</p>
         </article>
-
         <article class="lesson">
           <h3>Lesson 3 — Retest and Confirmation</h3>
-          <p>
-            After a breakout, wait to see whether price retests the broken
-            level and whether price action supports your trading idea.
-          </p>
+          <p>After a breakout, wait to see whether price retests the broken level and whether price action supports your trading idea.</p>
         </article>
-
         <article class="lesson">
           <h3>Lesson 4 — Risk Management</h3>
-          <p>
-            Decide your stop-loss, position size and acceptable risk before
-            entry. A good setup can still lose.
-          </p>
+          <p>Decide your stop-loss, position size and acceptable risk before entry. A good setup can still lose.</p>
         </article>
-
         <article class="lesson">
           <h3>Lesson 5 — Trading Psychology</h3>
-          <p>
-            Keep a journal, follow your rules, accept losses and avoid taking
-            trades merely because you want to be in the market.
-          </p>
+          <p>Keep a journal, follow your rules, accept losses and avoid taking trades merely because you want to be in the market.</p>
         </article>
       </div>
     </section>
 
-    <!-- MARKET INSIGHTS -->
     <section id="insights" class="section">
       <div class="card">
         <h2>🌍 Market Insights</h2>
-
-        <div id="insightsStatus" class="notice">
-          Loading economic calendar...
-        </div>
-
+        <div id="insightsStatus" class="notice">Loading economic calendar...</div>
         <h3>📅 Upcoming Economic Events</h3>
-
         <p class="muted small">
-          Upcoming events that may affect currency markets. Times are shown
-          in East Africa Time (EAT).
+          Upcoming events that may affect currency markets. Times are shown in East Africa Time (EAT).
         </p>
-
         <div id="economicCalendar">
           <p class="muted">Fetching economic events...</p>
         </div>
-
         <p class="muted small">
-          Economic events can cause significant price movements. Verify
-          important releases with an official source before trading.
+          Economic events can cause significant price movements. Verify important releases with an official source before trading.
         </p>
       </div>
     </section>
@@ -683,31 +630,27 @@
 
   let client = null;
   let session = null;
-  let marketTimer = null;
-  let chartTimer = null;
-  let calendarTimer = null;
-
   let candles = [];
   let marketData = {};
 
   let marketRequestRunning = false;
   let chartRequestRunning = false;
   let journalRequestRunning = false;
-
+  let calendarRequestRunning = false;
   let chartRequestId = 0;
 
   function setNotice(id, message, type = "") {
     const el = $(id);
     if (!el) return;
-
     el.className = "notice" + (type ? " " + type : "");
     el.textContent = message;
   }
 
   function setConnection(message, ok = false) {
-    $("connectionStatus").textContent = message;
-    $("connectionStatus").style.color =
-      ok ? "var(--green)" : "var(--gold)";
+    const el = $("connectionStatus");
+    if (!el) return;
+    el.textContent = message;
+    el.style.color = ok ? "var(--green)" : "var(--gold)";
   }
 
   function escapeHtml(value) {
@@ -722,10 +665,7 @@
 
   function showNumber(value, digits = 5) {
     const number = Number(value);
-
-    return Number.isFinite(number)
-      ? number.toFixed(digits)
-      : "—";
+    return Number.isFinite(number) ? number.toFixed(digits) : "—";
   }
 
   function digitsFor(pair) {
@@ -740,190 +680,82 @@
     return 0.0001;
   }
 
-  function marketUrl(action, pair) {
+  function eatDate() {
+    const parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Africa/Nairobi",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).formatToParts(new Date());
+
+    const values = {};
+    parts.forEach(part => {
+      values[part.type] = part.value;
+    });
+
+    return `${values.year}-${values.month}-${values.day}`;
+  }
+
+  function marketUrl(action, pair, extra = {}) {
     const base = window.SUPABASE_URL;
 
     if (!base) {
       throw new Error("SUPABASE_URL is missing from supabase.js");
     }
 
-    return base.replace(/\/+$/, "") +
-      "/functions/v1/market-data?action=" +
-      encodeURIComponent(action) +
-      "&symbol=" + encodeURIComponent(pair);
+    const params = new URLSearchParams({
+      action,
+      symbol: pair,
+      ...extra
+    });
+
+    return `${base.replace(/\/+$/, "")}/functions/v1/market-data?${params}`;
   }
 
   async function getMarketJson(action, pair, extra = {}) {
-    const url = marketUrl(action, pair) +
-      Object.entries(extra).map(([key, value]) =>
-        "&" + encodeURIComponent(key) +
-        "=" + encodeURIComponent(value)
-      ).join("");
-
     const headers = {};
 
     if (session?.access_token) {
       headers.Authorization = "Bearer " + session.access_token;
     }
 
-    const response = await fetch(url, { headers });
+    const response = await fetch(marketUrl(action, pair, extra), { headers });
     const raw = await response.text();
 
     let data;
-
     try {
       data = JSON.parse(raw);
     } catch {
-      throw new Error(
-        "Market API returned non-JSON data (HTTP " +
-        response.status + ")"
-      );
+      throw new Error(`Market API returned non-JSON data (HTTP ${response.status})`);
     }
 
-    if (!response.ok) {
-      throw new Error(
-        data.error ||
-        data.message ||
-        ("Market API HTTP " + response.status)
-      );
+    if (!response.ok || data.error) {
+      throw new Error(data.error || data.message || `Market API HTTP ${response.status}`);
     }
-
-    if (data.error) throw new Error(data.error);
 
     return data;
   }
 
-  // ECONOMIC CALENDAR
-  async function loadEconomicCalendar() {
-    const container = $("economicCalendar");
-
-    if (!container) return;
-
-    try {
-      const base = window.SUPABASE_URL;
-
-      if (!base) throw new Error("Supabase URL is missing.");
-
-      const response = await fetch(
-        base.replace(/\/+$/, "") +
-        "/functions/v1/economic-calendar"
-      );
-
-      if (!response.ok) {
-        throw new Error(
-          "Calendar request failed: HTTP " + response.status
-        );
-      }
-
-      const result = await response.json();
-
-      if (!result.success || !Array.isArray(result.events)) {
-        throw new Error("Calendar data is unavailable.");
-      }
-
-      const now = Date.now();
-
-      const upcoming = result.events
-        .filter(event => {
-          const time = Date.parse(event.date);
-
-          return event.title &&
-            Number.isFinite(time) &&
-            time >= now;
-        })
-        .sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
-        .slice(0, 15);
-
-      if (!upcoming.length) {
-        container.textContent =
-          "No upcoming events were found in the current feed.";
-
-        setNotice(
-          "insightsStatus",
-          "Calendar connected, but no upcoming events were found."
-        );
-
-        return;
-      }
-
-      container.innerHTML = upcoming.map(event => {
-        const dateText = new Intl.DateTimeFormat("en-KE", {
-          timeZone: "Africa/Nairobi",
-          dateStyle: "medium",
-          timeStyle: "short"
-        }).format(new Date(event.date));
-
-        return `
-          <div class="card" style="margin-top:12px;">
-            <strong>${escapeHtml(event.title)}</strong>
-            <div class="muted small">
-              ${escapeHtml(dateText)} EAT
-            </div>
-            <div class="small">
-              Currency: ${escapeHtml(event.country || "—")}
-              &nbsp;|&nbsp;
-              Impact: ${escapeHtml(event.impact || "Unspecified")}
-            </div>
-            ${event.forecast
-              ? `<div class="small">Forecast: ${escapeHtml(event.forecast)}</div>`
-              : ""}
-            ${event.previous
-              ? `<div class="small">Previous: ${escapeHtml(event.previous)}</div>`
-              : ""}
-          </div>
-        `;
-      }).join("");
-
-      setNotice(
-        "insightsStatus",
-        "Economic calendar connected. Showing " +
-        upcoming.length + " upcoming events.",
-        "success"
-      );
-    } catch (error) {
-      console.error("Economic calendar error:", error);
-
-      container.textContent =
-        "Unable to load economic events. Please try again later.";
-
-      setNotice(
-        "insightsStatus",
-        "Economic calendar could not be loaded. Check whether the economic-calendar function is deployed.",
-        "error"
-      );
-    }
-  }
-
+  // ------------------------------
   // MARKET WATCHLIST
+  // ------------------------------
+
   function drawWatchlist() {
     const root = $("watchlist");
+    if (!root) return;
 
     root.innerHTML = "";
 
     pairs.forEach(pair => {
       const item = marketData[pair];
       const div = document.createElement("div");
-
       div.className = "market-item";
 
-      const price = item
-        ? showNumber(item.price, digitsFor(pair))
-        : "—";
-
-      const detail = item
-        ? "Updated " + item.updated
-        : "Waiting for a successful quote";
-
-      div.innerHTML =
-        '<div class="market-pair">' +
-          escapeHtml(pair) +
-        '</div>' +
-        '<div class="market-price">' +
-          escapeHtml(price) +
-        '</div>' +
-        '<div class="small muted">' +
-          escapeHtml(detail) +
-        '</div>';
+      div.innerHTML = `
+        <div class="market-pair">${escapeHtml(pair)}</div>
+        <div class="market-price">${item ? showNumber(item.price, digitsFor(pair)) : "—"}</div>
+        <div class="small muted">${item ? "Updated " + escapeHtml(item.updated) : "Waiting for quote"}</div>
+      `;
 
       root.appendChild(div);
     });
@@ -933,7 +765,6 @@
     if (marketRequestRunning || !session) return;
 
     marketRequestRunning = true;
-
     let successCount = 0;
     const errors = [];
 
@@ -941,13 +772,7 @@
       await Promise.all(pairs.map(async pair => {
         try {
           const data = await getMarketJson("quote", pair);
-
-          const rawPrice =
-            data.close ??
-            data.price ??
-            data.last ??
-            data.rate;
-
+          const rawPrice = data.close ?? data.price ?? data.last ?? data.rate;
           const price = Number(rawPrice);
 
           if (
@@ -956,68 +781,62 @@
             rawPrice === "" ||
             !Number.isFinite(price)
           ) {
-            throw new Error("Quote did not include a usable price");
+            throw new Error("No valid quote price returned");
           }
 
           marketData[pair] = {
             price,
-            updated: new Date().toLocaleTimeString()
+            updated: new Date().toLocaleTimeString("en-KE", {
+              timeZone: "Africa/Nairobi",
+              hour12: false
+            })
           };
 
           successCount++;
         } catch (error) {
-          errors.push(pair + ": " + error.message);
+          errors.push(`${pair}: ${error.message}`);
         }
       }));
 
       drawWatchlist();
 
-      $("statMarket").textContent =
-        successCount + "/" + pairs.length;
-
+      $("statMarket").textContent = `${successCount}/${pairs.length}`;
       $("marketUpdated").textContent =
-        "Last check: " + new Date().toLocaleTimeString();
+        "Last check: " + new Date().toLocaleTimeString("en-KE", {
+          timeZone: "Africa/Nairobi",
+          hour12: false
+        });
 
       if (successCount > 0) {
-        setConnection("Market data connected", true);
-
-        setNotice(
-          "Market feed responding: " +
-          successCount + " of " + pairs.length +
-          " instruments returned prices.",
-          successCount === pairs.length ? "success" : ""
-        );
+        setConnection("Market feed responding", true);
       } else {
         setConnection("Market data unavailable");
+      }
 
-        setNotice(
-          "Could not load market prices. " +
-          (errors[0] || "No instruments returned data."),
-          "error"
-        );
+      if (successCount === pairs.length) {
+        setNotice("globalNotice", "All watchlist instruments returned prices.", "success");
+      } else if (successCount > 0) {
+        setNotice("globalNotice", `${successCount} of ${pairs.length} instruments returned prices. Some quotes may be unavailable.`);
+      } else {
+        setNotice("globalNotice", errors[0] || "Market quotes are unavailable.", "error");
       }
     } finally {
       marketRequestRunning = false;
     }
   }
 
-  // TIMESTAMPS
+  // ------------------------------
+  // CANDLE DATA AND CHART
+  // ------------------------------
+
   function timestampValue(value) {
     if (value === null || value === undefined || value === "") {
       return NaN;
     }
 
-    if (
-      typeof value === "number" ||
-      /^\d+$/.test(String(value))
-    ) {
+    if (typeof value === "number" || /^\d+$/.test(String(value))) {
       let timestamp = Number(value);
-
-      // Convert Unix seconds to milliseconds.
-      if (timestamp < 100000000000) {
-        timestamp *= 1000;
-      }
-
+      if (timestamp < 100000000000) timestamp *= 1000;
       return timestamp;
     }
 
@@ -1026,10 +845,7 @@
 
   function formatCandleTime(value) {
     const timestamp = timestampValue(value);
-
-    if (!Number.isFinite(timestamp)) {
-      return "Time unavailable";
-    }
+    if (!Number.isFinite(timestamp)) return "Time unavailable";
 
     return new Intl.DateTimeFormat("en-KE", {
       timeZone: "Africa/Nairobi",
@@ -1038,32 +854,25 @@
     }).format(new Date(timestamp)) + " EAT";
   }
 
-  // CANVAS
   function resizeCanvas() {
     const canvas = $("chart");
-
     if (!canvas) return false;
 
     const rect = canvas.getBoundingClientRect();
-
     if (!rect.width || !rect.height) return false;
 
     const ratio = window.devicePixelRatio || 1;
-
     canvas.width = Math.round(rect.width * ratio);
     canvas.height = Math.round(rect.height * ratio);
 
     const ctx = canvas.getContext("2d");
-
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
     return true;
   }
 
-  // CANDLESTICK CHART
   function drawChart() {
     const canvas = $("chart");
-
     if (!canvas || !resizeCanvas()) return;
 
     const ctx = canvas.getContext("2d");
@@ -1073,27 +882,18 @@
     const digits = digitsFor(pair);
 
     ctx.clearRect(0, 0, width, height);
-
     ctx.fillStyle = "#0a1220";
     ctx.fillRect(0, 0, width, height);
 
-    const pad = {
-      left: 12,
-      right: 76,
-      top: 20,
-      bottom: 30
-    };
-
+    const pad = { left: 12, right: 76, top: 20, bottom: 30 };
     const plotW = width - pad.left - pad.right;
     const plotH = height - pad.top - pad.bottom;
 
     if (plotW <= 0 || plotH <= 0) return;
 
-    ctx.font = "11px system-ui";
-    ctx.lineWidth = 1;
-
     if (candles.length < 2) {
       ctx.fillStyle = "#91a1bd";
+      ctx.font = "12px system-ui";
       ctx.fillText("Waiting for market candles…", 16, 30);
       return;
     }
@@ -1116,37 +916,36 @@
     }
 
     const margin = (max - min) * 0.08;
-
     min -= margin;
     max += margin;
 
     const y = value =>
       pad.top + ((max - value) / (max - min)) * plotH;
 
-    // Price grid.
+    // Grid and price labels
     for (let i = 0; i <= 4; i++) {
       const gy = pad.top + plotH * i / 4;
       const price = max - (max - min) * i / 4;
 
       ctx.beginPath();
       ctx.strokeStyle = "#243149";
+      ctx.lineWidth = 1;
       ctx.moveTo(pad.left, gy);
       ctx.lineTo(width - pad.right, gy);
       ctx.stroke();
 
       ctx.fillStyle = "#91a1bd";
-      ctx.fillText(
-        price.toFixed(digits),
-        width - pad.right + 5,
-        gy + 4
-      );
+      ctx.font = "11px Arial";
+      ctx.textAlign = "left";
+      ctx.fillText(price.toFixed(digits), width - pad.right + 5, gy + 4);
     }
 
     const step = plotW / candles.length;
     const bodyW = Math.max(2, Math.min(12, step * 0.62));
-  candles.forEach((candle, index) => {
-      const x = pad.left + index * step + step / 2;
 
+    // Draw every candle
+    candles.forEach((candle, index) => {
+      const x = pad.left + index * step + step / 2;
       const openY = y(candle.open);
       const closeY = y(candle.close);
       const highY = y(candle.high);
@@ -1155,7 +954,6 @@
       const bullish = candle.close >= candle.open;
       const candleColor = bullish ? "#20c997" : "#ff5b6e";
 
-      // Draw candle wick
       ctx.strokeStyle = candleColor;
       ctx.lineWidth = 1.5;
       ctx.beginPath();
@@ -1163,225 +961,108 @@
       ctx.lineTo(x, lowY);
       ctx.stroke();
 
-      // Draw candle body
       ctx.fillStyle = candleColor;
 
       const bodyTop = Math.min(openY, closeY);
       const bodyHeight = Math.max(1.5, Math.abs(closeY - openY));
 
-      ctx.fillRect(
-        x - bodyW / 2,
-        bodyTop,
-        bodyW,
-        bodyHeight
-      );
+      ctx.fillRect(x - bodyW / 2, bodyTop, bodyW, bodyHeight);
     });
 
-    // Draw latest closing price line
-    const latestCandle = candles[candles.length - 1];
+    const latest = candles[candles.length - 1];
+    const first = candles[0];
 
-    if (latestCandle) {
-      const latestY = y(latestCandle.close);
+    // Latest-price line
+    const latestY = y(latest.close);
 
-      ctx.save();
-      ctx.setLineDash([5, 4]);
-      ctx.strokeStyle = "#e8c547";
-      ctx.lineWidth = 1;
+    ctx.save();
+    ctx.setLineDash([5, 4]);
+    ctx.strokeStyle = "#e8c547";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(pad.left, latestY);
+    ctx.lineTo(width - pad.right, latestY);
+    ctx.stroke();
+    ctx.restore();
 
-      ctx.beginPath();
-      ctx.moveTo(pad.left, latestY);
-      ctx.lineTo(width - pad.right, latestY);
-      ctx.stroke();
-
-      ctx.restore();
-
-      ctx.fillStyle = "#e8c547";
-      ctx.font = "bold 11px Arial";
-      ctx.textAlign = "left";
-
-      ctx.fillText(
-        latestCandle.close.toFixed(digits),
-        width - pad.right + 5,
-        latestY - 5
-      );
-    }
-
-    // Draw first and latest candle times
-    function formatCandleTime(candle) {
-      const rawTime =
-        candle.datetime ??
-        candle.time ??
-        candle.timestamp ??
-        candle.date;
-
-      if (rawTime === undefined || rawTime === null) {
-        return "";
-      }
-
-      let date;
-
-      if (typeof rawTime === "number") {
-        date = new Date(
-          rawTime < 100000000000 ? rawTime * 1000 : rawTime
-        );
-      } else {
-        date = new Date(rawTime);
-      }
-
-      if (Number.isNaN(date.getTime())) {
-        return String(rawTime);
-      }
-
-      return date.toLocaleString("en-KE", {
-        timeZone: "Africa/Nairobi",
-        day: "2-digit",
-        month: "short",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false
-      });
-    }
-
-    ctx.fillStyle = "#91a1bd";
-    ctx.font = "11px Arial";
+    ctx.fillStyle = "#e8c547";
+    ctx.font = "bold 11px Arial";
     ctx.textAlign = "left";
-
     ctx.fillText(
-      formatCandleTime(candles[0]),
+      latest.close.toFixed(digits),
+      width - pad.right + 5,
+      Math.max(12, Math.min(height - 32, latestY - 5))
+    );
+
+    // Time labels
+    ctx.fillStyle = "#91a1bd";
+    ctx.font = "10px Arial";
+    ctx.textAlign = "left";
+    ctx.fillText(
+      formatCandleTime(first.time),
       pad.left,
       height - 8
     );
 
     ctx.textAlign = "right";
-
     ctx.fillText(
-      formatCandleTime(latestCandle),
+      formatCandleTime(latest.time),
       width - pad.right,
       height - 8
     );
 
-    ctx.textAlign = "left";
+    // Chart statistics
+    $("latestPrice").textContent = latest.close.toFixed(digits);
+    $("lastCandleTime").textContent = formatCandleTime(latest.time);
+    $("chartFeedStatus").textContent = "Live feed";
 
-    // Update chart statistics when those elements exist
-    const priceElement =
-      document.getElementById("chartPrice");
+    const movement = (latest.close - first.close) / pipSizeFor(pair);
+    const sign = movement > 0 ? "+" : "";
 
-    const movementElement =
-      document.getElementById("chartMovement");
+    $("chartMovement").textContent =
+      sign + movement.toFixed(1) +
+      (pair === "XAU/USD" ? " points" : " pips");
 
-    if (priceElement && latestCandle) {
-      priceElement.textContent =
-        latestCandle.close.toFixed(digits);
-    }
+    $("chartMovement").style.color =
+      movement > 0 ? "var(--green)" :
+      movement < 0 ? "var(--red)" : "var(--muted)";
+  }
 
-    if (movementElement && candles.length > 1) {
-      const firstClose = candles[0].close;
-      const lastClose = latestCandle.close;
+  async function loadCandles() {
+    if (!session || chartRequestRunning) return;
 
-      let pipSize = 0.0001;
+    chartRequestRunning = true;
+    const requestId = ++chartRequestId;
+    const pair = $("chartPair").value;
 
-      if (pair === "USD/JPY") {
-        pipSize = 0.01;
-      } else if (pair === "XAU/USD") {
-        pipSize = 0.1;
+    $("chartStatus").textContent = `Loading ${pair} candles…`;
+    $("chartFeedStatus").textContent = "Loading…";
+
+    try {
+      const data = await getMarketJson("time_series", pair, {
+        interval: "15min"
+      });
+
+      if (requestId !== chartRequestId || pair !== $("chartPair").value) {
+        return;
       }
 
-      const movement = (lastClose - firstClose) / pipSize;
-      const sign = movement > 0 ? "+" : "";
+      const source = data.candles || data.values || data.data || [];
 
-      movementElement.textContent =
-        sign + movement.toFixed(1) +
-        (pair === "XAU/USD" ? " points" : " pips");
-
-      movementElement.style.color =
-        movement > 0
-          ? "#20c997"
-          : movement < 0
-            ? "#ff5b6e"
-            : "#91a1bd";
-    }
-  } catch (error) {
-    console.error("Chart drawing error:", error);
-  }
-}
-
-
-// =======================================
-// LOAD CANDLE DATA
-// =======================================
-
-async function loadCandles() {
-  if (typeof candlesLoading !== "undefined" && candlesLoading) {
-    return;
-  }
-
-  if (typeof candlesLoading !== "undefined") {
-    candlesLoading = true;
-  }
-
-  const chartStatus = document.getElementById("chartStatus");
-  const pairSelect = document.getElementById("chartPair");
-
-  const pair = pairSelect ? pairSelect.value : "EUR/USD";
-
-  try {
-    if (chartStatus) {
-      chartStatus.textContent = "Loading market candles...";
-    }
-
-    const url =
-      `${window.SUPABASE_URL}/functions/v1/market-data` +
-      `?action=time_series&symbol=${encodeURIComponent(pair)}` +
-      `&interval=15min`;
-
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
+      if (!Array.isArray(source) || source.length === 0) {
+        throw new Error("No candle data was returned for " + pair);
       }
-    });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(
-        data.error || data.message || "Unable to load candles"
-      );
-    }
-
-    const sourceCandles =
-      data.candles ||
-      data.values ||
-      data.data ||
-      [];
-
-    if (!Array.isArray(sourceCandles) || sourceCandles.length === 0) {
-      throw new Error("No candle data was returned for " + pair);
-    }
-
-    const parsedCandles = sourceCandles
-      .map(item => {
+      const parsed = source.map(item => {
         const open = Number(item.open);
         const high = Number(item.high);
         const low = Number(item.low);
         const close = Number(item.close);
 
         const rawTime =
-          item.datetime ??
-          item.time ??
-          item.timestamp ??
-          item.date;
+          item.datetime ?? item.time ?? item.timestamp ?? item.date;
 
-        let time = 0;
-
-        if (typeof rawTime === "number") {
-          time = rawTime < 100000000000
-            ? rawTime * 1000
-            : rawTime;
-        } else if (rawTime !== undefined && rawTime !== null) {
-          const parsedTime = Date.parse(rawTime);
-          time = Number.isNaN(parsedTime) ? 0 : parsedTime;
-        }
+        const time = timestampValue(rawTime);
 
         if (
           !Number.isFinite(open) ||
@@ -1392,301 +1073,453 @@ async function loadCandles() {
           return null;
         }
 
-        return {
-          open,
-          high,
-          low,
-          close,
-          time
-        };
+        return { open, high, low, close, time };
       })
       .filter(Boolean)
       .sort((a, b) => a.time - b.time);
 
-    if (parsedCandles.length === 0) {
-      throw new Error("The returned candle data is invalid.");
-    }
-
-    window.chartCandles = parsedCandles;
-
-    drawChart(parsedCandles, pair);
-
-    if (chartStatus) {
-      chartStatus.textContent =
-        `${pair} · 15-minute candles · ` +
-        `${parsedCandles.length} candles loaded`;
-    }
-
-  } catch (error) {
-    console.error("Candle loading error:", error);
-
-    if (chartStatus) {
-      chartStatus.textContent =
-        "Chart error: " + error.message;
-    }
-  } finally {
-    if (typeof candlesLoading !== "undefined") {
-      candlesLoading = false;
-    }
-  }
-}
-
-
-// =======================================
-// CHART REFRESH AND RESIZING
-// =======================================
-
-const chartPairSelect = document.getElementById("chartPair");
-
-if (chartPairSelect) {
-  chartPairSelect.addEventListener("change", loadCandles);
-}
-
-const chartRefreshButton =
-  document.getElementById("refreshChart");
-
-if (chartRefreshButton) {
-  chartRefreshButton.addEventListener("click", loadCandles);
-}
-
-window.addEventListener("resize", () => {
-  if (window.chartCandles && window.chartCandles.length) {
-    const selectedPair = chartPairSelect
-      ? chartPairSelect.value
-      : "EUR/USD";
-
-    drawChart(window.chartCandles, selectedPair);
-  }
-});
-
-
-// =======================================
-// NAVIGATION
-// =======================================
-
-function showSection(sectionId) {
-  document.querySelectorAll(".section").forEach(section => {
-    section.classList.remove("active");
-  });
-
-  document.querySelectorAll(".nav-link").forEach(link => {
-    link.classList.remove("active");
-  });
-
-  const targetSection = document.getElementById(sectionId);
-
-  if (targetSection) {
-    targetSection.classList.add("active");
-  }
-
-  const selectedLink = document.querySelector(
-    `.nav-link[data-section="${sectionId}"]`
-  );
-
-  if (selectedLink) {
-    selectedLink.classList.add("active");
-  }
-
-  if (sectionId === "terminal") {
-    setTimeout(() => {
-      if (window.chartCandles && window.chartCandles.length) {
-        drawChart(
-          window.chartCandles,
-          chartPairSelect ? chartPairSelect.value : "EUR/USD"
-        );
-      } else {
-        loadCandles();
+      if (parsed.length === 0) {
+        throw new Error("The returned candle data is invalid.");
       }
-    }, 100);
+
+      candles = parsed.slice(-60);
+      drawChart();
+
+      $("chartStatus").textContent =
+        `${pair} · 15-minute candles · ${candles.length} candles loaded`;
+
+      $("chartFeedStatus").textContent = "Connected";
+    } catch (error) {
+      console.error("Candle loading error:", error);
+      $("chartStatus").textContent = "Chart error: " + error.message;
+      $("chartFeedStatus").textContent = "Unavailable";
+    } finally {
+      chartRequestRunning = false;
+    }
   }
 
-  if (sectionId === "insights") {
-    loadEconomicCalendar();
+  $("chartPair").addEventListener("change", () => {
+    candles = [];
+    drawChart();
+    loadCandles();
+  });
+
+  $("chartRefreshBtn").addEventListener("click", loadCandles);
+
+  window.addEventListener("resize", () => {
+    if (candles.length) drawChart();
+  });
+
+  // ------------------------------
+  // JOURNAL
+  // ------------------------------
+
+  function isWinningResult(result) {
+    const text = String(result ?? "").trim().toUpperCase();
+
+    if (/^(BE|BREAKEVEN|BREAK EVEN|0R|0\.0R)$/.test(text)) {
+      return false;
+    }
+
+    const match = text.match(/^[+]?\s*(\d+(?:\.\d+)?)/);
+    return !!match && Number(match[1]) > 0;
   }
 
-  if (sectionId === "journal") {
-    loadJournal();
+  function isLosingResult(result) {
+    const text = String(result ?? "").trim().toUpperCase();
+    return /^-\s*\d/.test(text);
   }
-}
 
-document.querySelectorAll(".nav-link").forEach(link => {
-  link.addEventListener("click", event => {
+  function renderJournal(rows) {
+    $("statTrades").textContent = rows.length;
+
+    const wins = rows.filter(row => isWinningResult(row.result)).length;
+    const decided = rows.filter(row =>
+      isWinningResult(row.result) || isLosingResult(row.result)
+    ).length;
+
+    $("statWins").textContent = wins;
+    $("statWinRate").textContent =
+      decided ? ((wins / decided) * 100).toFixed(1) + "%" : "—";
+
+    if (!rows.length) {
+      $("recentTrades").textContent = "No journal entries yet.";
+      $("journalTable").textContent = "Your saved trades will appear here.";
+      return;
+    }
+
+    $("recentTrades").innerHTML = rows.slice(0, 5).map(row => `
+      <div style="padding:10px 0;border-bottom:1px solid var(--border)">
+        <strong>${escapeHtml(row.pair)}</strong>
+        · ${escapeHtml(row.direction)}
+        · ${escapeHtml(row.result)}
+        <div class="muted small">
+          ${escapeHtml(row.trade_date || "")}
+          · ${escapeHtml(row.setup || "")}
+        </div>
+      </div>
+    `).join("");
+
+    $("journalTable").innerHTML = `
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Instrument</th>
+              <th>Direction</th>
+              <th>Setup</th>
+              <th>Risk %</th>
+              <th>Result</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rows.map(row => `
+              <tr>
+                <td>${escapeHtml(row.trade_date || "")}</td>
+                <td>${escapeHtml(row.pair || "")}</td>
+                <td>${escapeHtml(row.direction || "")}</td>
+                <td>${escapeHtml(row.setup || "")}</td>
+                <td>${escapeHtml(row.risk_percent ?? "")}</td>
+                <td>${escapeHtml(row.result || "")}</td>
+                <td>${escapeHtml(row.notes || "")}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  async function loadJournal() {
+    if (!client || !session || journalRequestRunning) return;
+
+    journalRequestRunning = true;
+
+    try {
+      const { data, error } = await client
+        .from("trades")
+        .select("*")
+        .eq("user_id", session.user.id)
+        .order("trade_date", { ascending: false });
+
+      if (error) throw error;
+
+      renderJournal(data || []);
+      setNotice("journalNotice", "Journal loaded successfully.", "success");
+    } catch (error) {
+      console.error("Journal loading error:", error);
+
+      setNotice(
+        "journalNotice",
+        "Unable to load journal data. Check the Supabase table name, columns and Row Level Security settings.",
+        "error"
+      );
+
+      $("recentTrades").textContent = "Journal data could not be loaded.";
+      $("journalTable").textContent = "Check the journal database configuration.";
+    } finally {
+      journalRequestRunning = false;
+    }
+  }
+
+  $("journalForm").addEventListener("submit", async event => {
     event.preventDefault();
 
-    const sectionId = link.dataset.section;
+    if (!client || !session) {
+      setNotice("journalNotice", "Please log in before saving a trade.", "error");
+      return;
+    }
 
-    if (sectionId) {
-      showSection(sectionId);
+    const button = $("saveTradeBtn");
+    button.disabled = true;
+    button.textContent = "Saving…";
+
+    const record = {
+      user_id: session.user.id,
+      trade_date: $("tradeDate").value,
+      pair: $("pair").value,
+      direction: $("direction").value,
+      setup: $("setup").value.trim(),
+      risk_percent: Number($("riskPercent").value),
+      result: $("result").value.trim(),
+      notes: $("notes").value.trim()
+    };
+
+    try {
+      const { error } = await client
+        .from("trades")
+        .insert(record);
+
+      if (error) throw error;
+
+      setNotice("journalNotice", "Trade saved successfully.", "success");
+
+      $("result").value = "";
+      $("notes").value = "";
+
+      await loadJournal();
+    } catch (error) {
+      console.error("Trade save error:", error);
+
+      setNotice(
+        "journalNotice",
+        "Could not save trade: " + error.message,
+        "error"
+      );
+    } finally {
+      button.disabled = false;
+      button.textContent = "Save Trade";
     }
   });
-});
 
+  // ------------------------------
+  // ECONOMIC CALENDAR
+  // ------------------------------
 
-// =======================================
-// REFRESH ALL DASHBOARD DATA
-// =======================================
+  async function loadEconomicCalendar() {
+    if (calendarRequestRunning) return;
+    calendarRequestRunning = true;
 
-async function refreshAll() {
-  const refreshButton = document.getElementById("refreshAll");
+    const container = $("economicCalendar");
 
-  if (refreshButton) {
-    refreshButton.disabled = true;
-    refreshButton.textContent = "Refreshing...";
+    try {
+      const base = window.SUPABASE_URL;
+      if (!base) throw new Error("Supabase URL is missing.");
+
+      const headers = {};
+      if (session?.access_token) {
+        headers.Authorization = "Bearer " + session.access_token;
+      }
+
+      const response = await fetch(
+        base.replace(/\/+$/, "") + "/functions/v1/economic-calendar",
+        { headers }
+      );
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || result.message || "Calendar request failed");
+      }
+
+      const events = Array.isArray(result.events) ? result.events : [];
+
+      const upcoming = events
+        .filter(event => {
+          const date = Date.parse(event.date);
+          return event.title && Number.isFinite(date) && date >= Date.now();
+        })
+        .sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
+        .slice(0, 15);
+
+      if (!upcoming.length) {
+        container.textContent = "No upcoming events were found in the current feed.";
+        setNotice("insightsStatus", "Calendar connected, but no upcoming events were found.");
+        return;
+      }
+
+      container.innerHTML = upcoming.map(event => {
+        const dateText = new Intl.DateTimeFormat("en-KE", {
+          timeZone: "Africa/Nairobi",
+          dateStyle: "medium",
+          timeStyle: "short"
+        }).format(new Date(event.date));
+
+        return `
+          <div class="card" style="margin-top:12px">
+            <strong>${escapeHtml(event.title)}</strong>
+            <div class="muted small">${escapeHtml(dateText)} EAT</div>
+            <div class="small">
+              Currency: ${escapeHtml(event.country || "—")}
+              · Impact: ${escapeHtml(event.impact || "Unspecified")}
+            </div>
+            ${event.forecast ? `<div class="small">Forecast: ${escapeHtml(event.forecast)}</div>` : ""}
+            ${event.previous ? `<div class="small">Previous: ${escapeHtml(event.previous)}</div>` : ""}
+          </div>
+        `;
+      }).join("");
+
+      setNotice(
+        "insightsStatus",
+        `Economic calendar connected. Showing ${upcoming.length} upcoming events.`,
+        "success"
+      );
+    } catch (error) {
+      console.error("Economic calendar error:", error);
+
+      container.textContent =
+        "Unable to load economic events. The economic-calendar Edge Function may not be deployed yet.";
+
+      setNotice("insightsStatus", error.message, "error");
+    } finally {
+      calendarRequestRunning = false;
+    }
   }
 
-  try {
-    await Promise.allSettled([
-      loadMarkets(),
-      loadJournal()
-    ]);
+  // ------------------------------
+  // NAVIGATION
+  // ------------------------------
 
-    const terminal = document.getElementById("terminal");
+  function showSection(sectionId) {
+    document.querySelectorAll(".section").forEach(section => {
+      section.classList.remove("active");
+    });
 
-    if (terminal && terminal.classList.contains("active")) {
-      await loadCandles();
+    document.querySelectorAll(".nav-btn").forEach(button => {
+      button.classList.remove("active");
+    });
+
+    const section = $(sectionId);
+    if (section) section.classList.add("active");
+
+    const button = document.querySelector(
+      `.nav-btn[data-section="${sectionId}"]`
+    );
+
+    if (button) button.classList.add("active");
+
+    if (sectionId === "terminal") {
+      setTimeout(() => {
+        if (candles.length) drawChart();
+        else loadCandles();
+      }, 100);
     }
 
-    const notice = document.getElementById("globalNotice");
+    if (sectionId === "journal") loadJournal();
+    if (sectionId === "insights") loadEconomicCalendar();
+  }
 
-    if (notice) {
-      notice.textContent =
-        "Dashboard refresh completed at " +
-        new Date().toLocaleTimeString("en-KE", {
+  document.querySelectorAll(".nav-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      showSection(button.dataset.section);
+    });
+  });
+
+  // ------------------------------
+  // REFRESH AND LOGOUT
+  // ------------------------------
+
+  async function refreshAll() {
+    const button = $("refreshBtn");
+    button.disabled = true;
+    button.textContent = "Refreshing…";
+
+    try {
+      await Promise.allSettled([loadMarkets(), loadJournal()]);
+
+      if ($("terminal").classList.contains("active")) {
+        await loadCandles();
+      }
+
+      setNotice(
+        "globalNotice",
+        "Refresh completed at " + new Date().toLocaleTimeString("en-KE", {
           timeZone: "Africa/Nairobi",
           hour12: false
-        });
-    }
-  } finally {
-    if (refreshButton) {
-      refreshButton.disabled = false;
-      refreshButton.textContent = "Refresh";
+        }),
+        "success"
+      );
+    } finally {
+      button.disabled = false;
+      button.textContent = "Refresh";
     }
   }
-}
 
-const refreshAllButton = document.getElementById("refreshAll");
+  $("refreshBtn").addEventListener("click", refreshAll);
 
-if (refreshAllButton) {
-  refreshAllButton.addEventListener("click", refreshAll);
-}
-
-
-// =======================================
-// LOGOUT
-// =======================================
-
-const logoutButton = document.getElementById("logoutButton");
-
-if (logoutButton) {
-  logoutButton.addEventListener("click", async () => {
+  $("logoutBtn").addEventListener("click", async () => {
     try {
-      const client = window.supabaseClient;
-
-      if (client) {
-        await client.auth.signOut();
-      }
+      if (client) await client.auth.signOut();
     } catch (error) {
       console.error("Logout error:", error);
     }
 
     window.location.href = "./auth.html";
   });
-}
 
+  // ------------------------------
+  // STARTUP
+  // ------------------------------
 
-// =======================================
-// INITIALISE DASHBOARD
-// =======================================
+  async function startDashboard() {
+    try {
+      client = window.supabaseClient;
 
-async function startDashboard() {
-  try {
-    const client = window.supabaseClient;
-
-    if (!client) {
-      console.error("Supabase client is unavailable.");
-
-      const notice = document.getElementById("globalNotice");
-
-      if (notice) {
-        notice.textContent =
-          "Supabase connection is unavailable. Check supabase.js.";
+      if (!client) {
+        setConnection("Supabase unavailable");
+        setNotice(
+          "globalNotice",
+          "Supabase client not found. Check supabase.js and the Supabase configuration.",
+          "error"
+        );
+        return;
       }
 
-      return;
-    }
+      const { data, error } = await client.auth.getSession();
 
-    const { data, error } = await client.auth.getSession();
+      if (error) throw error;
 
-    if (error) {
-      console.error("Session error:", error);
-    }
+      session = data?.session || null;
 
-    if (!data || !data.session) {
-      window.location.href = "./auth.html";
-      return;
-    }
-
-    const userEmail = document.getElementById("userEmail");
-
-    if (userEmail) {
-      userEmail.textContent =
-        data.session.user.email || "Logged in";
-    }
-
-    await Promise.allSettled([
-      loadMarkets(),
-      loadJournal()
-    ]);
-
-    await loadCandles();
-
-    // Load the calendar if its section is currently visible.
-    const insights = document.getElementById("insights");
-
-    if (insights && insights.classList.contains("active")) {
-      loadEconomicCalendar();
-    }
-
-    // Refresh market prices regularly.
-    setInterval(() => {
-      loadMarkets();
-
-      const terminal = document.getElementById("terminal");
-
-      if (terminal && terminal.classList.contains("active")) {
-        loadCandles();
+      if (!session) {
+        window.location.href = "./auth.html";
+        return;
       }
-    }, 30000);
 
-    // Refresh economic calendar every five minutes.
-    setInterval(() => {
-      const insightsSection = document.getElementById("insights");
+      $("tradeDate").value = eatDate();
 
-      if (
-        insightsSection &&
-        insightsSection.classList.contains("active")
-      ) {
-        loadEconomicCalendar();
-      }
-    }, 300000);
+      setConnection("Authenticated", true);
 
-  } catch (error) {
-    console.error("Dashboard initialisation error:", error);
+      setNotice(
+        "globalNotice",
+        "Welcome back. Loading your market data and journal…",
+        "success"
+      );
 
-    const notice = document.getElementById("globalNotice");
+      await Promise.allSettled([
+        loadMarkets(),
+        loadJournal()
+      ]);
 
-    if (notice) {
-      notice.textContent =
-        "Dashboard startup error: " + error.message;
+      await loadCandles();
+
+      marketTimer = setInterval(() => {
+        loadMarkets();
+
+        if ($("terminal").classList.contains("active")) {
+          loadCandles();
+        }
+      }, 30000);
+
+      calendarTimer = setInterval(() => {
+        if ($("insights").classList.contains("active")) {
+          loadEconomicCalendar();
+        }
+      }, 300000);
+
+      // Keep the session reference current.
+      client.auth.onAuthStateChange((_event, newSession) => {
+        session = newSession;
+
+        if (!newSession) {
+          window.location.href = "./auth.html";
+        }
+      });
+    } catch (error) {
+      console.error("Dashboard startup error:", error);
+      setConnection("Connection error");
+      setNotice("globalNotice", error.message || "Dashboard startup failed.", "error");
     }
   }
-}
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", startDashboard);
-} else {
-  startDashboard();
-}
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", startDashboard);
+  } else {
+    startDashboard();
+  }
+})();
 </script>
 </body>
-</html>  
+  </html>
